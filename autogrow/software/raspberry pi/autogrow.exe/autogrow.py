@@ -15,7 +15,11 @@ async def temp(ctx):
     embed2.add_field(name="temperature actuelle:", value = "pas de temperature", inline = False)
     embed2.add_field(name="temperature voulu:", value = "pas de temperature voulue", inline = False)
     await ctx.send(embed = embed2)
-
-    
-
+@bot.command()
+async def info(ctx):
+    embed1 = discord.Embed(title ="**info sur la plante**", description ="")
+    embed1.add_field(name ="nom de la plante:", value= "pas de plante choisi", inline =False)
+    embed1.add_field(name ="temperature conseillé:", value = "pas de plante choisi",inline =False)
+    embed1.add_field(name ="hygrométrie conseillé:", value = "pas de plante choisi",inline =False)
+    await ctx.send(embed = embed1)
 bot.run('Nzc5NzY0MDk4Nzc0MjA0NDQ3.X7lR6A.oghtDV3hsdzgb2fyefltbYvBIro')

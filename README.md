@@ -1,3 +1,3 @@
 # autogrow
-main branch + discord bot :)
+main branch 
 

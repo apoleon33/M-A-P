@@ -1,25 +1,21 @@
 import discord
+from discord.ext import commands
 
-client = discord.Client()
+bot = commands.Bot(command_prefix = "!", description = "nothing")
 
-@client.event
+@bot.event
 async def on_ready():
-    print('We have logged in as {0.user}'.format(client))
+    print('We have logged in as {0.user}')
+    await bot.change_presence(activity=discord.Streaming(name="feed your plant", url="https://www.twitch.tv/apoon33"))
 
-@client.event
-async def on_message(message):
-    if message.author == client.user:
-        return
+@bot.command()
+async def temp(ctx):
+    embed2 = discord.Embed(title = "**temperature:**", description = "")
+    embed2.set_thumbnail(url = "https://img2.freepng.fr/20180420/iqw/kisspng-thermometer-temperature-computer-icons-symbol-thermometer-vector-5ad97eb03271c0.6145104915242031842066.jpeg")
+    embed2.add_field(name="temperature actuelle:", value = "pas de temperature", inline = False)
+    embed2.add_field(name="temperature voulu:", value = "pas de temperature voulue", inline = False)
+    await ctx.send(embed = embed2)
 
-    if message.content.startswith('!hello'):
-        await message.channel.send('Hello!')
-    if message.content.startswith('!temp'):
-        await message.channel.send('no temperature available ')
-        await message.channel.send('sorry')
-    if message.content.startswith("!humidity"):
-        await message.channel.send('no humidity available')
-    if message.content.startswith("!picture"):
-        await message.channel.send("no camera available")
     
 
-client.run('Nzc5NzY0MDk4Nzc0MjA0NDQ3.X7lR6A.oghtDV3hsdzgb2fyefltbYvBIro')
+bot.run('Nzc5NzY0MDk4Nzc0MjA0NDQ3.X7lR6A.oghtDV3hsdzgb2fyefltbYvBIro')

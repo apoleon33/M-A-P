@@ -1,2 +1,3 @@
 # autogrow
-WORK IN PROGRESS
+main branch + discord bot :)
+

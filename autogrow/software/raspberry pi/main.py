@@ -16,10 +16,10 @@ temps = int(donnéesplante.iloc[0])
 humidité = int(donnéesplante.iloc[1])
 chaleur = int(donnéesplante.iloc[2])
 arrosage = int(donnéesplante.iloc[3])
-ph = str(donnéesplante.iloc[4])
-plante = Plante(name,temps,humidité,chaleur,arrosage,ph)
+plante = Plante(name,temps,humidité,chaleur,arrosage)
 
 async def arrosoir():
+    plante.arrosagetemps = 0
     await asyncio.sleep(plante.arrosage*24*3600)
     arrose()
 

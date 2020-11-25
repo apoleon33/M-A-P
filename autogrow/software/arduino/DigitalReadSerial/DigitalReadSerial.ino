@@ -16,16 +16,16 @@ const int niveau_deau_1 = 6; //envoie de l'impulsion
 const int niveau_deau_2 = 7;  //reception de l'impulsion
 float distance;
 
-void humandtemp(){                                                                            //envoie de l'humidité et de la temperature
+void humandtemp(){                    //dcp c pas si utile que ca finalement                                                        //envoie de l'humidité et de la temperature
   float temperature;
   float humidity;
-  if( measure_environment( &temperature, &humidity ) == true ){ 
+   
     Serial.print("temp:");
     Serial.println(temperature),    //Du point de vue de l’Arduino, écrire, c’est envoyer des données vers le périphérique connecté.
     Serial.print("humi:");
     Serial.println(humidity);
     delay(1);        
-  }
+  
 }
 void detecteur_eau(){                                                                         //fonction en charge des detecteurs au niveau de la coupelle/plante
   int detecteur_1_value= analogRead(detecteur_eau_1);
@@ -108,7 +108,7 @@ static bool measure_environment( float *temperature, float *humidity )
 
 void loop() {
   while (Serial.available() > 0) {
-    humandtemp();
+    //humandtemp();
     detecteur_eau();
     relais();
     arrosage();

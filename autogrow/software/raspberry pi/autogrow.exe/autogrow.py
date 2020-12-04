@@ -22,4 +22,4 @@ async def info(ctx):
     embed1.add_field(name ="temperature conseillé:", value = "pas de plante choisi",inline =False)
     embed1.add_field(name ="hygrométrie conseillé:", value = "pas de plante choisi",inline =False)
     await ctx.send(embed = embed1)
-bot.run('Nzc5NzY0MDk4Nzc0MjA0NDQ3.X7lR6A.oghtDV3hsdzgb2fyefltbYvBIro')
+bot.run('')  #token du bot normalement

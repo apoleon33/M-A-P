@@ -22,4 +22,7 @@ async def info(ctx):
     embed1.add_field(name ="temperature conseillé:", value = "pas de plante choisi",inline =False)
     embed1.add_field(name ="hygrométrie conseillé:", value = "pas de plante choisi",inline =False)
     await ctx.send(embed = embed1)
+@bot.command()
+async def github(ctx):
+    await ctx.send("https://github.com/apoleon33/autogrow")
 bot.run('')  #token du bot normalement

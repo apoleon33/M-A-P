@@ -1,7 +1,6 @@
-# coding=UTF-8
+from main import *
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
-from main import *
 import time
 from tkinter import *
 from random import *
@@ -113,6 +112,7 @@ class SampleApp(Tk):
         # call this function again in one second
         self.after(1000, self.update_clock)
 
-if __name__== "__main__":
-    app = SampleApp()
-    app.mainloop()
+
+
+app = SampleApp()
+app.mainloop()

@@ -1,3 +1,5 @@
+import matplotlib
+matplotlib.use('Agg')
 from main import *
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation

@@ -1,5 +1,13 @@
-import matplotlib
-matplotlib.use('Agg')
+#import matplotlib
+#matplotlib.use('Agg')
+#début modification
+import os
+import matplotlib as mpl
+if os.environ.get('DISPLAY','') == '':
+    print('no display found. Using non-interactive Agg backend')
+    mpl.use('Agg')
+#fin modification
+import matplotlib.pyplot as plt
 from main import *
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation

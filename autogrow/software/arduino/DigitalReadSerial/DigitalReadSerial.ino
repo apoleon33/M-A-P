@@ -1,4 +1,4 @@
-#include <dht_nonblocking.h>
+ #include <dht_nonblocking.h>
 #define DHT_SENSOR_TYPE DHT_TYPE_11
 
 static const int DHT_SENSOR_PIN = 13;
@@ -43,19 +43,21 @@ void detecteur_eau(){                                                           
   }
 }
 
-void relais() {                                                                                //en charge de la gestion de la platine relai 
-  String v = Serial.readString();
-  if (v=="lamp_on"){
-    digitalWrite(relai_lampe,HIGH);
-  }
-  if (v=="lamp_off"){
-    digitalWrite(relai_lampe,LOW);
-  }
-  if (v=="res_on"){
-    digitalWrite(relai_resistance,LOW);
-  }
-  if (v=="rs_off"){
-    digitalWrite(relai_resistance,HIGH);
+void relais() { 
+  if (Serial.available()>1){
+     String v = Serial.readString();
+     if (v=="lamp_on"){
+       digitalWrite(relai_lampe,HIGH);
+     }
+     if (v=="lamp_off"){
+       digitalWrite(relai_lampe,LOW);
+     }
+     if (v=="res_on"){
+       digitalWrite(relai_resistance,LOW);
+     }
+     if (v=="rs_off"){
+       digitalWrite(relai_resistance,HIGH);
+     }
   }
 }
 

@@ -52,10 +52,10 @@ void relais() {                                                                 
     digitalWrite(relai_lampe,LOW);
   }
   if (v=="res_on"){
-    digitalWrite(relai_resistance,HIGH);
+    digitalWrite(relai_resistance,LOW);
   }
   if (v=="rs_off"){
-    digitalWrite(relai_resistance,LOW);
+    digitalWrite(relai_resistance,HIGH);
   }
 }
 
@@ -112,7 +112,7 @@ void loop() {
   
     //humandtemp();
     detecteur_eau();
-    //relais();
+    relais();
     //arrosage();
     //niveau_deau(); 
    delay(1000);

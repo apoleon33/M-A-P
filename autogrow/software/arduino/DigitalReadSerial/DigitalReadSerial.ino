@@ -30,14 +30,16 @@ void humandtemp(){                    //dcp c pas si utile que ca finalement    
 void detecteur_eau(){                                                                         //fonction en charge des detecteurs au niveau de la coupelle/plante
   int detecteur_1_value= analogRead(detecteur_eau_1);
   int detecteur_2_value= analogRead(detecteur_eau_2);
-  if (detecteur_1_value == 0){
-    Serial.print("waterhelp");
+  if (detecteur_1_value<10 and detecteur_2_value<10){
+    Serial.println("nowater");
   }
-  if (detecteur_2_value ==0){
-    Serial.print("waterpls");
+  else{
+    if (detecteur_1_value  <10){
+     Serial.println("waterhelp");
   }
-  if (detecteur_1_value==0 and detecteur_2_value==0){
-    Serial.print("nowater");
+    if (detecteur_2_value <10){
+     Serial.println("waterpls");
+  }
   }
 }
 
@@ -91,27 +93,27 @@ void setup() {
   }
 
 
-static bool measure_environment( float *temperature, float *humidity )
-{
-  static unsigned long measurement_timestamp = millis( );
+//static bool measure_environment( float *temperature, float *humidity )
+//{
+  //static unsigned long measurement_timestamp = millis( );
 
   
-  if( millis( ) - measurement_timestamp > 3000ul ){
-    if( dht_sensor.measure( temperature, humidity ) == true ){
-      measurement_timestamp = millis( );
-      return( true );
-    }
-  }
+ // if( millis( ) - measurement_timestamp > 3000ul ){
+    //if( dht_sensor.measure( temperature, humidity ) == true ){
+      //measurement_timestamp = millis( );
+      //return( true );
+    //}
+  //}
 
-  return( false );
-}
+//  return( false );
+//}
 
 void loop() {
-  while (Serial.available() > 0) {
+  
     //humandtemp();
     detecteur_eau();
-    relais();
-    arrosage();
-    niveau_deau(); 
-   }
+    //relais();
+    //arrosage();
+    //niveau_deau(); 
+   delay(1000);
   }

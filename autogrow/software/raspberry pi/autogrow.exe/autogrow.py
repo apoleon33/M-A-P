@@ -25,4 +25,9 @@ async def info(ctx):
 @bot.command()
 async def github(ctx):
     await ctx.send("https://github.com/apoleon33/autogrow")
+@bot.command()
+async def time(ctx):
+    embed6 = discord.Embed(title = "**time**")
+    embed6.add_field(name="durée de la culture", value = "pas de donnée", inline =True)
+    await ctx.send(embed = embed6)
 bot.run('')  #token du bot normalement

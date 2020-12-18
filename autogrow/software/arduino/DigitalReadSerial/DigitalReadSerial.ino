@@ -21,7 +21,7 @@ void humandtemp(){                    //dcp c pas si utile que ca finalement    
   float humidity;
    
     Serial.print("temp:");
-    Serial.println(temperature),    //Du point de vue de l’Arduino, écrire, c’est envoyer des données vers le périphérique connecté.
+    Serial.println(temperature);    //Du point de vue de l’Arduino, écrire, c’est envoyer des données vers le périphérique connecté.
     Serial.print("humi:");
     Serial.println(humidity);
     delay(1);        
@@ -46,16 +46,16 @@ void detecteur_eau(){                                                           
 void relais() { 
   if (Serial.available()>1){
      String v = Serial.readString();
-     if (v=="lamp_on"){
+     if(v.substring(0) == "lamp_on\r\n"){
        digitalWrite(relai_lampe,HIGH);
      }
-     if (v=="lamp_off"){
+     if(v.substring(0) == "lamp_off\r\n"){
        digitalWrite(relai_lampe,LOW);
      }
-     if (v=="res_on"){
+     if(v.substring(0) == "res_high\r\n"){
        digitalWrite(relai_resistance,LOW);
      }
-     if (v=="rs_off"){
+     if(v.substring(0) == "res_low\r\n"){
        digitalWrite(relai_resistance,HIGH);
      }
   }
@@ -90,6 +90,7 @@ void setup() {
   pinMode(detecteur_eau_1,INPUT);
   pinMode(detecteur_eau_2,INPUT);
   pinMode(relai_lampe,OUTPUT);
+  pinMode(relai_resistance,OUTPUT);
   pinMode(niveau_deau_1,OUTPUT);
   pinMode(niveau_deau_2,INPUT);
   }
@@ -117,5 +118,5 @@ void loop() {
     relais();
     //arrosage();
     //niveau_deau(); 
-   delay(1000);
+    delay(1000);
   }

@@ -20,7 +20,7 @@ class SampleApp(Tk):
         self.geometry("1080x720")
         self.minsize(480,320)
         self.maxsize(480,320)
-        self.iconbitmap("feuille_dq4_icon.ico")
+        #self.iconbitmap("feuille_dq4_icon.ico")
         self.config(background='#2c2f33')
         self.titre = Label(self,text = "Plant's Stats", font =("Courrier", 15), bg="#2c2f33", fg='white')
         self.titre.grid(row = 1,column = 1,columnspan = 3)

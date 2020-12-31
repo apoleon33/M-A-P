@@ -1,13 +1,3 @@
-#import matplotlib
-#matplotlib.use('Agg')
-#début modification
-import os
-import matplotlib as mpl
-if os.environ.get('DISPLAY','') == '':
-    print('no display found. Using non-interactive Agg backend')
-    mpl.use('Agg')
-#fin modification
-import matplotlib.pyplot as plt
 from main import *
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
@@ -20,29 +10,30 @@ from tempscalcul import *
 class SampleApp(Tk):
     def __init__(self, *args, **kwargs):
         Tk.__init__(self, *args, **kwargs)
-        self.columnconfigure(1,minsize = 400)
-        self.rowconfigure(1,minsize = 200)
-        self.columnconfigure(2,minsize = 300)
-        self.rowconfigure(2,minsize = 200)
-        self.columnconfigure(3,minsize = 300)
-        self.rowconfigure(3,minsize = 200)
+        self.columnconfigure(1,minsize = 170)
+        self.rowconfigure(1,minsize = 70)
+        self.columnconfigure(2,minsize = 170)
+        self.rowconfigure(2,minsize = 40)
+        self.columnconfigure(3,minsize = 170)
+        self.rowconfigure(3,minsize = 30)
         self.title("Healthy Plant")
         self.geometry("1080x720")
-        self.minsize(480,360)
-        #self.iconbitmap("autogrow/autogrow/software/'raspberry pi'/feuille_dq4_icon.ico")
+        self.minsize(480,320)
+        self.maxsize(480,320)
+        self.iconbitmap("feuille_dq4_icon.ico")
         self.config(background='#2c2f33')
-        self.titre = Label(self,text = "Plant's Stats", font =("Courrier", 40), bg="#2c2f33", fg='white')
-        self.titre.grid(row = 1,column = 2)
+        self.titre = Label(self,text = "Plant's Stats", font =("Courrier", 15), bg="#2c2f33", fg='white')
+        self.titre.grid(row = 1,column = 1,columnspan = 3)
         nomp = "Nom de la plante : "+plante.name
-        self.nom = Label(self,text = nomp, font =("Courrier",15), bg="#2c2f33", fg='white')
-        self.nom.grid(row = 2,column = 1,columnspan = 2)
-        self.clock = Label(self, text="",bg = "lightblue",font = ("Courrier",13),relief = "raised")
-        self.clock.grid(row = 3,column = 1,columnspan = 2)
-        self.framehum = Frame(bg = "lightgreen",bd = 10,padx = 20,pady = 30,relief = "raised")
-        self.frametemp = Frame(bg = "lightgreen",bd = 10,padx = 20,pady = 30,relief = "raised")
-        self.datahum = Label(self.framehum,text = "",bg = "lightgreen",bd = 10,font = ("Courrier", 13))
+        self.nom = Label(self,text = nomp, font =("Courrier",10), bg="#2c2f33", fg='white')
+        self.nom.grid(row = 2,column = 1)
+        self.clock = Label(self, text="",bg = "lightblue",font = ("Courrier",10),relief = "raised")
+        self.clock.grid(row = 3,column = 1)
+        self.framehum = Frame(bg = "lightgreen",bd = 1,padx = 2,pady = 3,relief = "raised")
+        self.frametemp = Frame(bg = "lightgreen",bd = 1,padx = 2,pady = 3,relief = "raised")
+        self.datahum = Label(self.framehum,text = "",bg = "lightgreen",bd = 1,font = ("Courrier", 10))
         self.datahum.pack()
-        self.datatemp = Label(self.frametemp,text = "",bg = "lightgreen",bd = 10,font = ("Courrier", 13))
+        self.datatemp = Label(self.frametemp,text = "",bg = "lightgreen",bd = 1,font = ("Courrier", 10))
         self.datatemp.pack()
 
         def graph(quoi,constante,db,ylabel,legend1,legend2):
@@ -81,13 +72,13 @@ class SampleApp(Tk):
         def graphhum():
             graph("Humidité",plante.humidite,"humidite.txt","Humidité en %","Humidité idéale","Humidité réelle")
 
-        self.btemp = Button(self.frametemp,text ="Graphique des températures",command = graphtemp,cursor = "hand1",relief = "groove")
-        self.bhum = Button(self.framehum,text = "Graphique de l'humidité", command = graphhum,cursor = "hand1",relief = "groove")
+        self.btemp = Button(self.frametemp,text ="Graphique des températures",font = ("Courrier",10),command = graphtemp,cursor = "hand1",relief = "groove")
+        self.bhum = Button(self.framehum,text = "Graphique de l'humidité",font = ("Courrier",10), command = graphhum,cursor = "hand1",relief = "groove")
         self.btemp.pack()
         self.bhum.pack()
         self.framehum.grid(row = 2,column = 2,columnspan = 2)
         self.frametemp.grid(row = 3,column = 2,columnspan = 2)
-        self.labarrose = Label(self,text = "",bg = "lightblue",bd = 10,font = ("Courrier", 13),relief = "raised")
+        self.labarrose = Label(self,text = "",bg = "lightblue",bd = 1,font = ("Courrier", 10),relief = "raised")
         self.labarrose.grid(row = 4,column = 1,columnspan = 4)
 
         # start the clock "ticking"

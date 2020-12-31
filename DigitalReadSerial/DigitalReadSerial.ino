@@ -93,23 +93,24 @@ void setup() {
   pinMode(relai_resistance,OUTPUT);
   pinMode(niveau_deau_1,OUTPUT);
   pinMode(niveau_deau_2,INPUT);
+  //temp()
   }
 
-
-//static bool measure_environment( float *temperature, float *humidity )
-//{
-  //static unsigned long measurement_timestamp = millis( );
+void temp(){
+static bool measure_environment( float *temperature, float *humidity )
+{
+  static unsigned long measurement_timestamp = millis( );
 
   
- // if( millis( ) - measurement_timestamp > 3000ul ){
-    //if( dht_sensor.measure( temperature, humidity ) == true ){
-      //measurement_timestamp = millis( );
-      //return( true );
-    //}
-  //}
+ if( millis( ) - measurement_timestamp > 3000ul ){
+    if( dht_sensor.measure( temperature, humidity ) == true ){
+      measurement_timestamp = millis( );
+      return( true );
+    }
+  }
 
-//  return( false );
-//}
+  return( false );
+}}
 
 void loop() {
   

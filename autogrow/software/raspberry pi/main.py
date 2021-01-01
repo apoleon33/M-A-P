@@ -14,7 +14,7 @@ cadre.pack(fill=BOTH, side="top")
 Label(cadre, text=" choisissez votre plante (par son numéro dans la liste):").pack(side=LEFT)
 Entry(cadre, textvariable=user).pack(side=LEFT)  
 for plantechoix in list(plantesdb):
-    label(cadre, text=(i,"-",plantechoix))
+    Label(cadre, text=(i,"-",plantechoix))
     i+=1
 x=user.get()
 donnéesplante = pd.read_csv('db.csv', usecols= [x-1])

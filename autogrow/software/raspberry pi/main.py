@@ -4,7 +4,7 @@ from arrosage import arrose
 import time
 from models import *
 import pandas as pd
-plantesdb = pd.read_csv("db.csv")
+plantesdb = pd.read_csv("/home/apoeon/Documents/autogrow/autogrow/software/raspberry pi/db.csv")
 i = 1
 root = Tk()
 user = StringVar()
@@ -14,17 +14,17 @@ cadre.pack(fill=BOTH, side="top")
 Label(cadre, text=" choisissez votre plante (par son numéro dans la liste):").pack(side=LEFT)
 Entry(cadre, textvariable=user).pack(side=LEFT)  
 for plantechoix in list(plantesdb):
-    Label(cadre, text=(i,"-",plantechoix))
+    Label(cadre, text=(i,"-",plantechoix)).pack(side=RIGHT)
     i+=1
-x=user.get()
-donnéesplante = pd.read_csv('db.csv', usecols= [x-1])
+x=2
+donnéesplante = pd.read_csv('autogrow/autogrow/software/raspberry pi/db.csv', usecols= [x-1])
 name = donnéesplante.columns[0]
-temps = int(donnéesplante.iloc[0])
-humidité = int(donnéesplante.iloc[1])
-chaleur = int(donnéesplante.iloc[2])
-arrosage = int(donnéesplante.iloc[3])
-ph = str(donnéesplante.iloc[4])
-plante = Plante(name,temps,humidité,chaleur,arrosage,ph)
+#temps = int(donnéesplante.iloc[0])
+#humidité = int(donnéesplante.iloc[1])
+#chaleur = int(donnéesplante.iloc[2])
+#arrosage = int(donnéesplante.iloc[3])
+#ph = str(donnéesplante.iloc[4])
+#plante = Plante(name,temps,humidité,chaleur,arrosage,ph)
 
 async def arrosoir():
     await asyncio.sleep(plante.arrosage*24*3600)

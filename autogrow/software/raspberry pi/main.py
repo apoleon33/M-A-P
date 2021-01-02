@@ -1,3 +1,4 @@
+
 from tkinter import*
 import asyncio
 from arrosage import arrose
@@ -16,15 +17,15 @@ Entry(cadre, textvariable=user).pack(side=LEFT)
 for plantechoix in list(plantesdb):
     Label(cadre, text=(i,"-",plantechoix)).pack(side=RIGHT)
     i+=1
-x=2
+x=1
 donnéesplante = pd.read_csv('autogrow/autogrow/software/raspberry pi/db.csv', usecols= [x-1])
 name = donnéesplante.columns[0]
-#temps = int(donnéesplante.iloc[0])
-#humidité = int(donnéesplante.iloc[1])
-#chaleur = int(donnéesplante.iloc[2])
-#arrosage = int(donnéesplante.iloc[3])
+temps = int(donnéesplante.iloc[0])
+humidité = int(donnéesplante.iloc[1])
+chaleur = int(donnéesplante.iloc[2])
+arrosage = int(donnéesplante.iloc[3])
 #ph = str(donnéesplante.iloc[4])
-#plante = Plante(name,temps,humidité,chaleur,arrosage,ph)
+plante = Plante(name,temps,humidité,chaleur,arrosage)
 
 async def arrosoir():
     await asyncio.sleep(plante.arrosage*24*3600)

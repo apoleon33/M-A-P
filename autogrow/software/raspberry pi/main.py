@@ -1,4 +1,3 @@
-
 from tkinter import*
 import asyncio
 from arrosage import arrose
@@ -15,8 +14,10 @@ def choixDesPlantes():
     Label(cadre, text=name3).pack(side=BOTTOM)
 plantesdb = pd.read_csv("/home/apoeon/Documents/autogrow/autogrow/software/raspberry pi/db.csv")
 i = 1
+def quit():
+   root.destroy()
 root = Tk()
-root.geometry('500x200')
+root.geometry('600x100')
 idPlante=0
 user = StringVar()
 cadre = Frame(root, width=380, height=380, borderwidth=1)
@@ -42,6 +43,7 @@ chaleur = int(donnéesplante.iloc[2])
 arrosage = int(donnéesplante.iloc[3])
 #ph = str(donnéesplante.iloc[4])
 plante = Plante(name,temps,humidité,chaleur,arrosage)
+Button(root, text="choisir cette plante", command=quit).pack()
 
 async def arrosoir():
     await asyncio.sleep(plante.arrosage*24*3600)

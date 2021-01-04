@@ -9,7 +9,6 @@ from random import *
 import time
 from asyncio import *
 from tempscalcul import *
-img = PhotoImage(file='/home/pi/autogrow/autogrow/software/raspberry pi/logo.xbm')
 class SampleApp(Tk):
     def __init__(self, *args, **kwargs):
         Tk.__init__(self, *args, **kwargs)
@@ -119,4 +118,5 @@ class SampleApp(Tk):
 
 
 app = SampleApp()
+img = PhotoImage(file='/home/pi/autogrow/autogrow/software/raspberry pi/logo.xbm')
 app.mainloop()

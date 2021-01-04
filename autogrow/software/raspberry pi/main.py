@@ -17,7 +17,7 @@ i = 1
 def quit():
    root.destroy()
 root = Tk()
-root.geometry('600x100')
+root.geometry('480x320')
 idPlante=0
 user = StringVar()
 cadre = Frame(root, width=380, height=380, borderwidth=1)

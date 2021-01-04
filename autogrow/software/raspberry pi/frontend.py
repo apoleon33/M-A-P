@@ -116,7 +116,6 @@ class SampleApp(Tk):
         self.after(1000, self.update_clock)
 
 
-
-app = SampleApp()
 img = PhotoImage(file='/home/pi/autogrow/autogrow/software/raspberry pi/logo.xbm')
+app = SampleApp()
 app.mainloop()

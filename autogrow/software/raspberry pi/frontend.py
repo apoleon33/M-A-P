@@ -9,6 +9,7 @@ from random import *
 import time
 from asyncio import *
 from tempscalcul import *
+img = PhotoImage(file='/home/pi/autogrow/autogrow/software/raspberry pi/logo.xbm')
 class SampleApp(Tk):
     def __init__(self, *args, **kwargs):
         Tk.__init__(self, *args, **kwargs)
@@ -21,7 +22,8 @@ class SampleApp(Tk):
         self.title("Healthy Plant")
         self.geometry("1080x720")
         self.minsize(480,360)
-        self.iconbitmap('/home/pi/autogrow/autogrow/software/raspberry pi/logo.xbm')
+        #self.iconbitmap('/home/pi/autogrow/autogrow/software/raspberry pi/logo.xbm')
+        self.tk.call('wm', 'iconphoto', window._w, img)
         self.config(background='#2c2f33')
         self.titre = Label(self,text = "Plant's Stats", font =("Courrier", 40), bg="#2c2f33", fg='white')
         self.titre.grid(row = 1,column = 2)

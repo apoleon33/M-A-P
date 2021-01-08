@@ -1,86 +1,14 @@
-body {
-    background-color: rgb(218, 176, 100);
-    font-family: Arial, sans-serif;
+body{
+    background-color: #1C1C1C ;
+    color: #A4A4A4;
+    font-family : "Times New Roman", Times, serif;
 }
-center{
-    border: 1px white;
-    border-style:solid;
-    border-width: 5px;
+div#stat{
+    background-color: #2E2E2E;
     border-radius: 15px;
-    
+    padding: 1em;
 }
-h1{color: rgb(39, 39, 122);}
-#src{text-decoration: none}
-#navigation {
-    width: 300px;
-    margin: 0;
-    list-style: square;
-    border: 1px white;
-    border-style:solid;
-    border-width: 5px;
-    border-radius: 15px;
-    padding: 2em;
-    float: left;
-	  position: relative;
-}
-h3#sommaire{
-  padding:none;
-  text-decoration: underline;
-}
-#boite{
-    padding: 10px;
-}
-#àpropos{
-    width: 300px;
-    margin: 0;
-    list-style: square;
-    border: 1px white;
-    border-style:solid;
-    border-width: 5px;
-    border-radius: 15px;
-    padding: 2em;
-    z-index: 1;
-	  position: absolute;
-	  left: 5px;
-   	top: 400px;
-}
-img{
-  position:absolute;
-  right:30px;
-  top:20px;
-}
-#mes{
-  width: 300px;
-  margin: 0;
-  list-style: square;
-  border: 1px white;
-  border-style:solid;
-  border-width: 5px;
-  border-radius: 15px;
-  padding: 2em;
-  z-index: 1;
-	position: absolute;
-	left: 5px;
-  top: 560px;
-}
-div#texte{
-    border: 1px white;
-    border-style:solid;
-    border-width: 5px;
-    border-radius: 15px;
-    padding: 2em;
-    margin-left: 400px;
-    margin-right: auto;
-}
-h2{text-decoration: underline}
-#sources{
-  border: 1px white;
-  border-style:solid;
-  border-width: 5px;
-  border-radius: 15px;
-}
-img#sla250{
-  position:absolute;
-  right:25px;
-  top:500px;
+h1{text-decoration:underline;}
+div#menu{
+    transition: 1s;
 }

@@ -1,5 +1,5 @@
 <?php
 echo "Setting up Files\n";
-exec("
-exec("python3 frontend.py")
+exec("export DISPLAY=:0.0");
+exec("python3 frontend.py");
 ?>

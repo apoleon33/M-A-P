@@ -3,7 +3,9 @@
     <head>
       <meta charset="utf-8" />
       <link rel="stylesheet" href="main.css" />
+      <link rel="stylesheet" href="menu.css" />
       <title>The autogrow</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
         <div id="intro">
@@ -12,9 +14,14 @@
                 <h2>your plant's stat:</h2>
             </center>
         </div>
-        <div id="menu">
-            <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; meh</span>
-        </div>
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="#">About</a>
+            <a href="#">Services</a>
+            <a href="#">Clients</a>
+            <a href="#">Contact</a>
+          </div>
+          <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; menu</span>
         <script type="text/javascript" src="main.js"></script>
     </body>
 </html>

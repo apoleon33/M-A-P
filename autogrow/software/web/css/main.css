@@ -9,3 +9,8 @@ div#stat{
     padding: 1em;
 }
 h1{text-decoration:underline;}
+center#graphique{
+    background-color: #2E2E2E;
+    padding: 1em;
+    border-radius: 15px;
+}

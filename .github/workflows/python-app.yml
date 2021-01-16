@@ -27,4 +27,5 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Test app
       run: |
-        frontend
+        cd autogrow/autogrow/software/'raspberry pi'
+        python3 frontend.py

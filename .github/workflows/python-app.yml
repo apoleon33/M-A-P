@@ -5,9 +5,9 @@ name: Python application
 
 on:
   push:
-    branches: [ main ]
+    branches: [ test-app ]
   pull_request:
-    branches: [ main ]
+    branches: [ test-app ]
 
 jobs:
   build:

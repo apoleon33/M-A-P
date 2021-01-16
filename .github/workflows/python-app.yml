@@ -26,8 +26,8 @@ jobs:
         #pip install
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Test app
-       with:
+      with:
          python-version: '3.9' # Version range or exact version of a Python version to use, using SemVer's version range syntax
          architecture: 'x64'
-        run: |
+         run: |
           python frontend.py

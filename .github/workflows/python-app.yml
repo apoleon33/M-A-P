@@ -23,11 +23,10 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-    #pip install
+    
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Test app
       run: |
-      #export DISPLAY=:0.0*
         echo $DISPLAY 
       #export DISPLAY='Agg'
       #python autogrow/software/'raspberry pi'/frontend.py

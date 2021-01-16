@@ -7,12 +7,12 @@ import pandas as pd
 print("lets go")
 def choixDesPlantes():
     print(plantechoix)
-    donnéesplante = pd.read_csv('db.csv', usecols= [idPlante-1])
+    donnéesplante = pd.read_csv('autogrow/autogrow/autogrow/software/raspberry pi/db.csv', usecols= [idPlante-1])
     name2 = donnéesplante.columns[0]
     name4 = "plante actuellement choisi:"
     name3= name4 +str(name2)
     Label(cadre, text=name3).pack(side=BOTTOM)
-plantesdb = pd.read_csv("db.csv")
+plantesdb = pd.read_csv('autogrow/autogrow/autogrow/software/raspberry pi/db.csv')
 i = 1
 def quit():
    root.destroy()
@@ -35,7 +35,7 @@ for plantechoix in list(plantesdb):
 #menuDeroulant1.add_checkbutton(label="noice", variable=bTest, onvalue=1, offvalue=0)
 menuPlante.configure(menu=menuDeroulant1)  
 x=1
-donnéesplante = pd.read_csv('db.csv', usecols= [idPlante])
+donnéesplante = pd.read_csv('autogrow/autogrow/autogrow/software/raspberry pi/db.csv', usecols= [idPlante])
 name = donnéesplante.columns[0]
 temps = int(donnéesplante.iloc[0])
 humidité = int(donnéesplante.iloc[1])

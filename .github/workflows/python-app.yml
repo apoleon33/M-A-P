@@ -28,6 +28,5 @@ jobs:
     - name: Test app
       run: |
         #export DISPLAY=:0.0*
-        -v /tmp/.X11-unix:/tmp/.X11-unix
-        -e DISPLAY=unix$DISPLAY
+        export MPLBACKEND='Agg'
         python autogrow/software/'raspberry pi'/frontend.py

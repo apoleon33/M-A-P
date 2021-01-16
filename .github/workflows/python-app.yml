@@ -28,5 +28,6 @@ jobs:
     - name: Test app
       run: |
         echo $DISPLAY 
+        export DISPLAY=0
       #export DISPLAY='Agg'
       #python autogrow/software/'raspberry pi'/frontend.py

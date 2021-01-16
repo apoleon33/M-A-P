@@ -27,5 +27,7 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Test app
       run: |
-        #export DISPLAY=:0.0
+        #export DISPLAY=:0.0*
+        -v /tmp/.X11-unix:/tmp/.X11-unix
+        -e DISPLAY=unix$DISPLAY
         python autogrow/software/'raspberry pi'/frontend.py

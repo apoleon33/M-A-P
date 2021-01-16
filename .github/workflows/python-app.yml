@@ -28,5 +28,5 @@ jobs:
     - name: Test app
       run: |
         #export DISPLAY=:0.0*
-        export MPLBACKEND='Agg'
+        export DISPLAY='Agg'
         python autogrow/software/'raspberry pi'/frontend.py

@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO
 import dht11
-import sqlite3
+from datagest import *
 import serial
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
@@ -17,7 +17,8 @@ def temp_hum():
 	if result.is_valid():
     	print("Temperature: %-3.1f C" % result.temperature)
     	print("Humidity: %-3.1f %%" % result.humidity)
-    	#ajouter code pur mettre dans la base de donnée
+    	add_temp(0, result.temperature)
+	add_hum(0, result.humidity)
 	else:
     	print("Error: %d" % result.error_code)
 def relai(lampe:bool,res:bool):

@@ -1,4 +1,0 @@
-asyncio
-pyserial
-pandas
-dht11

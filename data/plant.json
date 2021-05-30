@@ -1,0 +1,38 @@
+"plant":{
+	"drosera aliciae":{
+		"nom":"Rossolis d'alice",
+		"eau":{
+			"hiver":"pot",
+			"été":"coupelle",
+		},
+		"temperature":{
+			"hiver":12,
+			"été":25,
+		},
+		"lumière":"soleil"
+	},
+	"Dionaea muscipula":{
+		"nom":"Attrape-mouche de Venus",
+		"eau":{
+			"hiver":"pot",
+			"été":"pot",
+		},
+		"temperature":{
+			"hiver":10,
+			"été":25,
+		},
+		"lumière":"soleil",
+	},
+	"pinguicula Tina":{
+		"nom":"Pinguicula Tina",
+		"eau":{
+			"hiver":"pot",
+			"été":"pot",
+		},
+		"temperature":{
+			"hiver":10,
+			"été":25,
+		},
+		"lumière":"ombre",
+	},
+}

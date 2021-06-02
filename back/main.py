@@ -19,12 +19,15 @@ GPIO.setup(12, GPIO.OUT) #resistance
 GPIO.setup(5,GPIO.OUT) #lampe
 GPIO.setup(13,GPIO.OUT)#pompe
 result = instance.read()
+
 #lecture de la temperature et de l'humiditée
-def temp_hum():
+def temp_hum(temp,hum):
 	if result.is_valid():
     	print("Temperature: %-3.1f C" % result.temperature)
     	print("Humidity: %-3.1f %%" % result.humidity)
-    	add_temp(0, result.temperature)
+    	with open("../data/temp.txt","a") as file:
+        	file.write("\n"+str())
+    	#add_temp(0, result.temperature)
 		add_hum(0, result.humidity)
 	else:
     	print("Error: %d" % result.error_code)
@@ -52,32 +55,6 @@ def arduino(var=False):
 	data = arduino.readline()
   	decoded_bytes1 = str(data[0:3].decode("utf-8"))
   	decoded_bytes2 = str(data[3:len(data)-2].decode("utf-8"))
-
-#ancienne gestion des jours pour l'allumage
-'''def lever(x:int):
-	if x==1 or x==12: #janvier/decembre
-		matin=9
-	if x==5 or x==8 or x==9:#mai/aout/septembre
-		matin=7
-	if x==6 or x==7:#juin/juillet
-		matin=6
-	else:#le reste
-		matin=8
-	return matin
-def coucher(x:int):
-	if x<6:
-		soir=16+x
-	if x==7:
-		soir=22
-	if x==8 or x==9:
-		soir=21
-	if x==10:
-		soir=20
-	if x==11:
-		soir=18
-	if x==12:
-		soir=17
-	return soir'''
 
 while True:
 	#yes

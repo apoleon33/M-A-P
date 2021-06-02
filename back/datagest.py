@@ -1,3 +1,4 @@
+'''
 import sqlite3
 
 
@@ -16,3 +17,8 @@ def add_hum(tim,hum):
     conn.commit()
     cur.close()
     conn.close()
+'''
+def add_temp(temp:int) :
+    with open("../data/temp.txt","a") as file:
+        file.write("\n"+str(temp))
+def 

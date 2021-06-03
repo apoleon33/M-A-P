@@ -1,6 +1,11 @@
 import json
+import os
 x=1
 u=1
+try:
+	os.remove("../data/choice.txt")
+except:
+	pass
 with open("../data/plant.json","r") as main:
 	file=json.load(main)
 for i in file:

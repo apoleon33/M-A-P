@@ -1,4 +1,3 @@
 asyncio
 pyserial
-pandas
-dht11
+DHT11

@@ -1,10 +1,4 @@
 #!/bin/bash
-echo "please choose a plant in the list below:"
-#lecture du json
-read plant_choosen
-root= `pwd`
-cd data
-echo $plant_choosen >> "choice.txt"
-cd
-cd $root
+#root= `pwd`
+python3 back/plant_chooser.py
 python3 back/main.py #& cd front && webdev serve

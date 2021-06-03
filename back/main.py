@@ -36,12 +36,13 @@ def temp_hum(temp,hum):
 
 while True:
 	mois=datetime.now().month
+	result = instance.read()
 	if mois<5 or mois>10:
-		temp_ultimate=file['plant'][plant]['temperature']['hiver']
-		water_ultimate=file['plant'][plant]['eau']['hiver']
+		temp_ultimate=file[plant]["temperature"]["hiver"]
+		water_ultimate=file[plant]["eau"]["hiver"]
 	else:
-		temp_ultimate=file['plant'][plant]['temperature']['été']
-		water_ultimate=file['plant'][plant]['eau']['été']
+		temp_ultimate=file[plant]["temperature"]["été"]
+		water_ultimate=file[plant]["eau"]["été"]
 	temp_actual=result.temperature
 	if temp_actual< temp_ultimate:
 		while temp_actual< temp_ultimate:

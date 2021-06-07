@@ -1,7 +1,9 @@
+import serial
 import json
 import os
 x=1
 u=1
+port=serial.Serial("/dev/rfcomm0", baudrate=9600)
 try:
 	os.remove("../data/choice.txt")
 except:
@@ -18,3 +20,4 @@ for y in file:
 			yeah.write(str(y))
 			print("done!")
 	u+=1
+port.write(str(y))

@@ -17,7 +17,7 @@ chose=int(input("choisissez votre plante dans la liste ci dessus (par leur numé
 for y in file:
 	if u==chose:
 		with open('../data/choice.txt',"a") as yeah:
-			yeah.write(str(y))
+			yeah.write(file[y]["signe"])
 			print("done!")
 	u+=1
-port.write(str(y))
+port.write(file[y]["signe"])

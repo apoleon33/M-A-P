@@ -9,7 +9,8 @@
 			"hiver":12,
 			"été":25
 		},
-		"lumière":"soleil"
+		"lumière":"soleil",
+		"signe":"A"
 	},
 	"Dionaea Muscipula":{
 		"nom":"Attrape-mouche de Venus",
@@ -21,7 +22,8 @@
 			"hiver":10,
 			"été":25
 		},
-		"lumière":"soleil"
+		"lumière":"soleil",
+		"signe":"B"
 	},
 	"Pinguicula Tina":{
 		"nom":"Pinguicula Tina",
@@ -33,6 +35,7 @@
 			"hiver":10,
 			"été":25
 		},
-		"lumière":"ombre"
+		"lumière":"ombre",
+		"signe":"C"
 	}
 }

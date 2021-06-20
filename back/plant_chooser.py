@@ -1,7 +1,9 @@
+import serial
 import json
 import os
 x=1
 u=1
+port=serial.Serial("/dev/rfcomm0", baudrate=9600)
 try:
 	os.remove("../data/choice.txt")
 except:
@@ -15,6 +17,7 @@ chose=int(input("choisissez votre plante dans la liste ci dessus (par leur numé
 for y in file:
 	if u==chose:
 		with open('../data/choice.txt',"a") as yeah:
-			yeah.write(str(y))
+			yeah.write(file[y]["signe"])
 			print("done!")
 	u+=1
+port.write(file[y]["signe"])

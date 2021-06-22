@@ -1,3 +1,1 @@
-asyncio
 pyserial
-DHT11

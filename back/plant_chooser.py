@@ -3,7 +3,7 @@ import json
 import os
 x=1
 u=1
-port=serial.Serial("/dev/rfcomm0", baudrate=9600)
+port=serial.Serial("/dev/ttyACM0", baudrate=9600)
 try:
 	os.remove("../data/choice.txt")
 except:

@@ -16,8 +16,9 @@ for i in file:
 chose=int(input("choisissez votre plante dans la liste ci dessus (par leur numéro)"))
 for y in file:
 	if u==chose:
-		with open('home/pi/autogrow/data/choice.txt',"a") as yeah:
-			yeah.write(file[y]["signe"])
-			print("done!")
+		yeah= open('home/pi/autogrow/data/choice.txt',"a")
+		yeah.write(file[y]["signe"])
+		print("done!")
+		yeah.close()
 	u+=1
 port.write(file[y]["signe"])

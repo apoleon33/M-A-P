@@ -1,6 +1,6 @@
 import serial
 import os
-port = serial.Serial("/dev/rfcomm0", baudrate=9600)
+port = serial.Serial("/dev/ttyACM0", baudrate=9600)
 #with open("../data/choice.txt","r") as read:
 	#port.write(str(read.readline()))
 while True:

@@ -1,0 +1,9 @@
+h1 {
+  color: red;
+}
+
+#app-close {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}

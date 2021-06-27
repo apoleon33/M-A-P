@@ -1,7 +1,1 @@
-# autogrow
-this is the main branch, without the discord bot
-
-work in progress :)
-
-rework in progress
-new rework loool
+<div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>

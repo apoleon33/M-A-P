@@ -5,10 +5,10 @@ x=1
 u=1
 port=serial.Serial("/dev/ttyACM0", baudrate=9600)
 try:
-	os.remove("/home/pi/autgrow/data/choice.txt")
+	os.remove("/home/pi/autogrow/data/choice.txt")
 except:
 	pass
-with open("/home/pi/autgrow/data/plant.json","r") as main:
+with open("/home/pi/autogrow/data/plant.json","r") as main:
 	file=json.load(main)
 for i in file:
 	print(str(x)+":"+str(file[i]["nom"]))

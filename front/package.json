@@ -1,11 +1,11 @@
 {
-  "name": "tutoriel-electron",
+  "name": "autogrow",
   "version": "1.0.0",
-  "description": "Une application pour explorer les possibilités d'Electron",
+  "description": "frontend for the autogrow",
   "main": "main.js",
   "scripts": {
     "test": "electron ."
   },
-  "author": "Bat'",
+  "author": "579",
   "license": "GPL-3.0"
 }

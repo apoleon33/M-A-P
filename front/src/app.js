@@ -21,20 +21,63 @@ function humidity(){
 	      google.charts.setOnLoadCallback(drawChart);
 	      function drawChart() {
 	        var data = google.visualization.arrayToDataTable([
-	          ['humidité', 'pourcentage'],
+	          ['humiditée', 'pourcentage'],
 	          ['humiditée',     arg],
 	          ['', vide]
 	        ]);
 
 	        var options = {
-	          title: 'humidity',
+	          title: 'humiditée',
+	          pieSliceText: 'none',
 	          pieHole: 0.4,
-	          pieStartAngle: 150,
-	          backgroundColor: 'grey',
+	          pieStartAngle: 215,
+	          pieSliceBorderColor:'grey',
+	          backgroundColor: {
+	          	stroke:'grey',
+	          	fill: 'grey'
+	          },
+	          slices: {
+            	0: { color: '#0080FF' },
+            	1: { color: 'transparent' }
+          }
           }
 	        var chart = new google.visualization.PieChart(document.getElementById('main_box'));
 	        chart.draw(data, options);
 	      }
+	})
+}
+function temperature(){
+	ipcRenderer.send('need-temp', 'now')
+	ipcRenderer.on('temperature', (event, arg) => {
+		google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['heure', 'temperature','temperature conseillé'],
+          ['0',  45,30],
+          ['5',  37,30],
+          ['10',  34,30],
+          ['15', 32,30],
+          ['20', 26,30],
+        ]);
+
+        var options = {
+          title: 'température',
+          curveType: 'function',
+          backgroundColor: {
+	          	stroke:'grey',
+	          	fill: 'grey'
+	      },
+	      colors:['red','black'],
+          legend: { position: 'bottom' }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('main_box'));
+
+        chart.draw(data, options);
+      }
+
 	})
 }
 home()

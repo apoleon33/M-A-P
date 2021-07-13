@@ -6,9 +6,17 @@ function home(){
 	ipcRenderer.on('plant-needed', (event, arg) => {
 		console.log(arg)
 		let text = document.createElement("h2")
+		text.id = 'hh'
 		text.textContent = "plante choisi:"
 		text.textContent += arg
-		house.appendChild(text)
+		try{
+			var ye= document.getElementById('hh')
+			house.replaceChild(text,ye);
+		}
+		catch(error){
+			console.log(error);
+			house.appendChild(text);
+	}
 	})
 }
 function humidity(){

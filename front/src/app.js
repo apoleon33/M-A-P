@@ -21,12 +21,17 @@ function humidity(){
 	      google.charts.setOnLoadCallback(drawChart);
 	      function drawChart() {
 	        var data = google.visualization.arrayToDataTable([
+<<<<<<< HEAD
 	          ['humiditée', 'pourcentage'],
+=======
+	          ['humidité', 'pourcentage'],
+>>>>>>> origin/main
 	          ['humiditée',     arg],
 	          ['', vide]
 	        ]);
 
 	        var options = {
+<<<<<<< HEAD
 	          title: 'humiditée',
 	          pieSliceText: 'none',
 	          pieHole: 0.4,
@@ -40,12 +45,19 @@ function humidity(){
             	0: { color: '#0080FF' },
             	1: { color: 'transparent' }
           }
+=======
+	          title: 'humidity',
+	          pieHole: 0.4,
+	          pieStartAngle: 150,
+	          backgroundColor: 'grey',
+>>>>>>> origin/main
           }
 	        var chart = new google.visualization.PieChart(document.getElementById('main_box'));
 	        chart.draw(data, options);
 	      }
 	})
 }
+<<<<<<< HEAD
 function temperature(){
 	ipcRenderer.send('need-temp', 'now')
 	ipcRenderer.on('temperature', (event, arg) => {
@@ -80,4 +92,6 @@ function temperature(){
 
 	})
 }
+=======
+>>>>>>> origin/main
 home()

@@ -1,3 +1,2 @@
-data/choice.txt
-data/temp.txt
-data/hum.txt
+front/data/
+front/node_modules/

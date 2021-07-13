@@ -1,4 +1,40 @@
+const { ipcRenderer } = require('electron')
 function home(){
 	var house = document.getElementById('main_box');
-	house.innerHTML = '<h1>damn</h1>'
+	house.innerHTML = '<h1>autogrow</h1>';
+	ipcRenderer.send('need-plant', 'name')
+	ipcRenderer.on('plant-needed', (event, arg) => {
+		console.log(arg)
+		let text = document.createElement("h2")
+		text.textContent = "plante choisi:"
+		text.textContent += arg
+		house.appendChild(text)
+	})
 }
+function humidity(){
+	ipcRenderer.send('need-hum', 'now')
+	ipcRenderer.on('humidity', (event, arg) => {
+		var vide =100-arg
+		console.log(arg)
+		console.log(vide)
+		google.charts.load("current", {packages:["corechart"]});
+	      google.charts.setOnLoadCallback(drawChart);
+	      function drawChart() {
+	        var data = google.visualization.arrayToDataTable([
+	          ['humidité', 'pourcentage'],
+	          ['humiditée',     arg],
+	          ['', vide]
+	        ]);
+
+	        var options = {
+	          title: 'humidity',
+	          pieHole: 0.4,
+	          pieStartAngle: 150,
+	          backgroundColor: 'grey',
+          }
+	        var chart = new google.visualization.PieChart(document.getElementById('main_box'));
+	        chart.draw(data, options);
+	      }
+	})
+}
+home()

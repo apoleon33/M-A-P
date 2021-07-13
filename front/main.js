@@ -1,4 +1,6 @@
 const electron = require('electron')
+const { ipcMain } = require('electron')
+const fs = require('fs');
 // Permet de gérer les evenements système
 const app = electron.app
 // Permet de gérer les fenetres
@@ -6,8 +8,14 @@ const BrowserWindow = electron.BrowserWindow
 // Gardez une référence globale de l'objet "window", si vous ne le faites pas, la fenêtre se ferme automatiquement lorsque l'objet JavaScript est nettoyé.
 let mainWindow
 function createWindow () {
-  // Création d'une fenetre en résolution 800x600
-  mainWindow = new BrowserWindow({width: 480, height: 320})
+  // Création d'une fenetre en résolution 480x320
+  mainWindow = new BrowserWindow({
+    width: 480, 
+    height: 320,
+    webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false
+    }})
 
   // La fenetre va charger notre fichier index.html
   mainWindow.loadURL(`file://${__dirname}/src/index.html`)
@@ -32,4 +40,17 @@ app.on('activate', function () {
   if (mainWindow === null) {
     createWindow()
   }
+})
+
+ipcMain.on('need-plant', (event, arg) => {
+  console.log(arg) // affiche "ping"
+  const plant= fs.readFileSync('data/choice.txt','utf8')
+  event.reply('plant-needed', plant)
+})
+ipcMain.on('need-hum',(event, arg) => {
+  console.log(arg) // affiche "ping"
+  const hum= fs.readFileSync('data/hum.txt','utf8')
+  console.log(hum)
+  var hu=800
+  event.reply('humidity', hu)
 })

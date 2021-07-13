@@ -51,13 +51,5 @@ ipcMain.on('need-hum',(event, arg) => {
   console.log(arg) // affiche "ping"
   const hum= fs.readFileSync('data/hum.txt','utf8')
   console.log(hum)
-  var hu=60
-  event.reply('humidity', hu)
-})
-ipcMain.on('need-temp',(event, arg) => {
-  console.log(arg) // affiche "ping"
-  const hum= fs.readFileSync('data/temp.txt','utf8')
-  console.log(hum)
-  var hu=45
-  event.reply('temperature', hu)
+
 })

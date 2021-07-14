@@ -7,7 +7,7 @@ function home(){
 		console.log(arg)
 		let text = document.createElement("h2")
 		text.id = 'hh'
-		text.textContent = "plante choisi:"
+		text.textContent = "plante choisie:"
 		text.textContent += arg
 		try{
 			var ye= document.getElementById('hh')

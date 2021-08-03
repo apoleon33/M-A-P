@@ -6,8 +6,9 @@ if [ -e "$root/front/data/choice.txt" ]
 then
 	echo "plant already choosed"
 else
-	cd ${root}/back
+	cd $root
 	python3 plant_chooser.py
 	cd
 fi
-python3 ${root}/back/serial_communication.py &  cd "${root}/front" && yarn run test  
+cd $root
+python3 serial_communication.py &  cd front && yarn run test  

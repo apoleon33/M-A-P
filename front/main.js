@@ -75,23 +75,12 @@ ipcMain.on('temp_ultimate',(event, arg) =>{
   var n = d.getMonth()+1;
   const plant = fs.readFileSync('data/choice.txt','utf8')
   let fichier = fs.readFileSync('data/plant.json','utf8')
-  console.log(fichier[1])
   let personne = JSON.parse(fichier)
-  console.log(personne[1])
-  var i;
-  var iLength = personne.length;
-  console.log('et ici')
-  for (i = 1; i < iLength; i++) {
-    console.log(i)
-    if (fichier[i]["nom"] == plant){
-      console.log('oui')
-      if ((n <4)||(n>9)){
-        var name = fichier[i]["temperature"]["hiver"]}
-      else{
-        var name = fichier[i]["temperature"]["été"]
-        console.log('j arrive ici')
-      }
-    }
+  if ((n <4)||(n>9)){
+    var name = personne[plant]["temperature"]["hiver"]}
+  else{
+    var name = personne[plant]["temperature"]["été"]
+    console.log('j arrive ici')
   }
   event.reply('temp_ultimate_answerd',name)
 })

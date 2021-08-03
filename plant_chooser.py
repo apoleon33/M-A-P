@@ -20,7 +20,7 @@ chose=int(input("choisissez votre plante dans la liste ci dessus (par leur numé
 for y in file:
 	if u==chose:
 		yeah= open('front/data/choice.txt',"w")
-		yeah.write(str(file[y]["nom"]))
+		yeah.write(str(file[y]["real"]))
 		print("done!")
 		yeah.close()
 	u+=1

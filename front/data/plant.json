@@ -1,6 +1,7 @@
 {
 	"Drosera Aliciae":{
 		"nom":"Rossolis d alice",
+		"real":"Drosera Aliciae",
 		"eau":{
 			"hiver":"pot",
 			"été":"coupelle"
@@ -14,6 +15,7 @@
 	},
 	"Dionaea Muscipula":{
 		"nom":"Attrape-mouche de Venus",
+		"real":"Dionaea Muscipula",
 		"eau":{
 			"hiver":"pot",
 			"été":"pot"
@@ -27,6 +29,7 @@
 	},
 	"Pinguicula Tina":{
 		"nom":"Pinguicula Tina",
+		"real":"Pinguicula Tina",
 		"eau":{
 			"hiver":"pot",
 			"été":"pot"

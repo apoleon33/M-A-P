@@ -55,29 +55,30 @@ function temperature(){
 	house.innerHTML = '<h3>temperature:</h3>'
 	house.innerHTML += '<canvas id="myChart"></canvas>'
 	var ctx = document.getElementById('myChart');
-	var dat=[]
-	//ipcRenderer.send('temp_ultimate','tada')
-	ipcRenderer.on('temp_ultimate_answerd', (event, arg5) =>{})
 	ipcRenderer.send('temp_one','balance la tempe now')
 	ipcRenderer.on('temp_one_answerd', (event, arg) =>{
-		var xValues = [0,10,20,30];
-		new Chart("myChart", {
-			type: "line",
-			data: {
-				labels: xValues,
-				datasets: [{
-					data: arg,
-					borderColor: "red",
-					fill: true
-				},{
-					data: [],
-					borderColor: "black",
-					fill: false
-				}]
-			},
-			options: {
-				legend: {display: false}
-			}
+		ipcRenderer.send('temp_ultimate','tada')
+		ipcRenderer.on('temp_ultimate_answerd', (event, arg2) =>{
+			console.log(arg2)
+			var xValues = [0,10,20,30];
+			new Chart("myChart", {
+				type: "line",
+				data: {
+					labels: xValues,
+					datasets: [{
+						data: arg,
+						borderColor: "red",
+						fill: true
+					},{
+						data: [arg2,arg2,arg2,arg2],
+						borderColor: "black",
+						fill: false
+					}]
+				},
+				options: {
+					legend: {display: false}
+				}
+			})
 		})
 	})
 }

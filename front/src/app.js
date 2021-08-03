@@ -45,7 +45,8 @@ function humidity(){
 	      display: false
 	    },
 	    rotation:215,
-	  }
+	  },
+	  legend: {display: false}
 	});
 	})
 }
@@ -54,38 +55,29 @@ function temperature(){
 	house.innerHTML = '<h3>temperature:</h3>'
 	house.innerHTML += '<canvas id="myChart"></canvas>'
 	var ctx = document.getElementById('myChart');
-	ipcRenderer.send('temp_ultimate','tada')
-	ipcRenderer.on('temp_ultimate_answerd', (event, arg5) =>{
-		ipcRenderer.send('temp_one','balance la tempe now')
-		ipcRenderer.on('temp_one_answerd', (event, arg) =>{ 
-			ipcRenderer.send('temp_two','balance la tempe now')
-			ipcRenderer.on('temp_two_answerd', (event, arg1) =>{ 
-				ipcRenderer.send('temp_three','balance la tempe now')
-				ipcRenderer.on('temp_three_answerd', (event, arg2) =>{ 
-					ipcRenderer.send('temp_four','balance la tempe now')
-					ipcRenderer.on('temp_four_answerd', (event, arg3) =>{ 
-						var xValues = [0,10,20,30];
-						new Chart("myChart", {
-						  type: "line",
-						  data: {
-						    labels: xValues,
-						    datasets: [{
-						      data: [arg,arg1,arg2,arg3],
-						      borderColor: "red",
-						      fill: true
-						    },{
-						      data: [arg5,arg5,arg5,arg5],
-						      borderColor: "black",
-						      fill: false
-						    }]
-						  },
-						  options: {
-						    legend: {display: false}
-						  }
-						});
-					})
-				})
-			})
+	var dat=[]
+	//ipcRenderer.send('temp_ultimate','tada')
+	ipcRenderer.on('temp_ultimate_answerd', (event, arg5) =>{})
+	ipcRenderer.send('temp_one','balance la tempe now')
+	ipcRenderer.on('temp_one_answerd', (event, arg) =>{
+		var xValues = [0,10,20,30];
+		new Chart("myChart", {
+			type: "line",
+			data: {
+				labels: xValues,
+				datasets: [{
+					data: arg,
+					borderColor: "red",
+					fill: true
+				},{
+					data: [],
+					borderColor: "black",
+					fill: false
+				}]
+			},
+			options: {
+				legend: {display: false}
+			}
 		})
 	})
 }

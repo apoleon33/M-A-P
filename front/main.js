@@ -62,23 +62,13 @@ ipcMain.on('need-temp',(event, arg) => {
 })
 ipcMain.on('temp_one',(event, arg) => {
   console.log('1')
-  const temp = fs.readFileSync('data/temp_0.txt','utf8')
-  event.reply('temp_one_answerd',temp)
-})
-ipcMain.on('temp_two',(event, arg) => {
-  console.log('2')
-  const temp = fs.readFileSync('data/temp_10.txt','utf8')
-  event.reply('temp_two_answerd',temp)
-})
-ipcMain.on('temp_three',(event, arg) => {
-  console.log('3')
-  const temp = fs.readFileSync('data/temp_20.txt','utf8')
-  event.reply('temp_three_answerd',temp)
-})
-ipcMain.on('temp_four',(event, arg) => {
-  console.log('4')
-  let temp = fs.readFileSync('data/temp_30.txt','utf8')
-  event.reply('temp_four_answerd',temp)
+  var temp0 = fs.readFileSync('data/temp_0.txt','utf8')
+  var temp10 = fs.readFileSync('data/temp_10.txt','utf8')
+  var temp20 = fs.readFileSync('data/temp_20.txt','utf8')
+  var temp30 = fs.readFileSync('data/temp_30.txt','utf8')
+  var dat= [temp0,temp10,temp20,temp30]
+  console.log(dat)
+  event.reply('temp_one_answerd',dat)
 })
 ipcMain.on('temp_ultimate',(event, arg) =>{
   var d = new Date();

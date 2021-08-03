@@ -1,6 +1,8 @@
 #!/bin/bash
 root=`pwd`
 sudo pip install -r requirements.txt
+cd front
+npm install
 cd
 if [ -e "$root/front/data/choice.txt" ]
 then

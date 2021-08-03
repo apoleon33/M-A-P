@@ -77,6 +77,31 @@ ipcMain.on('temp_three',(event, arg) => {
 })
 ipcMain.on('temp_four',(event, arg) => {
   console.log('4')
-  const temp = fs.readFileSync('data/temp_30.txt','utf8')
+  let temp = fs.readFileSync('data/temp_30.txt','utf8')
   event.reply('temp_four_answerd',temp)
+})
+ipcMain.on('temp_ultimate',(event, arg) =>{
+  var d = new Date();
+  var n = d.getMonth()+1;
+  const plant = fs.readFileSync('data/choice.txt','utf8')
+  let fichier = fs.readFileSync('data/plant.json','utf8')
+  console.log(fichier[1])
+  let personne = JSON.parse(fichier)
+  console.log(personne[1])
+  var i;
+  var iLength = personne.length;
+  console.log('et ici')
+  for (i = 1; i < iLength; i++) {
+    console.log(i)
+    if (fichier[i]["nom"] == plant){
+      console.log('oui')
+      if ((n <4)||(n>9)){
+        var name = fichier[i]["temperature"]["hiver"]}
+      else{
+        var name = fichier[i]["temperature"]["été"]
+        console.log('j arrive ici')
+      }
+    }
+  }
+  event.reply('temp_ultimate_answerd',name)
 })

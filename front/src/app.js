@@ -28,7 +28,7 @@ function humidity(){
 	ipcRenderer.on('humidity', (event, arg) => {
 		var vide =100-arg
 		var xValues = ["humiditée", ""];
-		var yValues = [55, 49];
+		var yValues = [arg, vide];
 		var barColors = ["blue", "transparent"];
 		new Chart(ctx, {
 	  type: "doughnut",

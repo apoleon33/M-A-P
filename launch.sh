@@ -2,11 +2,12 @@
 root=`pwd`
 sudo pip install -r requirements.txt
 cd
-if [ -e "/home/pi/autogrow/data/choice.txt" ];then
+if [ -e "$root/front/data/choice.txt" ]
+then
 	echo "plant already choosed"
 else
-	python3 /home/pi/autogrow/back/plant_chooser.py
+	cd ${root}/back
+	python3 plant_chooser.py
+	cd
 fi
-#python3 /home/pi/autogrow/back/serial_test.py
-cd /autogrow/front
-electron .
+python3 ${root}/back/serial_communication.py &  cd "${root}/front" && yarn run test  

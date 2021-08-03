@@ -63,7 +63,7 @@ ipcMain.on('need-temp',(event, arg) => {
 ipcMain.on('temp_one',(event, arg) => {
   console.log('1')
   const temp = fs.readFileSync('data/temp_0.txt','utf8')
-  event.reply('temp_one_answerd',30)
+  event.reply('temp_one_answerd',temp)
 })
 ipcMain.on('temp_two',(event, arg) => {
   console.log('2')

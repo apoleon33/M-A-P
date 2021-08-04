@@ -1,5 +1,5 @@
 # autogrow
 
-[x] arduino code
-[] backend
-[x] frontend
+- arduino code : done
+- backend : (almost) done
+- frontend : done

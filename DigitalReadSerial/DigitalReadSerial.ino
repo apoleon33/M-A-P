@@ -90,7 +90,6 @@ void setup(){
     }
 }
 void loop(){
-    Serial.begin(9600);
     int chk = DHT11.read(dht_apin);
     DateTime time = rtc.now();
     taux1=map(analogRead(capt_1),0,1024,0,100);
@@ -127,9 +126,8 @@ void loop(){
         //}
         digitalWrite(pompe,LOW);
     }
-    Serial.print((float)DHT11.temperature);
-    Serial.print((float)DHT11.humidity);
+    delay(10000);
+    Serial.println((float)DHT11.temperature);
+    Serial.println((float)DHT11.humidity);
     digitalWrite(13,LOW);
-    Serial.end();
-    delay(5000);
 }

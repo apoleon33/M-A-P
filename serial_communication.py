@@ -27,8 +27,10 @@ def writing(file:str,don):
 while True:
 	try:
 		with serial.Serial("/dev/ttyACM0", baudrate=9600,timeout=39600) as port:
+			print("waiting for serial communication...")
 			data1 = port.readline()
 			data2 = port.readline()
+			print("done!")
 			print(data1)
 			print(data2)
 			temperature = str(data1[0:len(data1)-2].decode("utf-8"))

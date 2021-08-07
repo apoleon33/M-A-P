@@ -20,8 +20,8 @@ void setup(){
         digitalWrite(13, HIGH);
         delay(1000);
         digitalWrite(13,LOW);
-        //Serial.println("ca marche pas");
-        //while (1);
+        Serial.println("ca marche pas");
+        while (1);
    }
    if (EEPROM.read(44) != 255){
     Montenegro=EEPROM.read(44);
@@ -95,38 +95,38 @@ void loop(){
     taux1=map(analogRead(capt_1),0,1024,0,100);
     taux2=map(analogRead(capt_2),0,1024,0,100);
     if ( time.month() >= 4 and time.month() <= 9){//été
-        //if (DHT11.temperature < temperature_été){//gestion temperature
-        //    digitalWrite(resistance,HIGH);
-        //    while(DHT11.temperature < temperature_été);
-        //}
+        if (DHT11.temperature < temperature_été){//gestion temperature
+            digitalWrite(resistance,HIGH);
+            while(DHT11.temperature < temperature_été);
+        }
         digitalWrite(resistance,LOW);
-        //if (taux1 < 20 and eau_été=='coupelle'){
-        //    digitalWrite(pompe,HIGH);
-        //    while (taux1 < 20 and eau_été=='coupelle');
-        //}
-        //if (taux2 < 20 and eau_été=='pot'){
-        //    digitalWrite(pompe, HIGH);
-        //    while (taux2 < 20 and eau_été=='pot');
-        //}
+        if (taux1 < 20 and eau_été=='coupelle'){
+            digitalWrite(pompe,HIGH);
+            while (taux1 < 20 and eau_été=='coupelle');
+        }
+        if (taux2 < 20 and eau_été=='pot'){
+            digitalWrite(pompe, HIGH);
+            while (taux2 < 20 and eau_été=='pot');
+        }
         digitalWrite(pompe,LOW);
     } 
     else{//hiver
-        //if (DHT11.temperature < temperature_hiver){//gestion temperature
-        //    digitalWrite(resistance,HIGH);
-        //    while(DHT11.temperature < temperature_hiver);
-        //}
+        if (DHT11.temperature < temperature_hiver){//gestion temperature
+            digitalWrite(resistance,HIGH);
+            while(DHT11.temperature < temperature_hiver);
+        }
         digitalWrite(resistance,LOW);
-        //if (taux1 < 20 and eau_hiver=='coupelle'){
-        //    digitalWrite(pompe,HIGH);
-        //    while (taux1 < 20 and eau_hiver=='coupelle');
-        //}
-        //if (taux2 < 20 and eau_hiver=='pot'){
-        //    digitalWrite(pompe, HIGH);
-        //    while (taux2 < 20 and eau_hiver=='pot');
-        //}
+        if (taux1 < 20 and eau_hiver=='coupelle'){
+            digitalWrite(pompe,HIGH);
+            while (taux1 < 20 and eau_hiver=='coupelle');
+        }
+        if (taux2 < 20 and eau_hiver=='pot'){
+            digitalWrite(pompe, HIGH);
+            while (taux2 < 20 and eau_hiver=='pot');
+        }
         digitalWrite(pompe,LOW);
     }
-    delay(600000);
+    delay(36000000);
     Serial.println((float)DHT11.temperature);
     Serial.println((float)DHT11.humidity);
     digitalWrite(13,LOW);

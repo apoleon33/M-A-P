@@ -36,7 +36,7 @@ function humidity(){
 	    labels: xValues,
 	    datasets: [{
 	      backgroundColor: barColors,
-	      borderColor:'#5AA65F',
+	      borderColor:'grey',
 	      data: yValues
 	    }]
 	  },
@@ -46,9 +46,7 @@ function humidity(){
 	    },
 	    rotation:215,
 	  },
-	  legend: {
-	  	display: false,
-	  },
+	  legend: {display: false}
 	});
 	})
 }

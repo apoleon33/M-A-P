@@ -126,7 +126,7 @@ void loop(){
         //}
         digitalWrite(pompe,LOW);
     }
-    delay(10000);
+    delay(600000);
     Serial.println((float)DHT11.temperature);
     Serial.println((float)DHT11.humidity);
     digitalWrite(13,LOW);

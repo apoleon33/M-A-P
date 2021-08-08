@@ -27,16 +27,10 @@ def writing(file:str,don):
 while True:
 	try:
 		with serial.Serial("/dev/ttyACM0", baudrate=9600,timeout=39600) as port:
-			print("waiting for serial communication...")
 			data1 = port.readline()
 			data2 = port.readline()
-			print("done!")
-			print(data1)
-			print(data2)
 			temperature = str(data1[0:len(data1)-2].decode("utf-8"))
 			humidity = str(data2[0:len(data2)-2].decode("utf-8"))
-			print(temperature)
-			print(humidity) #
 			replace(temp_20h,temp_30h)
 			replace(temp_10h,temp_20h)
 			replace(temp_now,temp_10h)
@@ -48,4 +42,4 @@ while True:
 				pass
 	except:
 		break
-print("plus de connection série, fin du script")
+print("connexion série interrompu, fin du script")

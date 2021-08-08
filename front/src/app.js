@@ -4,7 +4,6 @@ function home(){
 	house.innerHTML = '<h1>autogrow</h1>';
 	ipcRenderer.send('need-plant', 'name')
 	ipcRenderer.on('plant-needed', (event, arg) => {
-		console.log(arg)
 		let text = document.createElement("h2")
 		text.id = 'hh'
 		text.textContent = "plante choisie:"
@@ -14,7 +13,6 @@ function home(){
 			house.replaceChild(text,ye);
 		}
 		catch(error){
-			console.log(error);
 			house.appendChild(text);
 	}
 	})
@@ -61,7 +59,6 @@ function temperature(){
 	ipcRenderer.on('temp_one_answerd', (event, arg) =>{
 		ipcRenderer.send('temp_ultimate','tada')
 		ipcRenderer.on('temp_ultimate_answerd', (event, arg2) =>{
-			console.log(arg2)
 			var xValues = [0,10,20,30];
 			new Chart("myChart", {
 				type: "line",

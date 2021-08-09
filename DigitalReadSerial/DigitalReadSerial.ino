@@ -9,7 +9,7 @@ const int capt_2 = A1;
 const int pompe = 6;
 const int resistance = 3;
 String trad1, trad2;
-int taux1,taux2,eau_hiver,eau_été,temperature_hiver,temperature_été,inputString,junk,a,Montenegro;
+int taux1,taux2,eau_hiver,eau_ete,temperature_hiver,temperature_ete,inputString,junk,a,Montenegro;
 void setup(){
     Serial.begin(9600);
     pinMode(capt_1,INPUT);
@@ -28,21 +28,21 @@ void setup(){
     switch (Montenegro){
       case 1:
         eau_hiver='pot';
-        eau_été='coupelle';
+        eau_ete='coupelle';
         temperature_hiver= 12;
-        temperature_été= 25;
+        temperature_ete= 25;
         break;
       case 2:
        eau_hiver='pot';
-       eau_été='pot';
+       eau_ete='pot';
        temperature_hiver= 10;
-       temperature_été= 25;
+       temperature_ete= 25;
        break;
       case 3:
        eau_hiver='pot';
-       eau_été='pot';
+       eau_ete='pot';
        temperature_hiver= 10;
-       temperature_été= 25;
+       temperature_ete= 25;
        break;
               }
     }
@@ -59,25 +59,25 @@ void setup(){
               switch (inputString){
                   case 'A':
                       eau_hiver='pot';
-                      eau_été='coupelle';
+                      eau_ete='coupelle';
                       temperature_hiver= 12;
-                      temperature_été= 25;
+                      temperature_ete= 25;
                       a=1;
                       EEPROM.write(44,1);
                       break;
                   case 'B':
                       eau_hiver='pot';
-                      eau_été='pot';
+                      eau_ete='pot';
                       temperature_hiver= 10;
-                      temperature_été= 25;
+                      temperature_ete= 25;
                       a=1;
                       EEPROM.write(44,2);
                       break;
                   case 'C':
                       eau_hiver='pot';
-                      eau_été='pot';
+                      eau_ete='pot';
                       temperature_hiver= 10;
-                      temperature_été= 25;
+                      temperature_ete= 25;
                       a=1;
                       EEPROM.write(44,3);
                       break;
@@ -94,19 +94,19 @@ void loop(){
     DateTime time = rtc.now();
     taux1=map(analogRead(capt_1),0,1024,0,100);
     taux2=map(analogRead(capt_2),0,1024,0,100);
-    if ( time.month() >= 4 and time.month() <= 9){//été
-        if (DHT11.temperature < temperature_été){//gestion temperature
+    if ( time.month() >= 4 and time.month() <= 9){//ete
+        if (DHT11.temperature < temperature_ete){//gestion temperature
             digitalWrite(resistance,HIGH);
-            while(DHT11.temperature < temperature_été);
+            while(DHT11.temperature < temperature_ete);
         }
         digitalWrite(resistance,LOW);
-        if (taux1 < 20 and eau_été=='coupelle'){
+        if (taux1 < 20 and eau_ete=='coupelle'){
             digitalWrite(pompe,HIGH);
-            while (taux1 < 20 and eau_été=='coupelle');
+            while (taux1 < 20 and eau_ete=='coupelle');
         }
-        if (taux2 < 20 and eau_été=='pot'){
+        if (taux2 < 20 and eau_ete=='pot'){
             digitalWrite(pompe, HIGH);
-            while (taux2 < 20 and eau_été=='pot');
+            while (taux2 < 20 and eau_ete=='pot');
         }
         digitalWrite(pompe,LOW);
     } 

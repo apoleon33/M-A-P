@@ -1,8 +1,6 @@
 #!/bin/bash
 root=`pwd`
-sudo pip install -r requirements.txt
 cd front
-npm install
 cd
 function arduino {
 	echo "reseting arduino..."
@@ -25,7 +23,7 @@ function checkout {
 		python3 plant_chooser.py
 	elif [ "$rlly" = "n" ]
 	then
-		echo "ok"
+		echo ""
 	else
 		echo "réponse invalide"
 		checkout

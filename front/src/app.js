@@ -18,6 +18,7 @@ function home(){
 	})
 }
 function humidity(){
+	reset(true);
 	var house = document.getElementById('main_box');
 	house.innerHTML = '<h3>humiditée:</h3>'
 	house.innerHTML += '<canvas id="myChart"></canvas>'
@@ -51,6 +52,7 @@ function humidity(){
 	})
 }
 function temperature(){
+	reset(false);
 	var house = document.getElementById('main_box');
 	house.innerHTML = '<h3>temperature:</h3>'
 	house.innerHTML += '<canvas id="myChart"></canvas>'
@@ -80,5 +82,32 @@ function temperature(){
 			})
 		})
 	})
+}
+function reset(lik){
+	var menu = document.getElementById('menu');
+	let bouton = document.createElement("button");
+	let image = document.createElement("img");
+	bouton.id = 'actualize';
+	image.id = 'ya'
+	image.src = "assets/refresh.png";
+	image.width = "30";
+	image.height = "30";
+	if (lik) {
+		bouton.onclick = humidity;
+	}
+	else {
+		bouton.onclick = temperature;
+	}
+	try{
+		var texas= document.getElementById('actualize');
+		var chicago= document.getElementById('ya');
+		menu.replaceChild(bouton,texas);
+		menu.replaceChild(image,chicago);
+	}
+	catch(error){
+		menu.appendChild(bouton);
+		var chicago= document.getElementById('actualize');
+		chicago.appendChild(image);
+	}
 }
 home()

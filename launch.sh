@@ -13,7 +13,7 @@ function arduino {
 	arduino-cli upload -p /dev/ttyACM0 --fqbn arduino:avr:uno DigitalReadSerial.ino
 }
 function checkout {
-	echo "plante déjas choisi, voulez-vous en choisir une nouvelle? [o/n]"
+	echo "plant already choosed, do you want to choose a new one? [y/n]"
 	read rlly
 	if [ "$rlly" = "o" ]
 	then
@@ -25,7 +25,7 @@ function checkout {
 	then
 		echo ""
 	else
-		echo "réponse invalide"
+		echo "unvalid answerd, try again"
 		checkout
 	fi
 }

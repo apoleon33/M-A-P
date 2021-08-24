@@ -6,7 +6,7 @@ function home(){
 	ipcRenderer.on('plant-needed', (event, arg) => {
 		let text = document.createElement("h2")
 		text.id = 'hh'
-		text.textContent = "plante choisie:"
+		text.textContent = "choosen plant:"
 		text.textContent += arg
 		try{
 			var ye= document.getElementById('hh')
@@ -20,13 +20,13 @@ function home(){
 function humidity(){
 	reset(true);
 	var house = document.getElementById('main_box');
-	house.innerHTML = '<h3>humiditée:</h3>'
+	house.innerHTML = '<h3>humidity:</h3>'
 	house.innerHTML += '<canvas id="myChart"></canvas>'
 	var ctx = document.getElementById('myChart');
 	ipcRenderer.send('need-hum', 'now')
 	ipcRenderer.on('humidity', (event, arg8) => {
 		var vide =100-arg8
-		var xValues = ["humiditée", ""];
+		var xValues = ["humidity", ""];
 		var yValues = [arg8, vide];
 		var barColors = ["blue", "transparent"];
 		new Chart(ctx, {

@@ -6,7 +6,7 @@ u=1
 try:
 	port=serial.Serial("/dev/ttyACM0", baudrate=9600)
 except:
-	print("pas de communication série")
+	print("no serial communication")
 try:
 	os.remove("/front/data/choice.txt")
 except:
@@ -16,7 +16,7 @@ with open("front/data/plant.json","r") as main:
 for i in file:
 	print(str(x)+":"+str(file[i]["nom"]))
 	x+=1
-chose=int(input("choisissez votre plante dans la liste ci dessus (par leur numéro)"))
+chose=int(input("choose your plant down the list below (by their number!)"))
 for y in file:
 	if u==chose:
 		yeah= open('front/data/choice.txt',"w")

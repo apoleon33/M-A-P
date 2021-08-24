@@ -42,4 +42,4 @@ while True:
 				pass
 	except:
 		break
-print("connexion série interrompu, fin du script")
+print("serial connection stopped")

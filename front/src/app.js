@@ -3,6 +3,13 @@ function home(){
 	var house = document.getElementById('main_box');
 	house.innerHTML = '<h1>autogrow</h1>';
 	ipcRenderer.send('need-plant', 'name')
+	try{
+		var toErase= document.getElementById('actualize');
+		toErase.remove();
+	}
+	catch(error){
+		console.log("no")
+	}
 	ipcRenderer.on('plant-needed', (event, arg) => {
 		let text = document.createElement("h2")
 		text.id = 'hh'
@@ -109,5 +116,5 @@ function reset(lik){
 		var chicago= document.getElementById('actualize');
 		chicago.appendChild(image);
 	}
-}
+}	
 home()

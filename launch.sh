@@ -15,7 +15,7 @@ function arduino {
 function checkout {
 	echo "plant already choosed, do you want to choose a new one? [y/n]"
 	read rlly
-	if [ "$rlly" = "o" ]
+	if [ "$rlly" = "y" ]
 	then
 		arduino
 		rm "$root/front/data/choice.txt"

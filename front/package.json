@@ -4,7 +4,7 @@
   "description": "yeah",
   "main": "main.js",
   "scripts": {
-    "test": "electron ."
+    "start": "electron ."
   },
   "author": "579",
   "license": "GPL-3.0",
@@ -13,5 +13,8 @@
   "devDependencies": {
     "electron-rebuild": "^2.3.5",
     "serialport": "^9.2.0"
+  },
+  "dependencies": {
+    "electron": "^13.2.3"
   }
 }

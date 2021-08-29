@@ -2,6 +2,7 @@ import serial
 import os
 import time
 import json
+from editing_command import*
 vide=""
 humi = "front/data/hum.txt"
 temp_now = "front/data/temp_0.txt"
@@ -13,17 +14,6 @@ with open("front/data/plant.json","r") as main:
 with open("front/data/choice.txt") as iowa:
 	oklahoma= iowa.readlines()
 	vide=vide.join(oklahoma)
-def replace(before:str,after:str):
-	os.remove(after)
-	string=""
-	with open(before,"r") as temp:
-		tempe = temp.readlines()
-	with open(after,"w") as tem:
-		tem.write(string.join(tempe))
-def writing(file:str,don):
-	os.remove(file)
-	with open(file,"w") as files:
-		files.write(don)
 while True:
 	try:
 		with serial.Serial("/dev/ttyACM0", baudrate=9600,timeout=39600) as port:

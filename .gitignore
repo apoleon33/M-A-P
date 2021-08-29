@@ -6,3 +6,4 @@ front/data/temp_10.txt
 front/data/temp_20.txt
 front/data/temp_30.txt
 dossier/
+__pycache__/

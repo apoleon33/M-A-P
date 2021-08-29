@@ -8,6 +8,7 @@ function createWindow () {
   mainWindow = new BrowserWindow({
     width: 480, 
     height: 320,
+    fullscreen:true,
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false

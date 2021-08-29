@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 root=`pwd`
 cd front
 cd

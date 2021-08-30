@@ -1,7 +1,11 @@
 #!/bin/bash
 root=`pwd`
+one=$1
+two=$2
+random_var=4
 cd front
 cd
+
 function arduino {
 	echo "reseting arduino (even if you choosed the simulator)..."
 	cd $root/reset
@@ -32,30 +36,49 @@ function checkout {
 	fi
 }
 
-
-if [ -e "$root/front/data/choice.txt" ]
-then
-	clear
-	checkout
-else
-	cd $root
-	python3 plant_chooser.py
-	cd
-fi
-cd $root
-if [ $1 ]
-then
-	if [ $1 == "-s" ]
+function argument_check {
+	if [ $one ]
 	then
-		if [ $2 ]
+		if [ $one == "-s" ]
 		then
-			python3 simulator.py $2 & cd front && npm start
+			if [ $two ]
+			then
+				random_var=1
+				#then go simulator
+			else
+				echo "please specify an actualisation time for the simulator"
+				random_var=2
+			fi
 		else
-			echo "please specify an actualisation time for the simulator"
+			echo "unrecognized argument"
+			random_var=2
 		fi
 	else
-		echo "unrecognized argument"
+		random_var=3
 	fi
+}
+
+function verif {
+	if [ -e "$root/front/data/choice.txt" ]
+	then
+		checkout
+	else
+		cd $root
+		python3 plant_chooser.py
+		cd
+	fi
+	cd $root
+}
+
+argument_check
+if [ $random_var -eq 1 ]
+then
+	verif
+	python3 simulator.py $2 & cd front && npm start
+elif [ $random_var -eq 2 ]
+then
+	echo "something went wrong"
 else
+	verif
 	python3 serial_communication.py &  cd front && npm start
-fi 
+fi

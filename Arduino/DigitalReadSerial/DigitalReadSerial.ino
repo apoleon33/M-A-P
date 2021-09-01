@@ -8,6 +8,7 @@ int capt_1 = A0;
 int capt_2 = A1;
 int pompe = 12;
 int resistance = 3;
+int sec_check = 0;
 String trad1, trad2,eau_hiver,eau_ete;
 int taux1,taux2,temperature_hiver,temperature_ete,inputString,junk,a,Montenegro;
 void setup(){
@@ -182,17 +183,29 @@ void loop(){
 				if (DHT11.temperature < temperature_ete){//gestion temperature
 						while(DHT11.temperature < temperature_ete){
 							digitalWrite(resistance,HIGH);
+							chk = DHT11.read(dht_apin);
 						}
 				}
 				digitalWrite(resistance,LOW);
 				if (taux1 < 20 and eau_ete=="coupelle"){
 					while (taux1 < 20 and eau_ete=="coupelle"){
 						digitalWrite(12,HIGH);
+						taux1=map(analogRead(capt_1),0,1024,0,100);
+					}
+				}
+				if (taux1 < 20 and eau_ete=="sec"){
+					sec_check += 1;
+					if (sec_check >= 2){
+						while (taux1 < 20){
+							taux1=map(analogRead(capt_1),0,1024,0,100);
+						}
+						sec_check=0;
 					}
 				}
 				if (taux2 < 20 and eau_ete=="pot"){
 					while (taux2 < 20 and eau_ete=="pot"){
 						digitalWrite(pompe, HIGH);
+						taux2=map(analogRead(capt_2),0,1024,0,100);
 					}
 				}
 				digitalWrite(pompe,LOW);
@@ -201,17 +214,30 @@ void loop(){
 				if (DHT11.temperature < temperature_hiver){//gestion temperature
 					while(DHT11.temperature < temperature_hiver){
 						digitalWrite(resistance,HIGH);
+						chk = DHT11.read(dht_apin);
 					}
 				}
 				digitalWrite(resistance,LOW);
 				if (taux1 < 20 and eau_hiver == "coupelle"){
 					while (taux1 < 20 and eau_hiver=='coupelle'){
 						digitalWrite(12,HIGH);
+						taux1=map(analogRead(capt_1),0,1024,0,100);
 					}
+				}
+				if (taux1 < 20 and eau_hiver=="sec"){
+					sec_check += 1;
+					if (sec_check >= 2){
+						while (taux1 < 20){
+							taux1=map(analogRead(capt_1),0,1024,0,100);
+						}
+						sec_check=0;
+					}
+
 				}
 				if (taux2 < 20 and eau_hiver=="pot"){
 					while (taux2 < 20 and eau_hiver=='pot'){
 						digitalWrite(pompe, HIGH);
+						taux2=map(analogRead(capt_2),0,1024,0,100);
 				 }
 				}
 				digitalWrite(pompe,LOW);

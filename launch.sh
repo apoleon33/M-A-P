@@ -8,11 +8,11 @@ cd
 
 function arduino {
 	echo "reseting arduino (even if you choosed the simulator)..."
-	cd $root/reset
+	cd $root/Arduino/reset
 	arduino-cli compile --fqbn arduino:avr:uno reset.ino 
 	arduino-cli upload -p /dev/ttyACM0 --fqbn arduino:avr:uno reset.ino
 	sleep 1
-	cd $root/DigitalReadSerial
+	cd $root/Arduino/DigitalReadSerial
 	arduino-cli compile --fqbn arduino:avr:uno DigitalReadSerial.ino 
 	arduino-cli upload -p /dev/ttyACM0 --fqbn arduino:avr:uno DigitalReadSerial.ino
 }

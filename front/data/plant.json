@@ -10,6 +10,7 @@
 			"hiver":12,
 			"été":25
 		},
+		"lumière":"soleil",
 		"signe":"A"
 	},
 	"Dionaea Muscipula":{
@@ -23,6 +24,7 @@
 			"hiver":10,
 			"été":25
 		},
+		"lumière":"soleil",
 		"signe":"B"
 	},
 	"Pinguicula Tina":{
@@ -36,84 +38,7 @@
 			"hiver":10,
 			"été":25
 		},
+		"lumière":"ombre",
 		"signe":"C"
-	},
-	"Crypthantis":{
-		"nom":"Crypthantis",
-		"real":"Crypthantis",
-		"eau":{
-			"hiver":"sec",
-			"été":"sec"
-		},
-		"temperature":{
-			"hiver":22,
-			"été":22
-		},
-		"signe":"D"
-	},
-	"Fittonia":{
-		"nom":"Fittonia",
-		"real":"Fittonia",
-		"eau":{
-			"hiver":"pot",
-			"été":"coupelle"
-		},
-		"temperature":{
-			"hiver":15,
-			"été":22
-		},
-		"signe":"E"
-	},
-	"Hedera":{
-		"nom":"Lierre d'appartement",
-		"real":"Hedera",
-		"eau":{
-			"hiver":"sec",
-			"été":"coupelle"
-		},
-		"temperature":{
-			"hiver":13,
-			"été":19
-		},
-		"signe":"F"
-	},
-	"Ptéris":{
-		"nom":"Ptéris",
-		"real":"Ptéris",
-		"eau":{
-			"hiver":"sec",
-			"été":"pot"
-		},
-		"temperature":{
-			"hiver":15,
-			"été":19
-		},
-		"signe":"G"
-	},
-	"Lithops":{
-		"nom":"PLante caillou",
-		"real":"Lithops",
-		"eau":{
-			"hiver":false,
-			"été":"sec"
-		},
-		"temperature":{
-			"hiver":11,
-			"été":20
-		},
-		"signe":"H"
-	},
-	"Echinocactus":{
-		"nom":"coussin de Belle Mère",
-		"real":"Echinocactus",
-		"eau":{
-			"hiver":false,
-			"été":"sec"
-		},
-		"temperature":{
-			"hiver":7,
-			"été":20
-		},
-		"signe":"I"
 	}
 }

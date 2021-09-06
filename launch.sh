@@ -6,7 +6,7 @@ random_var=4
 cd front
 cd
 
-function arduino {
+function arduino { #maybe/probably useless
 	echo "reseting arduino (even if you choosed the simulator)..."
 	cd $root/Arduino/reset
 	arduino-cli compile --fqbn arduino:avr:uno reset.ino 
@@ -23,10 +23,10 @@ function checkout {
 	read rlly
 	if [ "$rlly" == "y" ]
 	then
-		arduino
+		#arduino
 		rm "$root/front/data/choice.txt"
 		cd $root
-		python3 plant_chooser.py
+		python3  serial_communication.py -n &
 	elif [ "$rlly" = "n" ]
 	then
 		echo ""
@@ -63,9 +63,7 @@ function verif {
 	then
 		checkout
 	else
-		cd $root
-		python3 plant_chooser.py
-		cd
+		python3 serial_communication -n &
 	fi
 	cd $root
 }
@@ -80,5 +78,5 @@ then
 	echo "something went wrong"
 else
 	verif
-	python3 serial_communication.py &  cd front && npm start
+	cd front && npm start
 fi

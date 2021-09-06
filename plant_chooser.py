@@ -1,30 +1,27 @@
 import serial
 import json
 import os
-x=1
-u=1
-try:
-	port=serial.Serial("/dev/ttyACM0", baudrate=9600)
-except:
-	print("no serial communication")
-try:
-	os.remove("/front/data/choice.txt")
-except:
-	pass
-with open("front/data/plant.json","r") as main:
-	file=json.load(main)
-for i in file:
-	print(str(x)+":"+str(file[i]["nom"]))
-	x+=1
-chose=int(input("choose your plant down the list below (by their number!)"))
-for y in file:
-	if u==chose:
-		yeah= open('front/data/choice.txt',"w")
-		yeah.write(str(file[y]["real"]))
-		print("done!")
-		yeah.close()
-	u+=1
-try:
-	port.write(file[y]["signe"].encode())
-except:
-	pass
+def PlantChoice(port):
+	x=1
+	u=1
+	try:
+		os.remove("/front/data/choice.txt")
+	except:
+		pass
+	with open("front/data/plant.json","r") as main:
+		file=json.load(main)
+	for i in file:
+		print(str(x)+":"+str(file[i]["nom"]))
+		x+=1
+	chose=int(input("choose your plant down the list below (by their number!)"))
+	for y in file:
+		if u==chose:
+			yeah= open('front/data/choice.txt',"w")
+			yeah.write(str(file[y]["real"]))
+			print("done!")
+			yeah.close()
+		u+=1
+	try:
+		port.write(file[y]["signe"].encode())
+	except:
+		pass

@@ -1,5 +1,4 @@
 #include <dht11.h>
-#include <EEPROM.h>
 #include <RTClib.h>
 #define dht_apin 4
 dht11 DHT11;
@@ -12,167 +11,95 @@ int sec_check = 0;
 String trad1, trad2,eau_hiver,eau_ete;
 int taux1,taux2,temperature_hiver,temperature_ete,inputString,junk,a,Montenegro;
 void setup(){
-		Serial.begin(9600);
-		pinMode(capt_1,INPUT);
-		pinMode(capt_2,INPUT);
-		pinMode(pompe,OUTPUT);
-		pinMode(resistance,OUTPUT);
-		if (! rtc.begin()){
-				digitalWrite(13, HIGH);
-				delay(1000);
-				digitalWrite(13,LOW);
-				Serial.println("ca marche pas");
-				while (1);
-	 }
-	 if (EEPROM.read(44) != 255){
-			Montenegro=EEPROM.read(44);
-			switch (Montenegro){
-				case 1:
+	Serial.begin(9600);
+	pinMode(capt_1,INPUT);
+	pinMode(capt_2,INPUT);
+	pinMode(pompe,OUTPUT);
+	pinMode(resistance,OUTPUT);
+	if (! rtc.begin()){
+		digitalWrite(13, HIGH);
+		delay(1000);
+		digitalWrite(13,LOW);
+		Serial.println("ca marche pas");
+		while (1);
+    }
+	while (a!=1){
+		if(Serial.available()){ 
+	    	while(Serial.available()) { 
+				char inChar = (char)Serial.read(); //Lire l'entrée 
+				inputString += inChar; //Construit une chaine de caractére a partir des caractére reçus
+			} 
+			while (Serial.available() > 0) { junk = Serial.read() ; }
+			switch (inputString){
+				case 'A':
 					eau_hiver="pot";
 					eau_ete="coupelle";
 					temperature_hiver= 12;
 					temperature_ete= 25;
+					a=1;
 					break;
-				case 2:
-				 eau_hiver="pot";
-				 eau_ete="pot";
-				 temperature_hiver= 10;
-				 temperature_ete= 25;
-				 break;
-				case 3:
+				case 'B':
 					eau_hiver="pot";
 					eau_ete="pot";
 					temperature_hiver= 10;
 					temperature_ete= 25;
+					a=1;
 					break;
-				case 4:
+				case 'C':
+					eau_hiver="pot";
+					eau_ete="pot";
+					temperature_hiver= 10;
+					temperature_ete= 25;
+					a=1;
+					break;
+				case 'D':
 					eau_hiver="sec";
 					eau_ete="sec";
-					temperature_hiver= 10;
+					temperature_hiver= 22;
 					temperature_ete= 22;
+					a=1;
 					break;
-				case 5:
+				case 'E':
 					eau_hiver="pot";
-          eau_ete="coupelle";
-          temperature_hiver= 15;
-          temperature_ete= 22;
-          break;
-        case 6:
-        	eau_hiver="sec";
+					eau_ete="coupelle";
+					temperature_hiver= 15;
+					emperature_ete= 22;
+					a=1;
+					break;
+				case 'F':
+					eau_hiver="sec";
 					eau_ete="coupelle";
 					temperature_hiver= 13;
 					temperature_ete= 19;
+					a=1;
 					break;
-				case 7:
+				case 'G':
 					eau_hiver="sec";
 					eau_ete="pot";
 					temperature_hiver= 15;
 					temperature_ete= 19;
+					a=1;
 					break;
-				case 8:
+				case 'H':
 					eau_hiver=false;
 					eau_ete="sec";
 					temperature_hiver= 11;
 					temperature_ete= 20;
+					a=1;
 					break;
-				case 9:
+				case 'I':
 					eau_hiver=false;
 					eau_ete="sec";
 					temperature_hiver= 7;
 					temperature_ete= 20;
+					a=1;
 					break;
 			}
+			inputString = ""; 
 		}
-		else{
-			while (a!=1){
-					if(Serial.available()){ 
-							while(Serial.available()) { 
-									char inChar = (char)Serial.read(); //Lire l'entrée 
-									inputString += inChar; //Construit une chaine de caractére a partir des caractére reçus
-							} 
-							while (Serial.available() > 0) { 
-									junk = Serial.read() ; 
-							}
-							switch (inputString){
-									case 'A':
-											eau_hiver="pot";
-											eau_ete="coupelle";
-											temperature_hiver= 12;
-											temperature_ete= 25;
-											a=1;
-											EEPROM.write(44,1);
-											break;
-									case 'B':
-											eau_hiver="pot";
-											eau_ete="pot";
-											temperature_hiver= 10;
-											temperature_ete= 25;
-											a=1;
-											EEPROM.write(44,2);
-											break;
-									case 'C':
-											eau_hiver="pot";
-											eau_ete="pot";
-											temperature_hiver= 10;
-											temperature_ete= 25;
-											a=1;
-											EEPROM.write(44,3);
-											break;
-									case 'D':
-											eau_hiver="sec";
-											eau_ete="sec";
-											temperature_hiver= 22;
-											temperature_ete= 22;
-											a=1;
-											EEPROM.write(44,4);
-											break;
-									case 'E':
-											eau_hiver="pot";
-											eau_ete="coupelle";
-											temperature_hiver= 15;
-											temperature_ete= 22;
-											a=1;
-											EEPROM.write(44,5);
-											break;
-									case 'F':
-											eau_hiver="sec";
-											eau_ete="coupelle";
-											temperature_hiver= 13;
-											temperature_ete= 19;
-											a=1;
-											EEPROM.write(44,6);
-											break;
-									case 'G':
-											eau_hiver="sec";
-											eau_ete="pot";
-											temperature_hiver= 15;
-											temperature_ete= 19;
-											a=1;
-											EEPROM.write(44,7);
-											break;
-									case 'H':
-											eau_hiver=false;
-											eau_ete="sec";
-											temperature_hiver= 11;
-											temperature_ete= 20;
-											a=1;
-											EEPROM.write(44,8);
-											break;
-									case 'I':
-											eau_hiver=false;
-											eau_ete="sec";
-											temperature_hiver= 7;
-											temperature_ete= 20;
-											a=1;
-											EEPROM.write(44,9);
-											break;
-							}
-							inputString = ""; 
-					}
-			}
-			digitalWrite(13,LOW);
-			delay(10000);
-		}
+	}
+	digitalWrite(13,LOW);
+	delay(10000);
 }
 void loop(){
 		int chk = DHT11.read(dht_apin);

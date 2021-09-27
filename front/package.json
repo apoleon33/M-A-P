@@ -4,7 +4,8 @@
   "description": "yeah",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "build-type":"tsc src/choose.ts"
   },
   "author": "579",
   "license": "GPL-3.0",

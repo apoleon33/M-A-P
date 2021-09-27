@@ -1,3 +1,4 @@
+import * as typee from "plant.js"
 const { ipcRenderer } = require('electron')
 function home(){
 	var house = document.getElementById('main_box');

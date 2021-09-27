@@ -61,5 +61,5 @@ ipcMain.on('temp_ultimate',(event, arg) =>{
   else{
     var name = personne[plant]["temperature"]["été"]
   }
-  event.reply('temp_ultimate_answerd',name)
+  event.reply('temp_ultimate',name)
 })

@@ -1,4 +1,4 @@
-import * as typee from "plant.js"
+import * as classe from "plant.js"
 const { ipcRenderer } = require('electron')
 
 function home() {
@@ -94,11 +94,11 @@ function temperature() {
 }
 
 function reset(lik) {
-    var menu = document.getElementById('menu');
+    var menu = document.getElementById("menu");
     let bouton = document.createElement("button");
     let image = document.createElement("img");
-    bouton.id = 'actualize';
-    image.id = 'ya'
+    bouton.id = "actualize";
+    image.id = "ya";
     image.src = "assets/refresh.png";
     image.width = "30";
     image.height = "30";
@@ -108,13 +108,13 @@ function reset(lik) {
         bouton.onclick = temperature;
     }
     try {
-        var texas = document.getElementById('actualize');
-        var chicago = document.getElementById('ya');
+        var texas = document.getElementById("actualize");
+        var chicago = document.getElementById("ya");
         menu.replaceChild(bouton, texas);
         menu.replaceChild(image, chicago);
     } catch (error) {
         menu.appendChild(bouton);
-        var chicago = document.getElementById('actualize');
+        var chicago = document.getElementById("actualize");
         chicago.appendChild(image);
     }
 }

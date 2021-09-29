@@ -1,27 +1,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed&display=swap');
-body{
-	background-color: #325C34;
-	padding: 0.5em;
-	font-family: 'Barlow Condensed', sans-serif;
-	color: black;
+body {
+    background-color: #325C34;
+    padding: 0.5em;
+    font-family: 'Barlow Condensed', sans-serif;
+    color: black;
 }
-div#menu{
-	background-color: #5AA65F;
-	border-radius: 15px;
-	padding: 0.5em;
-	width: 50px;
+
+div#menu {
+    background-color: #5AA65F;
+    border-radius: 15px;
+    padding: 0.5em;
+    width: 50px;
 }
-button{
-	border-radius: 10px;
-	background-color: #75D97C;
-	border-color: #75D97C;
+
+button {
+    border-radius: 10px;
+    background-color: #75D97C;
+    border-color: #75D97C;
 }
-div#main_box{
-	background-color: #5AA65F;
-	width: 350px;
-	height: 250px;
-	position: absolute;
-	top: 20px;
-	left: 100px;
-	border-radius: 15px;
+
+div#main_box {
+    background-color: #5AA65F;
+    width: 350px;
+    height: 250px;
+    position: absolute;
+    top: 20px;
+    left: 100px;
+    border-radius: 15px;
 }

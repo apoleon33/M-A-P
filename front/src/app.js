@@ -1,39 +1,39 @@
-import * as classe from "plant.js"
-const { ipcRenderer } = require('electron')
+import * as classe from "plant.js";
+const { ipcRenderer } = require("electron");
 
 function home() {
-    var house = document.getElementById('main_box');
-    house.innerHTML = '<h1>autogrow</h1>';
-    ipcRenderer.send('need-plant', 'name')
+    var house = document.getElementById("main_box");
+    house.innerHTML = "<h1>autogrow</h1>";
+    ipcRenderer.send("need-plant", "name");
     try {
         var toErase = document.getElementById("actualize");
         toErase.remove();
     } catch (error) {
         console.log("no");
     }
-    ipcRenderer.on('plant-needed', (event, arg) => {
-        let text = document.createElement("h2")
-        text.id = 'hh'
-        text.textContent = "choosen plant:"
-        text.textContent += arg
+    ipcRenderer.on("plant-needed", (event, arg) => {
+        let text = document.createElement("h2");
+        text.id = "hh";
+        text.textContent = "choosen plant:";
+        text.textContent += arg;
         try {
-            var ye = document.getElementById('hh')
+            var ye = document.getElementById("hh");
             house.replaceChild(text, ye);
         } catch (error) {
             house.appendChild(text);
         }
-    })
+    });
 }
 
 function humidity() {
     reset(true);
-    var house = document.getElementById('main_box');
-    house.innerHTML = '<h3>humidity:</h3>'
-    house.innerHTML += '<canvas id="myChart"></canvas>'
-    var ctx = document.getElementById('myChart');
-    ipcRenderer.send('need-hum', 'now')
-    ipcRenderer.on('humidity', (event, arg8) => {
-        var vide = 100 - arg8
+    var house = document.getElementById("main_box");
+    house.innerHTML = "<h3>humidity:</h3>";
+    house.innerHTML += '<canvas id="myChart"></canvas>';
+    var ctx = document.getElementById("myChart");
+    ipcRenderer.send("need-hum", "now");
+    ipcRenderer.on("humidity", (event, arg8) => {
+        var vide = 100 - arg8;
         var xValues = ["humidity", ""];
         var yValues = [arg8, vide];
         var barColors = ["blue", "transparent"];
@@ -43,13 +43,13 @@ function humidity() {
                 labels: xValues,
                 datasets: [{
                     backgroundColor: barColors,
-                    borderColor: '#5AA65F',
-                    data: yValues
-                }]
+                    borderColor: "#5AA65F",
+                    data: yValues,
+                }, ],
             },
             options: {
                 title: {
-                    display: false
+                    display: false,
                 },
                 rotation: 215,
             },
@@ -57,40 +57,42 @@ function humidity() {
                 display: false,
             },
         });
-    })
+    });
 }
 
 function temperature() {
     reset(false);
-    var house = document.getElementById('main_box');
-    house.innerHTML = '<h3>temperature:</h3>'
-    house.innerHTML += '<canvas id="myChart"></canvas>'
-    var ctx = document.getElementById('myChart');
-    ipcRenderer.send('temp_one', 'balance la tempe now')
-    ipcRenderer.on('temp_one_answerd', (event, arg) => {
-        ipcRenderer.send('temp_ultimate', 'tada')
-        ipcRenderer.on('temp_ultimate_answerd', (event, arg2) => {
+    var house = document.getElementById("main_box");
+    house.innerHTML = "<h3>temperature:</h3>";
+    house.innerHTML += '<canvas id="myChart"></canvas>';
+    var ctx = document.getElementById("myChart");
+    ipcRenderer.send("temp_one", "balance la tempe now");
+    ipcRenderer.on("temp_one_answerd", (event, arg) => {
+        ipcRenderer.send("temp_ultimate", "tada");
+        ipcRenderer.on("temp_ultimate_answerd", (event, arg2) => {
             var xValues = [0, 10, 20, 30];
             new Chart("myChart", {
                 type: "line",
                 data: {
                     labels: xValues,
                     datasets: [{
-                        data: arg,
-                        borderColor: "red",
-                        fill: true
-                    }, {
-                        data: [arg2, arg2, arg2, arg2],
-                        borderColor: "black",
-                        fill: false
-                    }]
+                            data: arg,
+                            borderColor: "red",
+                            fill: true,
+                        },
+                        {
+                            data: [arg2, arg2, arg2, arg2],
+                            borderColor: "black",
+                            fill: false,
+                        },
+                    ],
                 },
                 options: {
-                    legend: { display: false }
-                }
-            })
-        })
-    })
+                    legend: { display: false },
+                },
+            });
+        });
+    });
 }
 
 function reset(lik) {
@@ -118,4 +120,4 @@ function reset(lik) {
         chicago.appendChild(image);
     }
 }
-home()
+home();

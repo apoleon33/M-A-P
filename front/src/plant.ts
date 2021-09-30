@@ -1,4 +1,4 @@
-import { ipcRenderer } from 'electron';
+import { ipcRenderer } from "electron";
 
 class plante {
   static plantData: number[];

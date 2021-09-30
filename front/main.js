@@ -38,20 +38,17 @@ app.on("activate", function() {
 ipcMain.on("need-plant", (event, arg) => {
     const plant = fs.readFileSync("data/choice.txt", "utf8");
     event.reply("plant-needed", plant);
-
 });
 
 ipcMain.on("need-hum", (event, arg) => {
     const hum = fs.readFileSync("data/hum.txt", "utf8");
     event.reply("humidity", hum);
-
 });
 
 ipcMain.on("need-temp", (event, arg) => {
     const hum = fs.readFileSync("data/temp.txt", "utf8");
     var hu = 45;
     event.reply("temperature", hu);
-
 });
 
 ipcMain.on("temp_one", (event, arg) => {
@@ -61,7 +58,6 @@ ipcMain.on("temp_one", (event, arg) => {
     var temp30 = fs.readFileSync("data/temp_30.txt", "utf8");
     var dat = [temp0, temp10, temp20, temp30];
     event.reply("temp_one_answerd", dat);
-
 });
 
 ipcMain.on("temp_ultimate", (event, arg) => {
@@ -76,7 +72,6 @@ ipcMain.on("temp_ultimate", (event, arg) => {
         var name = personne[plant]["temperature"]["été"];
     }
     event.reply("temp_ultimate", name);
-
 });
 
 ipcMain.on("PlanteInformation", (event, arg) => {
@@ -89,10 +84,7 @@ ipcMain.on("PlanteInformation", (event, arg) => {
         personne[plant]["temperature"]["hiver"],
         personne[plant]["temperature"]["été"],
     ];
-    var eaux = [
-        personne[plant]["eau"]["hiver"],
-        personne[plant]["eau"]["été"]
-    ];
+    var eaux = [personne[plant]["eau"]["hiver"], personne[plant]["eau"]["été"]];
     var plante = [Scientinom, nom, temperature, eaux];
     event.reply("PlanteInformation", plante);
-})
+});

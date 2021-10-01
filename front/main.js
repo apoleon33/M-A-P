@@ -5,7 +5,7 @@ const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 let mainWindow;
 
-function createWindow() {
+function createWindow(arg) {
     mainWindow = new BrowserWindow({
         width: 480,
         height: 320,
@@ -15,7 +15,7 @@ function createWindow() {
             contextIsolation: false,
         },
     });
-    mainWindow.loadURL(`file://${__dirname}/src/index.html`);
+    mainWindow.loadURL(`file://${__dirname}/src/welcome/welcome.html`);
     mainWindow.on("closed", function() {
         mainWindow = null;
     });

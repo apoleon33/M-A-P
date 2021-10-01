@@ -17,6 +17,8 @@ function home() {
     });
 }
 
+home()
+
 function planteChoisi(plante) {
     //TODO
 }

@@ -15,7 +15,7 @@ function createWindow(arg) {
             contextIsolation: false,
         },
     });
-    mainWindow.loadURL(`file://${__dirname}/src/welcome/welcome.html`);
+    mainWindow.loadURL(`file://${__dirname}/src/index.html`);
     mainWindow.on("closed", function() {
         mainWindow = null;
     });
@@ -35,8 +35,6 @@ app.on("activate", function() {
     }
 });
 
-let fichier = fs.readFileSync("data/plant.json", "utf8");
-let personne = JSON.parse(fichier);
 
 ipcMain.on("need-plant", (event, arg) => {
     const plant = fs.readFileSync("data/choice.txt", "utf8");
@@ -67,7 +65,8 @@ ipcMain.on("temp_ultimate", (event, arg) => {
     var d = new Date();
     var n = d.getMonth() + 1;
     const plant = fs.readFileSync("data/choice.txt", "utf8");
-
+    let fichier = fs.readFileSync("data/plant.json", "utf8");
+    let personne = JSON.parse(fichier);
     if (n < 4 || n > 9) {
         var name = personne[plant]["temperature"]["hiver"];
     } else {
@@ -77,6 +76,8 @@ ipcMain.on("temp_ultimate", (event, arg) => {
 });
 
 ipcMain.on("PlanteInformation", (event, arg) => {
+    let fichier = fs.readFileSync("data/plant.json", "utf8");
+    let personne = JSON.parse(fichier);
     const plant = fs.readFileSync("data/choice.txt", "utf8");
     var Scientinom = personne[plant];
     var nom = personne[plant]["nom"];
@@ -87,8 +88,4 @@ ipcMain.on("PlanteInformation", (event, arg) => {
     var eaux = [personne[plant]["eau"]["hiver"], personne[plant]["eau"]["été"]];
     var plante = [Scientinom, nom, temperature, eaux];
     event.reply("PlanteInformation", plante);
-});
-
-ipcMain.on("ListPlant", (event, arg) => {
-    event.reply("ListPlant", personne);
 });

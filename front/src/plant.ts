@@ -2,11 +2,13 @@ import { ipcRenderer } from "electron";
 
 class Plante {
   static plantData: number[];
+  humidite: number = 0;
   constructor(public plant: string) {
-    const temperature = 0;
-    const eau = 0;
+    const temperature: number = 0;
+    const eau: number = 0;
+
     this.plant = plant;
-    Plante.ChoixPlante(plant);
+    Plante.ChoixPlante();
   }
 
   get eaux() {
@@ -31,8 +33,15 @@ class Plante {
     }
   }
 
-  static ChoixPlante(choixp: string) {
-    ipcRenderer.send("PlanteInformation", choixp);
+  get humidity() {
+    ipcRenderer.send("need-hum", "");
+    ipcRenderer.on("humidity", (event, arg: number) => {
+      this.humidite = arg;
+    });
+    return this.humidite;
+  }
+  static ChoixPlante() {
+    ipcRenderer.send("PlanteInformation", "");
     ipcRenderer.on("PlanteInformation", (event, arg: number[]) => {
       //organisation de planteData:
       //[ nom scientifique , nom commun , [temperature été,hiver] , [eau été,hiver] ]

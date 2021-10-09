@@ -4,6 +4,7 @@ one=$1
 two=$2
 random_var=4
 cd front
+npm run build-type # run the "build-type" package script
 cd
 
 function arduino { #maybe/probably useless
@@ -63,7 +64,8 @@ function verif {
 	then
 		checkout
 	else
-		python3 serial_communication -n &
+		cd $root
+		python3 serial_communication.py -n &
 	fi
 	cd $root
 }

@@ -120,5 +120,5 @@ function reset(lik) {
         chicago.appendChild(image);
     }
 }
-const plante = new Plante();
+let plante = new Plante();
 home();

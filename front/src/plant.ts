@@ -1,35 +1,40 @@
-import { ipcRenderer } from "electron";
+//not working
+//work in progress :)
+const { ipcRenderer } = require("electron");
 
 class Plante {
-  static plantData: number[];
+  static planStat: number[];
   humidite: number = 0;
+  static plantData;
+  nomm: string;
+  useless: boolean = false;
   constructor(public plant: string) {
     const temperature: number = 0;
-    const eau: number = 0;
-
     this.plant = plant;
-    Plante.ChoixPlante();
-  }
-
-  get eaux() {
-    return this.eaux();
-  }
-
-  get scientificNom() {
-    return Plante.plantData[0];
+    ipcRenderer.send("PlanteInformation", "");
+    ipcRenderer.on("PlanteInformation", (event, arg: string) => {
+      this.nomm = arg;
+    });
+    console.log(this.nomm);
+    ipcRenderer.send("temp_one", "balance la tempe now");
+    ipcRenderer.on("temp_one_answerd", (event, arg: number[]) => {
+      Plante.planStat = arg;
+    });
   }
 
   get name() {
-    return Plante.plantData[1];
+    console.log(this.nomm);
+    return this.nomm;
   }
 
   get tempe() {
+    console.log(Plante.planStat);
     var date = new Date();
     var mois = date.getMonth() + 1;
     if (mois < 4 || mois > 9) {
-      return Plante.plantData[2][1];
+      return Plante.planStat["temperature"]["hiver"];
     } else {
-      return Plante.plantData[2][0];
+      return Plante.planStat["temperature"]["été"];
     }
   }
 
@@ -40,12 +45,8 @@ class Plante {
     });
     return this.humidite;
   }
-  static ChoixPlante() {
-    ipcRenderer.send("PlanteInformation", "");
-    ipcRenderer.on("PlanteInformation", (event, arg: number[]) => {
-      //organisation de planteData:
-      //[ nom scientifique , nom commun , [temperature été,hiver] , [eau été,hiver] ]
-      Plante.plantData = arg;
-    });
+
+  get allTemperature() {
+    return Plante.planStat;
   }
 }

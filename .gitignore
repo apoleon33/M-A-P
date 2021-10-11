@@ -9,3 +9,4 @@ dossier/
 __pycache__/
 .idea/
 front/.idea/
+front/src/plant.js

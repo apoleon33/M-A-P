@@ -1,28 +1,31 @@
-import * as classe from "plant.js";
 const { ipcRenderer } = require("electron");
+
+function waiting() {
+    console.log("ready!");
+}
 
 function home() {
     var house = document.getElementById("main_box");
     house.innerHTML = "<h1>autogrow</h1>";
-    ipcRenderer.send("need-plant", "name");
     try {
         var toErase = document.getElementById("actualize");
         toErase.remove();
     } catch (error) {
         console.log("no");
     }
-    ipcRenderer.on("plant-needed", (event, arg) => {
-        let text = document.createElement("h2");
-        text.id = "hh";
-        text.textContent = "choosen plant:";
+    let text = document.createElement("h2");
+    text.id = "hh";
+    text.textContent = "choosen plant:";
+    ipcRenderer.send("PlanteInformation", "");
+    ipcRenderer.on("PlanteInformation", (event, arg) => {
         text.textContent += arg;
-        try {
-            var ye = document.getElementById("hh");
-            house.replaceChild(text, ye);
-        } catch (error) {
-            house.appendChild(text);
-        }
     });
+    try {
+        var ye = document.getElementById("hh");
+        house.replaceChild(text, ye);
+    } catch (error) {
+        house.appendChild(text);
+    }
 }
 
 function humidity() {
@@ -31,11 +34,12 @@ function humidity() {
     house.innerHTML = "<h3>humidity:</h3>";
     house.innerHTML += '<canvas id="myChart"></canvas>';
     var ctx = document.getElementById("myChart");
-    ipcRenderer.send("need-hum", "now");
-    ipcRenderer.on("humidity", (event, arg8) => {
-        var vide = 100 - arg8;
-        var xValues = ["humidity", ""];
-        var yValues = [arg8, vide];
+    var xValues = ["humidity", ""];
+    ipcRenderer.send("need-hum", "");
+    ipcRenderer.on("humidity", (event, arg) => {
+        var vide = 100 - arg;
+        var yValues = [arg, vide];
+
         var barColors = ["blue", "transparent"];
         new Chart(ctx, {
             type: "doughnut",
@@ -66,22 +70,22 @@ function temperature() {
     house.innerHTML = "<h3>temperature:</h3>";
     house.innerHTML += '<canvas id="myChart"></canvas>';
     var ctx = document.getElementById("myChart");
-    ipcRenderer.send("temp_one", "balance la tempe now");
-    ipcRenderer.on("temp_one_answerd", (event, arg) => {
-        ipcRenderer.send("temp_ultimate", "tada");
-        ipcRenderer.on("temp_ultimate_answerd", (event, arg2) => {
+    ipcRenderer.send("temp_one", "");
+    ipcRenderer.on("temp_one", (event, arge) => {
+        ipcRenderer.send("temp_ultimate", "");
+        ipcRenderer.on("temp_ultimate", (event, arg) => {
             var xValues = [0, 10, 20, 30];
             new Chart("myChart", {
                 type: "line",
                 data: {
                     labels: xValues,
                     datasets: [{
-                            data: arg,
+                            data: arge,
                             borderColor: "red",
                             fill: true,
                         },
                         {
-                            data: [arg2, arg2, arg2, arg2],
+                            data: [arg, arg, arg, arg],
                             borderColor: "black",
                             fill: false,
                         },
@@ -120,5 +124,7 @@ function reset(lik) {
         chicago.appendChild(image);
     }
 }
-let plante = new Plante();
+//since plant.ts does not work for the moment
+//let plante = new Plante();
+setTimeout(waiting, 1000);
 home();

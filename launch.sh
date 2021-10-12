@@ -27,5 +27,6 @@ then
 	fi
 else
 	#launch the serial communication and the frontend
+	cd $root
 	python3 serial_communication.py & cd front && npm start
 fi

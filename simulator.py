@@ -1,10 +1,10 @@
 from random import randint
 from editing_command import *
-from plant_chooser import PlantChoice
 from DiscordIntegration import * 
 import sys
 import os
 import time
+import json
 
 Actualisation_time = int(sys.argv[1])
 start_time = time.time()
@@ -18,7 +18,7 @@ temp_30h = "front/data/temp_30.txt"
 discord.createRpc()
 
 print("starting simulator with a delay of "+str(sys.argv[1])+"s")
-PlantChoice(simulator=True)
+
 for i in range(100):
     temperature = str(randint(20, 40))
     humidity = str(randint(0, 100))

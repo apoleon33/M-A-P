@@ -8,7 +8,7 @@ one=$1
 two=$2
 random_var=4
 cd front
-#npm run build-type # run the "build-type" package script
+#npm run build-type # run the "build-type" package script (useless if it does not work)
 cd
 if [ $1 ]
 then

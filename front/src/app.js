@@ -39,7 +39,6 @@ function humidity() {
     ipcRenderer.on("humidity", (event, arg) => {
         var vide = 100 - arg;
         var yValues = [arg, vide];
-
         var barColors = ["blue", "transparent"];
         new Chart(ctx, {
             type: "doughnut",
@@ -67,14 +66,14 @@ function humidity() {
 function temperature() {
     reset(false);
     var house = document.getElementById("main_box");
-    house.innerHTML = "<h3>temperature:</h3>";
+    house.innerHTML = "<h3>Temperature:</h3>";
     house.innerHTML += '<canvas id="myChart"></canvas>';
     var ctx = document.getElementById("myChart");
     ipcRenderer.send("temp_one", "");
     ipcRenderer.on("temp_one", (event, arge) => {
         ipcRenderer.send("temp_ultimate", "");
         ipcRenderer.on("temp_ultimate", (event, arg) => {
-            var xValues = [0, 10, 20, 30];
+            var xValues = [-30, -20, -10, 0];
             new Chart("myChart", {
                 type: "line",
                 data: {

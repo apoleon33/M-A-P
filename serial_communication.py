@@ -4,7 +4,7 @@ import os
 import time
 import json
 from editing_command import*
-from plant_chooser import*
+
 vide = ""
 humi = "front/data/hum.txt"
 temp_now = "front/data/temp_0.txt"
@@ -17,12 +17,23 @@ NoSerial = True
 def Seri():
     try:
         with serial.Serial("/dev/ttyACM0", baudrate=9600, timeout=39600) as port:
-            PlantChoice(port)
+            with open("front/data/plant.json", "r") as main:
+                file = json.load(main)
+
+            with open("front/data/choice.txt", "r") as plante:
+                y = plante.readline()
+
+            try:
+                port.write(file[y]["signe"].encode())
+            except:
+                pass
+
             while True:
                 data1 = port.readline()
                 data2 = port.readline()
                 temperature = str(data1[0:len(data1)-2].decode("utf-8"))
                 humidity = str(data2[0:len(data2)-2].decode("utf-8"))
+                
                 replace(temp_20h, temp_30h)
                 replace(temp_10h, temp_20h)
                 replace(temp_now, temp_10h)
@@ -32,6 +43,7 @@ def Seri():
                 with open(temp_now, "w") as temp_n:
                     temp_n.write(temperature)
                     pass
+
     except:
         NoSerial = False
 

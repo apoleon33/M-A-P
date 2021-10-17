@@ -9,16 +9,22 @@ class DiscordIntegration():
         self.RPC = None
 
     def createRpc(self) -> None:
-        self.RPC = Presence(self.rich_token)
-        self.RPC.connect()
+        try:
+            self.RPC = Presence(self.rich_token)
+            self.RPC.connect()
+        except:
+            pass
 
     def update_presence(self, time: int, temperature: int = 0) -> None:
-        self.RPC.update(large_image="plant",
-                        large_text="M-A-P",
-                        small_image="simulation",
-                        small_text="using the simulator",
-                        details="temperature: " + str(temperature) + " °C",
-                        start=time,
-                        buttons=[{"label": "github", "url": 'https://github.com/apoleon33/M-A-P'}])
+        try:
+            self.RPC.update(large_image="plant",
+                            large_text="M-A-P",
+                            small_image="simulation",
+                            small_text="using the simulator",
+                            details="temperature: " + str(temperature) + " °C",
+                            start=time,
+                            buttons=[{"label": "github", "url": 'https://github.com/apoleon33/M-A-P'}])
+        except:
+            pass
     
     

@@ -23,6 +23,8 @@ void setup(){
 		Serial.println("ca marche pas");
 		while (1);
     }
+}
+void loop(){
 	while (a!=1){
 		if(Serial.available()){ 
 	    	while(Serial.available()) { 
@@ -63,7 +65,7 @@ void setup(){
 					eau_hiver="pot";
 					eau_ete="coupelle";
 					temperature_hiver= 15;
-					emperature_ete= 22;
+					temperature_ete= 22;
 					a=1;
 					break;
 				case 'F':
@@ -100,8 +102,6 @@ void setup(){
 	}
 	digitalWrite(13,LOW);
 	delay(10000);
-}
-void loop(){
 		int chk = DHT11.read(dht_apin);
 		DateTime now = rtc.now();
 		taux1=map(analogRead(capt_1),0,1024,0,100);
@@ -169,8 +169,7 @@ void loop(){
 				}
 				digitalWrite(pompe,LOW);
 		}
-		delay(36000000);
+		delay(600000);
 		Serial.println((float)DHT11.temperature);
 		Serial.println((float)DHT11.humidity);
-		digitalWrite(13,LOW);
 }

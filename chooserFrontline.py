@@ -6,7 +6,7 @@ import json
 def off():
     x = 1
     u = 1
-    
+
     try:
         os.remove("/front/data/choice.txt")
     except:

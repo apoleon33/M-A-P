@@ -1,9 +1,0 @@
-# FR
-Il s'agit du script principal, qui est chargé de s'occuper de la plante et d'envoyer la temperature ainsi que l'humiditée au raspberry pi.Comme tout les scripts arduino, il est composé de 2 parties, setup() et loop().
-## setup()
-
-La majeure partie de cette fonction consiste au choix de la plante, et donc des temperatures et besoins en eau selon si l'on est en été ou en hiver.
-Après avoir initialisé toutes les instances (entrés/sorties/communication série), la première action qu'effectue la fonction est de vérifier que le module rtc est bien branché, et est reconnu. Si jamais ce n'est pas le cas, le programme se retrouve bloqué dans une boucle infini, en envoyant par communication série "ca marche pas" au raspberry pi. La deuxieme action est de vérifier que la valeur de l'EEPROM n°44 est bien à 255: en effet si jamais ce n'est pas le cas, cela signifie qu'aucune plante n'a été précédemment choisi, vu que la mémoire EEPROM est réinitialisé à chaque nouveau choix de plante (voir les sections reset.ino et script de lancement).Dans ce cas selon la valeur de l'EEPROM (1,2,3), en seras conclue quel plante a été choisie précédemment, et ainsi leur besoins en eau et temperature selon la saison. Cependant si la valeur de l'EEPROM est bel et bien à 255, alors aucune plante n'a été choisi précédemment, et l'arduino attend donc qu'une communication série soit établie et récupère donc le caractère unique que le raspberry pi lui enverra (voir section connexion série). Ce caractère lui permet ensuite d'identifier la plante dont il faut s'occuper, ainsi que ses exigences.
-
-**TODO**
-## loop

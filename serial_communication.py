@@ -1,5 +1,4 @@
 import serial
-import sys
 import os
 import time
 import datetime
@@ -17,15 +16,17 @@ port = serial.Serial("/dev/ttyACM0", baudrate=9600)
 time.sleep(2)
 
 
-def Seri():
+def Seri() -> None:
+    '''
+    function that contain everything linked with the serial connection with the arduino
+    '''
+
     try:
         with open("front/data/plant.json", "r") as main:
             file = json.load(main)
 
         with open("front/data/choice.txt", "r") as plante:
             y = plante.readline()
-
-        port.write(file[y]["signe"].encode())
 
         ultimate_temperature = [
             file[y]["temperature"]["hiver"],
@@ -50,7 +51,6 @@ def Seri():
             humidity = str(data2[0:len(data2)-2].decode("utf-8"))
             taux1 = str(data3[0:len(data3)-2].decode("utf-8"))
             taux2 = str(data4[0:len(data4)-2].decode("utf-8"))
-            print(temperature)
 
             replace(temp_20h, temp_30h)
             replace(temp_10h, temp_20h)
@@ -62,6 +62,7 @@ def Seri():
                 temp_n.write(temperature)
                 pass
 
+            #---------plant managing----------#
             if month >= 4 and month <= 9:  # summer
                 if temperature < ultimate_temperature[1]:
                     port.write('A')
@@ -71,14 +72,14 @@ def Seri():
 
                 if taux1 < 20 and ultimate_water[1] == "sec":
                     sec_check += 1
-                    if sec_check >=2 :
+                    if sec_check >= 2:
                         port.write('B')
                         sec_check = 0
-                
-                if taux2 < 20 and ultimate_temperature[1] == "pot" :
+
+                if taux2 < 20 and ultimate_temperature[1] == "pot":
                     port.write('C')
 
-            else: # winter
+            else:  # winter
                 if temperature < ultimate_temperature[0]:
                     port.write('A')
 
@@ -87,11 +88,11 @@ def Seri():
 
                 if taux1 < 20 and ultimate_water[0] == "sec":
                     sec_check += 1
-                    if sec_check >=2 :
+                    if sec_check >= 2:
                         port.write('C')
                         sec_check = 0
-                
-                if taux2 < 20 and ultimate_temperature[0] == "pot" :
+
+                if taux2 < 20 and ultimate_temperature[0] == "pot":
                     port.write('B')
     except:
         NoSerial = False

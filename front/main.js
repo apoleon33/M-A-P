@@ -78,6 +78,5 @@ ipcMain.on("PlanteInformation", (event, arg) => {
     let fichier = fs.readFileSync("data/plant.json", "utf8");
     let personne = JSON.parse(fichier);
     const plant = fs.readFileSync("data/choice.txt", "utf8");
-    console.log(personne[plant]["nom"]);
     event.reply("PlanteInformation", personne[plant]["nom"]);
 });

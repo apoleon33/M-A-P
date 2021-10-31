@@ -38,11 +38,15 @@ void loop() {
        case 'C':
         digitalWrite(pompe,HIGH);
         delay(120000); //2 min
+        break;
+       case 'D':
+        taux1 = analogRead(capt_1);
+        taux2 = analogRead(capt_2);
+        Serial.println((float)DHT11.temperature);
+        Serial.println((float)DHT11.humidity);
+        Serial.println((float)taux1);
+        Serial.println((float)taux2);
+        break;
       }
-    taux1 = analogRead(capt_1);
-    taux2 = analogRead(capt_2);
-    Serial.println((float)DHT11.temperature);
-    Serial.println((float)DHT11.humidity);
-    Serial.println((float)taux1);
-    Serial.println((float)taux2);
+      inputString=0;
 }

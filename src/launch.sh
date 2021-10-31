@@ -30,3 +30,11 @@ else
 	cd $root
 	python3 serial_communication.py & cd front && npm start
 fi
+##
+#while [ -n "$1" ]
+#do
+#	case "$1" in
+#	-s) [Tes instructions]
+#	esac
+#	shift
+#done

@@ -1,40 +1,30 @@
 #!/bin/bash
-#####################################
-# étapes 1 : vérifier les arguments entrées
-# étape 3 : agir en conséquence
 python3 chooserFrontline.py
 root=`pwd`
 one=$1
 two=$2
 random_var=4
+
 cd front
 #npm run build-type # run the "build-type" package script (useless if it does not work)
+
 cd
-if [ $1 ]
+echo "do you want to launch the simulator? [y/n]"
+read simu_bool
+
+if [ simu_bool == "y" ]
 then
-	if [ $1 == "-s" ]
-	then
-		if [ $2 ]
-		then
-			#launch simulator and frontend
-			cd $root
-			python3 simulator.py $2 & cd front && npm start
-		else
-			echo "please specify an actualisation time for the simulator"
-		fi
-	else
-		echo "unrecognized argument"
-	fi
+
+	echo "choose the actualisation time:"
+	read actualisation
+
+	#launch simulator and frontend
+	cd $root
+	python3 simulator.py $aactualisation & cd front && npm start
+
 else
+
 	#launch the serial communication and the frontend
 	cd $root
 	python3 serial_communication.py & cd front && npm start
 fi
-##
-#while [ -n "$1" ]
-#do
-#	case "$1" in
-#	-s) [Tes instructions]
-#	esac
-#	shift
-#done

@@ -1,15 +1,17 @@
 #!/bin/bash
 #install a lot of things
+#this script should be launched before televersing to the arduino
 root=`pwd`
+
+#install required python packages
 pip install -r requirements.txt
-cd front
+cd src/front
+
+#install required node packages
 npm install
-export DISPLAY=:0.0 #for electron to work perfectly with ssh
-#install arduino required parts (probably useless)
-arduino-cli config init
-arduino-cli core update-index
-arduino-cli core install arduino:avr
-arduino-cli lib install "RTClib"
-#manual installation of the dht11 library
+
+#manual installation of the dht11 library for the arduino
 cd
-cp -r $root/Arduino/lib/dht11 /Arduino/libraries
+echo "installing manually the dht11 arduino library"
+cp -r $root/src/Arduino/lib/dht11 $HOME/Arduino/libraries
+echo "done!"

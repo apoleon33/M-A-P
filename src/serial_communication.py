@@ -18,6 +18,20 @@ time.sleep(2)
 
 #---------plant managing----------#
 def decision(temperature: int, taux1: int, taux2: int, ultimate_temperature: list, ultimate_water: list, sec_check:int) -> int:
+    '''
+    The algorithm that will manage the plant itself.
+    divided in 2 category, whether we are in summer (spring + summer) or in winter (autumn + winter)
+    take 6 arguments : 
+        temperature : int : the actual temperature in the greenhouse
+        taux1 : int : the water level at the base of the plant
+        taux2 : int: the water level in the cup
+        ultimate_temperature : list : the best temperature for the plant, in this form [winter,summer]
+        ultimate_water : list : the best water management for the plant, in this form [winter,summer]
+        sec_check : int : a condition of the plant, so its watered less often
+
+    and return :
+        sec_check : int : so the value is not loosed
+    '''
 
     time_now = datetime.date.fromtimestamp(time.time())
     month = time_now.month  # if its winter/summer
@@ -55,8 +69,11 @@ def decision(temperature: int, taux1: int, taux2: int, ultimate_temperature: lis
     
     return sec_check
 
-# 
+# choose of the plant
 def plante_choosing():
+    '''
+    function that will make the user choose the plant he/she want, by showing every plant compatible
+    '''
     x = 1
     u = 1
 

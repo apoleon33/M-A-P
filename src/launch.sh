@@ -1,13 +1,11 @@
 #!/bin/bash
-python3 chooserFrontline.py
+
 root=`pwd`
 one=$1
 two=$2
 random_var=4
 
 cd front
-# npm run build-type # run the "build-type" package script (useless if it does not work)
-
 cd
 echo "do you want to launch the simulator? [y/n]"
 read simu_bool

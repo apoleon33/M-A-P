@@ -1,6 +1,6 @@
-from random import randint
 from editing_command import *
-from DiscordIntegration import * 
+from DiscordIntegration import *
+from random import randint
 import sys
 import os
 import time
@@ -8,14 +8,16 @@ import json
 
 Actualisation_time = int(sys.argv[1])
 start_time = time.time()
+#discord integration
 client_id = '779764098774204447'
 discord = DiscordIntegration(client_id)
+discord.createRpc()
+
 humi = "front/data/hum.txt"
 temp_now = "front/data/temp_0.txt"
 temp_10h = "front/data/temp_10.txt"
 temp_20h = "front/data/temp_20.txt"
 temp_30h = "front/data/temp_30.txt"
-discord.createRpc()
 
 print("starting simulator with a delay of "+str(sys.argv[1])+"s")
 

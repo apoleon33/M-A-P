@@ -4,7 +4,7 @@ root=`pwd`
 one=$1
 two=$2
 random_var=4
-
+python3 plantChoice.py
 cd front
 cd
 echo "do you want to launch the simulator? [y/n]"

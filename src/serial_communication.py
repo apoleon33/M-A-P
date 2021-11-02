@@ -1,9 +1,9 @@
+from editing_command import *
 import serial
 import os
 import time
 import datetime
 import json
-from editing_command import*
 
 vide = ""
 humi = "front/data/hum.txt"
@@ -69,38 +69,6 @@ def decision(temperature: int, taux1: int, taux2: int, ultimate_temperature: lis
     
     return sec_check
 
-# choose of the plant
-def plante_choosing():
-    '''
-    function that will make the user choose the plant he/she want, by showing every plant compatible
-    '''
-    x = 1
-    u = 1
-
-    try:
-        os.remove("/front/data/choice.txt")
-    except:
-        print("no plant choosen before")
-
-    with open("front/data/plant.json", "r") as main:
-        file = json.load(main)
-
-    for i in file:
-        print(str(x)+":"+str(file[i]["nom"]))
-        x += 1
-
-    chose = int(
-        input("choose your plant in the list above (by their number!)"))
-
-    for y in file:
-        if u == chose:
-            yeah = open('front/data/choice.txt', "w")
-            yeah.write(str(file[y]["real"]))
-            print("done!")
-            yeah.close()
-        u += 1
-
-
 def Seri() -> None:
     '''
     function that contain everything linked with the serial connection with the arduino
@@ -150,8 +118,6 @@ def Seri() -> None:
     except:
         NoSerial = False
 
-
-plante_choosing()
 while NoSerial:
     Seri()
 

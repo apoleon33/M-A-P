@@ -4,10 +4,10 @@ from random import randint
 import sys
 import os
 import time
-import json
 
 Actualisation_time = int(sys.argv[1])
 start_time = time.time()
+
 #discord integration
 client_id = '779764098774204447'
 discord = DiscordIntegration(client_id)

@@ -26,5 +26,3 @@ class DiscordIntegration():
                             buttons=[{"label": "github", "url": 'https://github.com/apoleon33/M-A-P'}])
         except:
             pass
-    
-    

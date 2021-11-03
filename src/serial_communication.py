@@ -17,7 +17,9 @@ port = serial.Serial("/dev/ttyACM0", baudrate=9600)
 time.sleep(2)
 
 #---------plant managing----------#
-def decision(temperature: int, taux1: int, taux2: int, ultimate_temperature: list, ultimate_water: list, sec_check:int) -> int:
+
+
+def decision(temperature: int, taux1: int, taux2: int, ultimate_temperature: list, ultimate_water: list, sec_check: int) -> int:
     '''
     The algorithm that will manage the plant itself.
     divided in 2 category, whether we are in summer (spring + summer) or in winter (autumn + winter)
@@ -66,8 +68,9 @@ def decision(temperature: int, taux1: int, taux2: int, ultimate_temperature: lis
 
         if taux2 < 20 and ultimate_temperature[0] == "pot":
             port.write('B')
-    
+
     return sec_check
+
 
 def Seri() -> None:
     '''
@@ -112,11 +115,12 @@ def Seri() -> None:
             os.remove(temp_now)
             with open(temp_now, "w") as temp_n:
                 temp_n.write(temperature)
-                pass
 
-            sec_check=decision(temperature,taux1,taux2,ultimate_temperature,ultimate_water,sec_check)
+            sec_check = decision(temperature, taux1, taux2,
+                                 ultimate_temperature, ultimate_water, sec_check)
     except:
         NoSerial = False
+
 
 while NoSerial:
     Seri()

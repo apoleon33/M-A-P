@@ -5,9 +5,9 @@ root=`pwd`
 
 #install required python packages
 pip install -r requirements.txt
-cd src/front
 
 #install required node packages
+cd src/front
 npm install
 
 #manual installation of the dht11 library for the arduino

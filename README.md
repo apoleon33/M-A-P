@@ -1,10 +1,13 @@
 # M-A-P 
+**an invention to manage a plant automatically**
+
 [![CodeFactor](https://www.codefactor.io/repository/github/apoleon33/m-a-p/badge/main)](https://www.codefactor.io/repository/github/apoleon33/m-a-p/overview/main)
 
 ## **WORK IN PROGRESS**
 **nothing work at the moment**
 
-**an invention to manage a plant automatically**
+You can also follow its development on [ψProd](https://discord.gg/hS4VgSTumn) (it's a french Discord server, but you're welcome to talk in english)
+
 
 ## Installation
 

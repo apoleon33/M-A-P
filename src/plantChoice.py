@@ -1,7 +1,6 @@
 import json
 import os
 import tkinter as tk
-from tkinter.constants import ACTIVE, ANCHOR
 
 def return_plant_list() -> list:
     '''

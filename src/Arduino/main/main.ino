@@ -1,52 +1,77 @@
-#include <dht11.h>
-#define dht_apin 4
-dht11 DHT11;
-int capt_1 = A0;
-int capt_2 = A1;
-int pompe = 12;
-int resistance = 3;
-int inputString,junk;
-int taux1,taux2 ;
+// the arduino script
+// pinouts:
+//  water level captor n°1 -> A0
+//  water level captor n°2 -> A1
+//  resistor -> 12
+//  pump -> 11
+//  humidity/temperature captor -> 7
+#include "DHT.h"
+
+//captors
+#define DHTPIN 13 
+#define DHTTYPE DHT11
+DHT dht(DHTPIN, DHTTYPE);
+int temperature,humidity;
+
+//captors
+const int capt1 = A0;
+const int capt2 = A1;
+int taux1,taux2;
+
+// relay
+const int res = 12;
+const int pompe = 11; 
+
+//other
+int val1, val2, byte_read;
+
 void setup() {
   Serial.begin(9600);
-  pinMode(capt_1,INPUT);
-  pinMode(capt_2,INPUT);
+  dht.begin();
+  pinMode(capt1,INPUT);
+  pinMode(capt2,INPUT);
+  pinMode(res,OUTPUT);
   pinMode(pompe,OUTPUT);
-  pinMode(resistance,OUTPUT);
-
 }
-
+ 
 void loop() {
-  while(Serial.available()) { 
-    char inChar = (char)Serial.read();  
-    inputString += inChar;
-    } 
-    while (Serial.available() > 0) { 
-      junk = Serial.read() ; 
-      }
-    switch (inputString){
-      case 'A':
-        digitalWrite(resistance,HIGH);
-        delay(1200000); // 20 min
-        digitalWrite(resistance,LOW);
+  byte_read = 0;
+  humidity = dht.readHumidity();
+  temperature = dht.readTemperature();
+  taux1 = analogRead(capt1);
+  taux2 = analogRead(capt2);
+
+  while (Serial.available()) {
+    byte_read = Serial.read();
+    switch (byte_read){
+      case 65 : //temperature needed
+        digitalWrite(res,HIGH);
+        delay(1200000); //20 min
+        digitalWrite(res,LOW);
         break;
-      case 'B':
+
+      case 66 : //water needed 1/2
         digitalWrite(pompe,HIGH);
-        delay(60000); //1 min
+        delay(60000); //1min
         digitalWrite(pompe,LOW);
         break;
-       case 'C':
+      
+      case 67 : //water needed 2/2
         digitalWrite(pompe,HIGH);
-        delay(120000); //2 min
+        delay(30000); //30s
+        digitalWrite(pompe,LOW);
         break;
-       case 'D':
-        taux1 = analogRead(capt_1);
-        taux2 = analogRead(capt_2);
-        Serial.println((float)DHT11.temperature);
-        Serial.println((float)DHT11.humidity);
-        Serial.println((float)taux1);
-        Serial.println((float)taux2);
+      
+      case 68 : //send data to the raspberry pi
+        Serial.println(temperature);
+        Serial.println(humidity);
+        Serial.println(taux1);
+        Serial.println(taux2);
         break;
+        
+      default:
+        break;
+    }
       }
-      inputString=0;
+
 }

@@ -18,7 +18,6 @@ time.sleep(2)
 
 #---------plant managing----------#
 
-
 def decision(temperature: int, taux1: int, taux2: int, ultimate_temperature: list, ultimate_water: list, sec_check: int) -> int:
     '''
     The algorithm that will manage the plant itself.
@@ -98,6 +97,7 @@ def Seri() -> None:
 
         # infinite loop
         while True:
+            port.write('D')
             data1 = port.readline()
             data2 = port.readline()
             data3 = port.readline()
@@ -118,6 +118,9 @@ def Seri() -> None:
 
             sec_check = decision(temperature, taux1, taux2,
                                  ultimate_temperature, ultimate_water, sec_check)
+            
+            #wait 10h
+            time.sleep(36000000)
     except:
         NoSerial = False
 

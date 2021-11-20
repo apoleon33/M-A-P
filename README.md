@@ -42,3 +42,6 @@ pip install -r requirements.txt
  ```sh
 npm install
  ```
+
+ The arduino also require the [
+DHT sensor library ](https://github.com/adafruit/DHT-sensor-library) by adafruit to work

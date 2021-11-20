@@ -5,12 +5,13 @@
     <meta charset="utf-8" />
     <title>Autogrow</title>
     <link rel="stylesheet" href="app.css" />
+    <link rel="stylesheet" href="animation.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 </head>
 
 <body>
     <div id="menu">
-        <button onclick="home()">
+        <button onclick="home()" class="rotation">
         <img
           src="assets/home.png"
           alt="icone du retour au menu principal"
@@ -18,7 +19,7 @@
           height="30"
         />
       </button>
-        <button onclick="humidity()">
+        <button onclick="humidity()" class="rotation">
         <img
           src="assets/barometer.png"
           alt="icone du baromètre"
@@ -26,7 +27,7 @@
           height="30"
         />
       </button>
-        <button onclick="temperature()">
+        <button onclick="temperature()" class="rotation">
         <img
           src="assets/thermometer.png"
           alt="icone du thermomètre"

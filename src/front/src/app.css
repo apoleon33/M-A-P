@@ -7,10 +7,11 @@ body {
 }
 
 div#menu {
-    background-color: #5AA65F;
-    border-radius: 15px;
     padding: 0.5em;
     width: 50px;
+    border-radius: 15px;
+    background: #5AA65F;
+    box-shadow: inset 6px 6px 12px #447d47, inset -6px -6px 12px #71d077;
 }
 
 button {
@@ -20,11 +21,12 @@ button {
 }
 
 div#main_box {
-    background-color: #5AA65F;
     width: 350px;
     height: 250px;
     position: absolute;
     top: 20px;
     left: 100px;
-    border-radius: 15px;
+    border-radius: 40px;
+    background: #5AA65F;
+    box-shadow: inset 6px 6px 12px #447d47, inset -6px -6px 12px #71d077;
 }

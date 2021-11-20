@@ -1,0 +1,23 @@
+/* ----------------------------------------------
+ * Generated partially by Animista on 2021-11-18 19:58:6
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+.rotation:active {
+    animation: rotation 1s cubic-bezier(.25, .46, .45, .94) both
+}
+
+.rotation:focus {
+    animation: rotation 1s cubic-bezier(.25, .46, .45, .94) both
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg)
+    }
+    100% {
+        transform: rotate(360deg)
+    }
+}

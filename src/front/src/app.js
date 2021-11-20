@@ -103,7 +103,9 @@ function reset(lik) {
     let bouton = document.createElement("button");
     let image = document.createElement("img");
     bouton.id = "actualize";
+    bouton.classList = "rotation";
     image.id = "ya";
+    image.classList = "rotation";
     image.src = "assets/refresh.png";
     image.width = "30";
     image.height = "30";

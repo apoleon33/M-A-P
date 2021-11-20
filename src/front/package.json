@@ -12,7 +12,7 @@
     "buildDependenciesFromSource": true,
     "npmRebuild": false,
     "devDependencies": {
-        "electron-rebuild": "^2.3.5",
+        "electron-rebuild": "^3.2.5",
         "serialport": "^9.2.0"
     },
     "dependencies": {

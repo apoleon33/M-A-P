@@ -4,11 +4,6 @@ root=`pwd`
 one=$1
 two=$2
 random_var=4
-python3 plantChoice.py
-cd front
-cd
-echo "do you want to launch the simulator? [y/n]"
-read simu_bool
 
 #recursive function to check the type of the actualisation variable
 wrong_parameter() {
@@ -25,12 +20,23 @@ wrong_parameter() {
 	fi
 }
 
-if [ $simu_bool == "y" ]
+python3 plantChoice.py
+echo $?
+if [ $? != 44 ]
 then
-	wrong_parameter
+    echo "exited succesfully"
 else
+    cd front
+    cd
+    echo "do you want to launch the simulator? [y/n]"
+    read simu_bool
 
-	# launch the serial communication and the frontend
-	cd $root
-	python3 serial_communication.py & cd front && npm start
+    if [ $simu_bool == "y" ]
+    then
+	    wrong_parameter
+    else
+        # launch the serial communication and the frontend
+	    cd $root
+        python3 serial_communication.py & cd front && npm start
+    fi
 fi

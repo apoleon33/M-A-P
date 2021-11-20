@@ -1,6 +1,7 @@
 import json
 import os
 import tkinter as tk
+import sys
 
 def return_plant_list() -> list:
     '''
@@ -10,7 +11,7 @@ def return_plant_list() -> list:
         file = json.load(main)
     pure_list = []
     for h in file:
-        pure_list.append(str(file[h]["nom"]))
+        pure_list.append(str(file[h]["real"]))
     return pure_list
 
 def plante_choosing():
@@ -31,7 +32,7 @@ def plante_choosing():
     chose = plant_list.get(plant_list.curselection())
 
     for y in file:
-        if y == chose:
+        if y == str(chose):
             yeah = open('front/data/choice.txt', "w")
             yeah.write(str(y))
             print("done!")
@@ -56,7 +57,7 @@ for i in range(len(plant_list_name)):
 plant_list.grid(row=1, column=0, padx=margin_x, pady=margin_y)
 
 #cancel button
-cancel_button = tk.Button(app,text="cancel",width=3,command=app.destroy)
+cancel_button = tk.Button(app,text="cancel",width=3,command=lambda:sys.exit(44))
 cancel_button.grid(row=1,column=2,padx=margin_x,pady=margin_y)
 
 #enter button

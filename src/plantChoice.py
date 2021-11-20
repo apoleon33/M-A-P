@@ -57,10 +57,10 @@ plant_list.grid(row=1, column=0, padx=margin_x, pady=margin_y)
 
 #cancel button
 cancel_button = tk.Button(app,text="cancel",width=3,command=app.destroy)
-cancel_button.grid(row=1,column=1,padx=margin_x,pady=margin_y)
+cancel_button.grid(row=1,column=2,padx=margin_x,pady=margin_y)
 
 #enter button
 enter_button = tk.Button(app,text="enter",width=3,command= lambda: plante_choosing())
-enter_button.grid(row=1,column=2,padx=3,pady=3)
+enter_button.grid(row=1,column=1,padx=3,pady=3)
 
 app.mainloop()

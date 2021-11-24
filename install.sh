@@ -10,6 +10,6 @@ echo "installing required python packages..."
 pip install -r requirements.txt
 
 #install required node packages
-echo("installing required npm packages")
+echo "installing required npm packages"
 cd src/front
 npm install

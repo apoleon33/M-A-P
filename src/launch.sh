@@ -21,8 +21,7 @@ wrong_parameter() {
 }
 
 python3 plantChoice.py
-echo $?
-if [ $? != 44 ]
+if [ $? -eq 44 ]
 then
     echo "exited succesfully"
 else

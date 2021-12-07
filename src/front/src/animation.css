@@ -6,11 +6,11 @@
  * ---------------------------------------------- */
 
 .rotation:active {
-    animation: rotation 1s cubic-bezier(.25, .46, .45, .94) both
+    animation: rotation 0.2s cubic-bezier(.25, .46, .45, .94) both
 }
 
 .rotation:focus {
-    animation: rotation 1s cubic-bezier(.25, .46, .45, .94) both
+    animation: rotation 0.2s cubic-bezier(.25, .46, .45, .94) both
 }
 
 @keyframes rotation {

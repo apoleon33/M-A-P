@@ -50,26 +50,10 @@
 }
 
 .nav-link svg {
-    width: 1rem;
+    width: 1.5rem;
     min-width: 1rem;
     margin: 0 1.5rem;
 }
 .fa{
     transition: 600ms;
-}
-
-@media only screen and (min-width:600px) {
-    .navbar{
-        top:0;
-        width:0.5rem;
-        height: 100vh;
-    }
-
-    .navbar:hover{
-        width:16rem;
-    }
-
-    .navbar:hover .link-text {
-        display:inline;
-    }
 }

@@ -5,7 +5,7 @@ function waiting() {
 }
 function home() {
   var house = document.getElementById("main_box");
-  house.innerHTML = "<h1>autogrow</h1>";
+  house.innerHTML = "<h1>M-A-P</h1>";
   try {
     var toErase = document.getElementById("actualize");
     toErase.remove();
@@ -14,7 +14,7 @@ function home() {
   }
   let text = document.createElement("h2");
   text.id = "hh";
-  text.textContent = "choosen plant:";
+  text.textContent = "choosen plant: ";
   ipcRenderer.send("PlanteInformation", "");
   ipcRenderer.on("PlanteInformation", (event, arg) => {
     text.textContent += arg;

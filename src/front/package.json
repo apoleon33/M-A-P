@@ -1,13 +1,13 @@
 {
-    "name": "autogrow",
+    "name": "M-A-P",
     "version": "1.2.0",
-    "description": "yeah",
+    "description": "a machine to manage automatically a plant, and here is its front-end displayed on the raspberry pi",
     "main": "main.js",
     "scripts": {
         "start": "electron .",
         "build-type": "tsc -t es5 src/plant.ts"
     },
-    "author": "579",
+    "author": "apoleon33",
     "license": "GPL-3.0",
     "buildDependenciesFromSource": true,
     "npmRebuild": false,

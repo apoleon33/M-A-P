@@ -6,20 +6,6 @@ body {
     color: black;
 }
 
-div#menu {
-    padding: 0.5em;
-    width: 50px;
-    border-radius: 15px;
-    background: #5AA65F;
-    box-shadow: inset 6px 6px 12px #447d47, inset -6px -6px 12px #71d077;
-}
-
-button {
-    border-radius: 10px;
-    background-color: #75D97C;
-    border-color: #75D97C;
-}
-
 div#main_box {
     width: 350px;
     height: 250px;

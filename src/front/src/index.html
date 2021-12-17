@@ -5,37 +5,35 @@
     <meta charset="utf-8" />
     <title>Autogrow</title>
     <link rel="stylesheet" href="app.css" />
-    <link rel="stylesheet" href="animation.css" />
+    <link rel="stylesheet" href="navbar.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 </head>
 
 <body>
-    <div id="menu">
-        <button onclick="home()" class="rotation">
-        <img
-          src="assets/home.png"
-          alt="icone du retour au menu principal"
-          width="30"
-          height="30"
-        />
-      </button>
-        <button onclick="humidity()" class="rotation">
-        <img
-          src="assets/barometer.png"
-          alt="icone du baromètre"
-          width="30"
-          height="30"
-        />
-      </button>
-        <button onclick="temperature()" class="rotation">
-        <img
-          src="assets/thermometer.png"
-          alt="icone du thermomètre"
-          width="30"
-          height="30"
-        />
-      </button>
-    </div>
+  <nav class="navbar" id="menu">
+		<ul class="navbar-nav">
+			<li class="nav-item">
+				<a onclick="home()" class="nav-link">
+					<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="house" class="fa" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M575.8 255.5C575.8 273.5 560.8 287.6 543.8 287.6H511.8L512.5 447.7C512.5 450.5 512.3 453.1 512 455.8V472C512 494.1 494.1 512 472 512H456C454.9 512 453.8 511.1 452.7 511.9C451.3 511.1 449.9 512 448.5 512H392C369.9 512 352 494.1 352 472V384C352 366.3 337.7 352 320 352H256C238.3 352 224 366.3 224 384V472C224 494.1 206.1 512 184 512H128.1C126.6 512 125.1 511.9 123.6 511.8C122.4 511.9 121.2 512 120 512H104C81.91 512 64 494.1 64 472V360C64 359.1 64.03 358.1 64.09 357.2V287.6H32.05C14.02 287.6 0 273.5 0 255.5C0 246.5 3.004 238.5 10.01 231.5L266.4 8.016C273.4 1.002 281.4 0 288.4 0C295.4 0 303.4 2.004 309.5 7.014L564.8 231.5C572.8 238.5 576.9 246.5 575.8 255.5L575.8 255.5z"></path></svg>
+					<span class="link-text">home</span>
+				</a>
+			</li>
+
+			<li class="nav-item">
+				<a onclick="temperature()" class="nav-link" >
+					<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="temperature-low" class="fa" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M160 322.9V304C160 295.3 152.8 288 144 288S128 295.3 128 304v18.88C109.4 329.5 96 347.1 96 368C96 394.5 117.5 416 144 416S192 394.5 192 368C192 347.1 178.6 329.5 160 322.9zM256 112c0-61.88-50.13-112-112-112s-112 50.13-112 112v166.5c-19.75 24.75-32 55.5-32 89.5c0 79.5 64.5 144 144 144s144-64.5 144-144c0-33.1-12.25-64.88-32-89.5V112zM144 448c-44.13 0-80-35.88-80-80c0-25.5 12.25-48.88 32-63.75v-192.3c0-26.5 21.5-48 48-48s48 21.5 48 48v192.1c19.75 14.75 32 38.38 32 63.88C224 412.1 188.1 448 144 448zM416 0c-52.88 0-96 43.13-96 96s43.13 96 96 96s96-43.13 96-96S468.9 0 416 0zM416 128c-17.75 0-32-14.25-32-32s14.25-32 32-32s32 14.25 32 32S433.8 128 416 128z"></path></svg>
+					<span class="link-text">temperature</span>
+				</a>
+			</li>
+
+			<li class="nav-item">
+				<a onclick="humidity(),reset(true)" class="nav-link">
+					<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="cloud-rain" class="fa" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M416 128c-.625 0-1.125 .25-1.625 .25C415.5 123 416 117.6 416 112C416 67.75 380.3 32 336 32c-24.62 0-46.25 11.25-61 28.75C256.4 24.75 219.3 0 176 0C114.1 0 64 50.13 64 112c0 7.25 .75 14.25 2.125 21.25C27.75 145.8 0 181.5 0 224c0 53 43 96 96 96h320c53 0 96-43 96-96S469 128 416 128zM368 464c0 26.51 21.49 48 48 48s48-21.49 48-48s-48.01-95.1-48.01-95.1S368 437.5 368 464zM48 464C48 490.5 69.49 512 96 512s48-21.49 48-48s-48.01-95.1-48.01-95.1S48 437.5 48 464zM208 464c0 26.51 21.49 48 48 48s48-21.49 48-48s-48.01-95.1-48.01-95.1S208 437.5 208 464z"></path></svg>
+					<span class="link-text">humidity</span>
+				</a>
+			</li>
+		</ul>
+	</nav>
     <center>
         <div id="main_box"></div>
     </center>

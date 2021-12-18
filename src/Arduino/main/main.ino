@@ -8,7 +8,7 @@
 #include "DHT.h"
 
 //captors
-#define DHTPIN 13 
+#define DHTPIN 2
 #define DHTTYPE DHT11
 DHT dht(DHTPIN, DHTTYPE);
 int temperature,humidity;
@@ -32,6 +32,8 @@ void setup() {
   pinMode(capt2,INPUT);
   pinMode(res,OUTPUT);
   pinMode(pompe,OUTPUT);
+  digitalWrite(res,HIGH);
+  digitalWrite(pompe,HIGH);
 }
  
 void loop() {
@@ -45,21 +47,21 @@ void loop() {
     byte_read = Serial.read();
     switch (byte_read){
       case 65 : //temperature needed
-        digitalWrite(res,HIGH);
-        delay(1200000); //20 min
         digitalWrite(res,LOW);
+        delay(1200000); //20 min
+        digitalWrite(res,HIGH);
         break;
 
       case 66 : //water needed 1/2
-        digitalWrite(pompe,HIGH);
-        delay(60000); //1min
         digitalWrite(pompe,LOW);
+        delay(60000); //1min
+        digitalWrite(pompe,HIGH);
         break;
       
       case 67 : //water needed 2/2
-        digitalWrite(pompe,HIGH);
-        delay(30000); //30s
         digitalWrite(pompe,LOW);
+        delay(30000); //30s
+        digitalWrite(pompe,HIGH);
         break;
       
       case 68 : //send data to the raspberry pi

@@ -138,8 +138,7 @@ def Seri() -> None:
 			
 			#wait 10h (36000000s)
 			#30s
-			time.sleep(30)
-			print("y")
+			time.sleep(600)
 
 Seri()
 print("serial connection stopped")

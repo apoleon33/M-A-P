@@ -35,23 +35,23 @@ app.on("activate", function() {
     }
 });
 
-ipcMain.on("need-plant", (event, arg) => {
+ipcMain.on("need-plant", (event) => {
     const plant = fs.readFileSync("data/choice.txt", "utf8");
     event.reply("plant-needed", plant);
 });
 
-ipcMain.on("need-hum", (event, arg) => {
+ipcMain.on("need-hum", (event) => {
     const hum = fs.readFileSync("data/hum.txt", "utf8");
     event.reply("humidity", hum);
 });
 
-ipcMain.on("need-temp", (event, arg) => {
+ipcMain.on("need-temp", (event) => {
     const hum = fs.readFileSync("data/temp.txt", "utf8");
     var hu = 45;
     event.reply("temperature", hu);
 });
 
-ipcMain.on("temp_one", (event, arg) => {
+ipcMain.on("temp_one", (event) => {
     var temp0 = fs.readFileSync("data/temp_0.txt", "utf8");
     var temp10 = fs.readFileSync("data/temp_10.txt", "utf8");
     var temp20 = fs.readFileSync("data/temp_20.txt", "utf8");
@@ -60,7 +60,7 @@ ipcMain.on("temp_one", (event, arg) => {
     event.reply("temp_one", dat);
 });
 
-ipcMain.on("temp_ultimate", (event, arg) => {
+ipcMain.on("temp_ultimate", (event) => {
     var d = new Date();
     var n = d.getMonth() + 1;
     const plant = fs.readFileSync("data/choice.txt", "utf8");
@@ -74,7 +74,7 @@ ipcMain.on("temp_ultimate", (event, arg) => {
     event.reply("temp_ultimate", name);
 });
 
-ipcMain.on("PlanteInformation", (event, arg) => {
+ipcMain.on("PlanteInformation", (event) => {
     let fichier = fs.readFileSync("data/plant.json", "utf8");
     let personne = JSON.parse(fichier);
     const plant = fs.readFileSync("data/choice.txt", "utf8");

@@ -9,5 +9,6 @@ here is the documentation for the M-A-P project
 - 3D files
 
 ## software
+- file organisation
 - arduino part
 - raspberry pi part

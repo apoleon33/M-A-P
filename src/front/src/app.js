@@ -3,6 +3,7 @@ const { ipcRenderer } = require("electron");
 function waiting() {
     console.log("ready!");
 }
+
 function home() {
   var house = document.getElementById("main_box");
   house.innerHTML = "<h1>M-A-P</h1>";
@@ -14,7 +15,7 @@ function home() {
   }
   let text = document.createElement("h2");
   text.id = "hh";
-  text.textContent = "choosen plant: ";
+  text.textContent = "chosen plant: ";
   ipcRenderer.send("PlanteInformation", "");
   ipcRenderer.on("PlanteInformation", (event, arg) => {
     text.textContent += arg;
@@ -37,7 +38,7 @@ function humidity() {
   ipcRenderer.on("humidity", (event, arg) => {
     var vide = 100 - arg;
     var yValues = [arg, vide];
-    var barColors = ["blue", "transparent"];
+    var barColors = ["#0E361D", "transparent"];
     new Chart(ctx, {
       type: "doughnut",
       data: {
@@ -91,7 +92,7 @@ function temperature() {
           ],
         },
         options: {
-          legend: { display: false },
+          legend: { display: false}
         },
       });
     });

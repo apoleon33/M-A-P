@@ -12,6 +12,8 @@
     background-color: var(--bg-primary);
     transition: width 200ms ease;
     border-radius: 20px;
+    top: 20px;
+    /*box-shadow: inset 6px 6px 12px #447d47, inset -6px -6px 12px #71d077;*/
 }
 
 .navbar-nav{

@@ -56,7 +56,7 @@ ipcMain.on("temp_one", (event) => {
     var temp10 = fs.readFileSync("data/temp_10.txt", "utf8");
     var temp20 = fs.readFileSync("data/temp_20.txt", "utf8");
     var temp30 = fs.readFileSync("data/temp_30.txt", "utf8");
-    var dat = [temp0, temp10, temp20, temp30];
+    var dat = [temp30,temp20,temp10,temp0];
     event.reply("temp_one", dat);
 });
 

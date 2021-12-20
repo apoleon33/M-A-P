@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed&display=swap');
 body {
-    background-color: #325C34;
+    background-color:  #325C34;
     padding: 0.5em;
     font-family: 'Barlow Condensed', sans-serif;
     color: black;
@@ -12,7 +12,8 @@ div#main_box {
     position: absolute;
     top: 20px;
     left: 100px;
-    border-radius: 40px;
-    background: #5AA65F;
-    box-shadow: inset 6px 6px 12px #447d47, inset -6px -6px 12px #71d077;
+    border-radius: 20px;
+    background:#5AA65F ;
+    padding: 0.5em;
+    /*box-shadow: inset 6px 6px 12px #447d47, inset -6px -6px 12px #71d077;*/
 }

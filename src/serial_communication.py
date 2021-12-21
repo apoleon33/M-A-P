@@ -5,6 +5,7 @@ import time
 import datetime
 import json
 
+db = Database("front/data/old.db")
 #code to send to the arduino
 needTemperature = b'A'
 needWater1 = b'B'
@@ -124,6 +125,7 @@ def Seri() -> None:
 			taux1 = str(data3[0:len(data3)-2].decode("utf-8"))
 			taux2 = str(data4[0:len(data4)-2].decode("utf-8"))
 
+			db.inser_sql(temperature,humidity)
 			replace(temp_20h, temp_30h)
 			replace(temp_10h, temp_20h)
 			replace(temp_now, temp_10h)

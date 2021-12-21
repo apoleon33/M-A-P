@@ -32,14 +32,14 @@ function humidity() {
   var house = document.getElementById("main_box");
   house.innerHTML = "<h3>humidity:</h3>";
   house.innerHTML += '<canvas id="myChart"></canvas>';
-  var ctx = document.getElementById("myChart");
+  //var ctx = document.getElementById();
   var xValues = ["humidity", ""];
   ipcRenderer.send("need-hum", "");
   ipcRenderer.on("humidity", (event, arg) => {
     var vide = 100 - arg;
     var yValues = [arg, vide];
     var barColors = ["#0E361D", "transparent"];
-    new Chart(ctx, {
+    new Chart("myChart", {
       type: "doughnut",
       data: {
         labels: xValues,
@@ -68,7 +68,7 @@ function temperature() {
   var house = document.getElementById("main_box");
   house.innerHTML = "<h3>Temperature:</h3>";
   house.innerHTML += '<canvas id="myChart"></canvas>';
-  var ctx = document.getElementById("myChart");
+  //var ctx = document.getElementById("myChart");
   ipcRenderer.send("temp_one", "");
   ipcRenderer.on("temp_one", (event, arge) => {
     ipcRenderer.send("temp_ultimate", "");

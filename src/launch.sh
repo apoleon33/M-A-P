@@ -1,7 +1,7 @@
 #!/bin/bash
 # script launched by the user to coordonate everything 
 
-root=`pwd`
+root=$(pwd)
 one=$1
 two=$2
 random_var=4
@@ -25,7 +25,7 @@ check_files() {
 #recursive function to check the type of the actualisation variable
 wrong_parameter() {
 	echo "choose the actualisation time:"
-	read actualisation
+	read -r actualisation
 	if [[ $actualisation =~ ^[+-]?[0-9]+$ ]]; # if the actualisation time is an integer
 	then
 		# launch simulator and frontend
@@ -53,7 +53,7 @@ else
     cd front
     cd
     echo "do you want to launch the simulator? [y/n]"
-    read simu_bool
+    read -r simu_bool
 
     if [ $simu_bool == "y" ]
     then

@@ -10,6 +10,7 @@ function createWindow(arg) {
         width: 480,
         height: 320,
         fullscreen: true,
+        icon: __dirname + `/src/assets/plant.png`,
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false,

@@ -6,7 +6,7 @@ body {
     color: black;
 }
 
-div#main_box {
+.dataplace {
     width: 350px;
     height: 250px;
     position: absolute;
@@ -15,5 +15,4 @@ div#main_box {
     border-radius: 20px;
     background:#5AA65F ;
     padding: 0.5em;
-    /*box-shadow: inset 6px 6px 12px #447d47, inset -6px -6px 12px #71d077;*/
 }

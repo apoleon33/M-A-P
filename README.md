@@ -3,15 +3,7 @@
 
 [![CodeFactor](https://www.codefactor.io/repository/github/apoleon33/m-a-p/badge/main)](https://www.codefactor.io/repository/github/apoleon33/m-a-p/overview/main)
 
-## **WORK IN PROGRESS**
-**nothing work at the moment**
-
-You can also follow its development on [ψProd](https://discord.gg/hS4VgSTumn) (it's a french Discord server, but you're welcome to talk in english)
-
-
 ## Installation
-
-**i don't know on which plateform it work actually**
 
 ### prerequisites :
 you need to have those 3 installed:
@@ -20,7 +12,6 @@ you need to have those 3 installed:
 3. bash
 
 ### automatic install
-
 
 ```sh
 curl -s https://raw.githubusercontent.com/apoleon33/M-A-P/main/install.sh | sh

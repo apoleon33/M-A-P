@@ -15,14 +15,12 @@ class DiscordIntegration():
         except:
             pass
 
-    def update_presence(self, time: int, temperature: int = 0) -> None:
-        try:
-            self.RPC.update(large_image="plant",
-                            large_text="M-A-P",
-                            small_image="simulation",
-                            small_text="using the simulator",
-                            details="temperature: " + str(temperature) + " °C",
-                            start=time,
-                            buttons=[{"label": "github", "url": 'https://github.com/apoleon33/M-A-P'}])
-        except:
-            pass
+    def update_presence(self, time: int, temperature: int = 0, humidity:int =0) -> None:
+        self.RPC.update(large_image="plant",
+                        large_text="M-A-P",
+                        small_image="simulation",
+                        small_text="using the simulator",
+                        details=f"temperature: {str(temperature)} °C",
+                        state=f"humidity: {str(humidity)} %",
+                        start=time,
+                        buttons=[{"label": "github", "url": 'https://github.com/apoleon33/M-A-P'}])

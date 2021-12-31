@@ -20,7 +20,7 @@ curl -s https://raw.githubusercontent.com/apoleon33/M-A-P/main/install.sh | sh
 ### manual install
 
 ```sh
-git clone https://github.com/apoleon33/M-A-P.git && cd M-A-P
+git clone --recursive https://github.com/apoleon33/M-A-P.git && cd M-A-P
  ```
 
 then you will have to install the needed python packages :

@@ -1,0 +1,3 @@
+[submodule "discord bot"]
+    path = src/front
+    url = https://github.com/M-A-P-Organisation/discord-bot.git

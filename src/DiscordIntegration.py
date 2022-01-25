@@ -1,4 +1,3 @@
-from rich import *
 from pypresence import Presence
 
 

@@ -1,7 +1,7 @@
 # M-A-P 
 **an invention to manage a plant automatically**
 
-[![CodeFactor](https://www.codefactor.io/repository/github/apoleon33/m-a-p/badge/main)](https://www.codefactor.io/repository/github/apoleon33/m-a-p/overview/main)
+[![CodeFactor](https://www.codefactor.io/repository/github/apoleon33/m-a-p/badge/main)](https://www.codefactor.io/repository/github/apoleon33/m-a-p/overview/dev)
 
 ## Installation
 

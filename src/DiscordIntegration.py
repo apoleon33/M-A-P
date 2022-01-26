@@ -12,7 +12,7 @@ class DiscordIntegration():
             self.RPC = Presence(self.rich_token)
             self.RPC.connect()
         except:
-            pass
+            return False
 
     def update_presence(self, time: int, temperature: int = 0, humidity:int =0) -> None:
         try:

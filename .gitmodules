@@ -2,5 +2,5 @@
     path = src/front/discord-bot
     url = https://github.com/M-A-P-Organisation/discord-bot.git
 [submodule "plant-database"]
-	path = plant-database
+	path = src/front/data/plant-database
 	url = https://github.com/M-A-P-Organisation/plant-database

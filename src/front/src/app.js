@@ -2,6 +2,9 @@ const { ipcRenderer } = require("electron");
 
 function home() {
   var house = document.getElementById("main_box");
+  let iconPlant = document.createElement("img")
+  iconPlant.id = "plantImage"
+
   house.innerHTML = "<h1>M-A-P</h1>";
   try {
     var toErase = document.getElementById("actualize");
@@ -14,14 +17,19 @@ function home() {
   text.textContent = "chosen plant: ";
   ipcRenderer.send("PlanteInformation", "");
   ipcRenderer.on("PlanteInformation", (event, arg) => {
-    text.textContent += arg;
+    text.textContent += arg[0];
+    const plantIcon = arg[1]
+    iconPlant.src = plantIcon
   });
+
   try {
     var ye = document.getElementById("hh");
     house.replaceChild(text, ye);
   } catch (error) {
     house.appendChild(text);
   }
+
+  house.appendChild(iconPlant)
 }
 
 function humidity() {
@@ -81,10 +89,15 @@ function temperature() {
               fill: true,
             },
             {
-              data: [arg, arg, arg, arg],
+              data: [arg[0], arg[0], arg[0], arg[0]],
               borderColor: "black",
               fill: false,
             },
+            {
+              data: [arg[1], arg[1], arg[1], arg[1]],
+              borderColor: "white",
+              fill: false,
+            }
           ],
         },
         options: {

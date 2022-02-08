@@ -1,7 +1,9 @@
+from importlib.resources import path
 import json
-import os
 import tkinter as tk
-import sys
+import glob
+import os
+
 
 def return_plant_list() -> list:
     '''
@@ -14,54 +16,86 @@ def return_plant_list() -> list:
         pure_list.append(str(file[h]["real"]))
     return pure_list
 
-def plante_choosing():
+
+def plante_choosing(event):
     '''
     function that will make the user choose the plant he/she want, by showing every plant compatible
     '''
     x = 1
     u = 1
 
+    choosenPlant = listPlant.get(tk.ACTIVE)
+    path = f"front/data/plant-database/json/{choosenPlant}.json"
+
     try:
         os.remove("/front/data/choice.txt")
     except:
-        print("",end="")
+        print("", end="")
 
-    with open("front/data/plant.json", "r") as main:
+    with open(path, "r") as main:
         file = json.load(main)
 
-    chose = plant_list.get(plant_list.curselection())
+    yeah = open('front/data/choice.txt', "w")
+    yeah.write(file["pid"])
+    print("done!")
+    yeah.close()
+    root.destroy()
 
-    for y in file:
-        if y == str(chose):
-            yeah = open('front/data/choice.txt', "w")
-            yeah.write(str(y))
-            print("done!")
-            yeah.close()
-    app.destroy()
 
-# GUI
+# NEW GUI
+# greatly inspired by https://www.youtube.com/watch?v=0CXQ3bbBLVk
+availablePlant = glob.glob("front/data/plant-database/json/*")
+
+# file without their path and extension
+for i in range(len(availablePlant)):
+    availablePlant[i] = availablePlant[i][31:-5]
+
+print(len(availablePlant))
 width, height = 480, 320
-margin_x, margin_y = 3, 3
+margin_x, margin_y = 3, 20
+fontParameter = ("Helvetica", 20)
 
-app = tk.Tk()
-app.title("choose your plant!")
+root = tk.Tk()
+root.title("choose your plant!")
+root.geometry(f"{width}x{height}")
 
-role_label=tk.Label(app,text="choose the plant on the list below:")
-role_label.grid(row=0,column=0,padx=margin_x,pady=margin_y)
 
-#list of available plants
-plant_list = tk.Listbox(app)
-plant_list_name = return_plant_list()
-for i in range(len(plant_list_name)):
-    plant_list.insert(i+1, plant_list_name[i])
-plant_list.grid(row=1, column=0, padx=margin_x, pady=margin_y)
+def update(newList: list) -> None:
+    """function to update the list of plants"""
+    listPlant.delete(0, tk.END)
+    for plant in newList:
+        listPlant.insert(tk.END, plant)
 
-#cancel button
-cancel_button = tk.Button(app,text="cancel",width=3,command=lambda:sys.exit(44))
-cancel_button.grid(row=1,column=2,padx=margin_x,pady=margin_y)
 
-#enter button
-enter_button = tk.Button(app,text="enter",width=3,command= lambda: plante_choosing())
-enter_button.grid(row=1,column=1,padx=3,pady=3)
+def fillout( event):
+    """update entry box"""
+    entryBox.delete(0, tk.END)
+    entryBox.insert(0, listPlant.get(tk.ACTIVE))
 
-app.mainloop()
+def searchEntry(event):
+    typedText = entryBox.get()
+    if typedText == "": # if the user has entered nothing
+        data = availablePlant
+    else:
+        data = []
+        for plant in availablePlant :
+            if typedText.lower() in plant.lower() :
+                data.append(plant)
+    update(data)
+
+
+textMessage = tk.Label(
+    root, text="enter the plant you search", font=fontParameter)
+textMessage.pack(pady=20)
+
+entryBox = tk.Entry(root, font=fontParameter)
+entryBox.pack()
+
+listPlant = tk.Listbox(root, width=50)
+listPlant.pack(pady=40)
+
+update(availablePlant)
+listPlant.bind("<<ListboxSelect>>", plante_choosing)
+entryBox.bind("<KeyRelease>", searchEntry)
+
+root.mainloop()

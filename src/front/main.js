@@ -65,19 +65,15 @@ ipcMain.on("temp_ultimate", (event) => {
     var d = new Date();
     var n = d.getMonth() + 1;
     const plant = fs.readFileSync("data/choice.txt", "utf8");
-    let fichier = fs.readFileSync("data/plant.json", "utf8");
+    let fichier = fs.readFileSync(`data/plant-database/json/${plant}.json`, "utf8");
     let personne = JSON.parse(fichier);
-    if (n < 4 || n > 9) {
-        var name = personne[plant]["temperature"]["hiver"];
-    } else {
-        var name = personne[plant]["temperature"]["été"];
-    }
+    var name = personne["parameter"]["max_temp"]
     event.reply("temp_ultimate", name);
 });
 
 ipcMain.on("PlanteInformation", (event) => {
-    let fichier = fs.readFileSync("data/plant.json", "utf8");
-    let personne = JSON.parse(fichier);
     const plant = fs.readFileSync("data/choice.txt", "utf8");
-    event.reply("PlanteInformation", personne[plant]["nom"]);
+    let fichier = fs.readFileSync(`data/plant-database/json/${plant}.json`, "utf8");
+    let personne = JSON.parse(fichier);
+    event.reply("PlanteInformation", personne["pid"]);
 });

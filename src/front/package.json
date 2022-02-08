@@ -12,8 +12,7 @@
     "buildDependenciesFromSource": true,
     "npmRebuild": false,
     "devDependencies": {
-        "electron-rebuild": "^3.2.5",
-        "serialport": "^9.2.0"
+        "electron-rebuild": "^3.2.5"
     },
     "dependencies": {
         "chart.js": "^3.7.0",

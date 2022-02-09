@@ -1,8 +1,4 @@
-from inspect import Parameter
 import json
-import time
-import datetime
-import serial
 
 class Plante():
 	def __init__(self,name):
@@ -18,7 +14,7 @@ class Plante():
 		self.maxTemperature = file["parameter"]["max_temp"] # not sure if its useful
 		self.minTemperature = file["parameter"]["min_temp"]
 
-		self.minHumidity = file[Parameter]["min_soil_moist"]
+		self.minHumidity = file["parameter"]["min_soil_moist"]
 		self.maxHumidity = file["parameter"]["max_soil_moist"]
 
 		self.temperature = None

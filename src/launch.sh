@@ -64,4 +64,4 @@ else
         python serial_communication.py & cd front && npm start
     fi
 fi
-pkill python # kill all process starting with python3, like serial_communication.py or simulator.py
+pkill python # kill all process starting with python3, like serial_communication.py or simulator.py NOT WORKING ON WINDOWS

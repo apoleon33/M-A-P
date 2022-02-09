@@ -34,5 +34,11 @@ pip install -r requirements.txt
 npm install
  ```
 
+If you want to use the bot discord you will have to compile the typescript file, then add you bot's token in `src/front/.env` 
+```sh
+# in src/front
+npm run compile-bot
+```
+
  The arduino also require the [
 DHT sensor library ](https://github.com/adafruit/DHT-sensor-library) by adafruit to work

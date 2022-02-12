@@ -25,7 +25,7 @@ class Database():
         return old_data
 
     def opening(self):
-        self.db = sqlite3.connect(self.location)
+        self.db = sqlite3.connect(location)
         self.cursore = self.db.cursor()
 
     def closing(self):

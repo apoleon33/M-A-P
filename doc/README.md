@@ -2,7 +2,6 @@
 here is the documentation for the M-A-P project
 
 # SUMMARY
-- installation guide
 
 ## hardware
 - components

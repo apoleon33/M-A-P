@@ -30,7 +30,7 @@ wrong_parameter() {
 	then
 		# launch simulator and frontend
 		cd $root
-		python simulator.py $actualisation & cd front && npm start
+		python3 simulator.py $actualisation & cd front && npm start
 	else
 		echo "wrong type for the actualisation parameter, please retry"
 		wrong_parameter
@@ -45,7 +45,7 @@ check_files $temp_20
 check_files $temp_30
 cd $root
 
-python plantChoice.py
+python3 plantChoice.py
 if [ $? -eq 44 ] #if the user clicked on "cancel"
 then
     echo "exited succesfully"
@@ -61,7 +61,7 @@ else
     else
         # launch the serial communication and the frontend
 	    cd $root
-        python serial_communication.py & cd front && npm start
+        python3 serial_communication.py & cd front && npm start
     fi
 fi
-pkill python # kill all process starting with python3, like serial_communication.py or simulator.py
+pkill python3 # kill all process starting with python3, like serial_communication.py or simulator.py

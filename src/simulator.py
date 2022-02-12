@@ -24,7 +24,7 @@ print("starting simulator with a delay of "+str(sys.argv[1])+"s")
 for i in range(100):
     temperature = str(randint(20, 40))
     humidity = str(randint(0, 100))
-    discord.update_presence(start_time,temperature, humidity)
+    discord.update_presence(start_time,temperature)
     replace(temp_20h, temp_30h)
     replace(temp_10h, temp_20h)
     replace(temp_now, temp_10h)

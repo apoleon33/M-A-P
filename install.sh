@@ -2,7 +2,7 @@
 
 #clone the repo
 echo "cloning the M-A-P..."
-git clone --recursive https://github.com/apoleon33/M-A-P.git
+git clone https://github.com/apoleon33/M-A-P.git
 cd M-A-P
 
 #install required python packages

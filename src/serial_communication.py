@@ -1,5 +1,5 @@
 from editing_command import *
-from algorithm import Plante
+from algoritm import Plante
 import serial
 import os
 import time

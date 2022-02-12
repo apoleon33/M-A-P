@@ -1,14 +1,14 @@
 {
     "name": "M-A-P",
-    "version": "1.2.2",
+    "version": "1.2.1",
     "description": "a machine to manage automatically a plant",
     "main": "main.js",
     "scripts": {
-        "start": "concurrently \"electron .\" \"node discord-bot/bot.js\"",
-        "compile-bot": "tsc -t es5 discord-bot/bot.ts"
+        "start": "electron .",
+        "build-type": "tsc -t es5 src/plant.ts"
     },
     "author": "apoleon33",
-    "license": "None",
+    "license": "GPL-3.0",
     "buildDependenciesFromSource": true,
     "npmRebuild": false,
     "devDependencies": {
@@ -16,11 +16,6 @@
         "serialport": "^9.2.0"
     },
     "dependencies": {
-        "chart.js": "^3.7.0",
-        "concurrently": "^6.5.1",
-        "detritus-client": "^0.16.3",
-        "dotenv": "^10.0.0",
-        "electron": "^13.2.3",
-        "typescript": "^4.5.5"
+        "electron": "^13.2.3"
     }
 }

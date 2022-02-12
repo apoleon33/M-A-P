@@ -9,3 +9,5 @@ data/temp_10.txt
 data/temp_20.txt
 data/temp_30.txt
 data/old.db
+bot.js
+.env

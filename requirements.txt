@@ -1,4 +1,3 @@
 pyserial
 pypresence
 rich
-tkinter

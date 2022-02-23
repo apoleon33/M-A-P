@@ -1,7 +1,7 @@
 # M-A-P 
 **an invention to manage a plant automatically**
 
-[![CodeFactor](https://www.codefactor.io/repository/github/apoleon33/m-a-p/badge/main)](https://www.codefactor.io/repository/github/apoleon33/m-a-p/overview/dev)
+[![CodeFactor](https://www.codefactor.io/repository/github/apoleon33/m-a-p/badge/main)](https://www.codefactor.io/repository/github/apoleon33/m-a-p/overview/dev) [![GitHub stars](https://badgen.net/github/stars/apoleon33/M-A-P)](https://github.com/apoleon33/M-A-P/stargazers/) [![GPLv3 license](https://img.shields.io/badge/License-GPLv3-blue.svg)](http://perso.crans.org/besson/LICENSE.html) [![C# Discord](https://badgen.net/discord/members/hS4VgSTumn)](https://discord.gg/hS4VgSTumn)
 
 ## Installation
 

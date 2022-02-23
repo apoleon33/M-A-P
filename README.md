@@ -1,7 +1,19 @@
-# M-A-P 
-**an invention to manage a plant automatically**
-
-[![CodeFactor](https://www.codefactor.io/repository/github/apoleon33/m-a-p/badge/main)](https://www.codefactor.io/repository/github/apoleon33/m-a-p/overview/dev) [![GitHub stars](https://badgen.net/github/stars/apoleon33/M-A-P)](https://github.com/apoleon33/M-A-P/stargazers/) [![GPLv3 license](https://img.shields.io/badge/License-GPLv3-blue.svg)](http://perso.crans.org/besson/LICENSE.html) [![C# Discord](https://badgen.net/discord/members/hS4VgSTumn)](https://discord.gg/hS4VgSTumn)
+<h1 align="center">M-A-P</h1>
+<h2 align="center">an invention to manage a plant automatically</h2>
+<p align="center">
+    <a href="https://www.codefactor.io/repository/github/apoleon33/m-a-p/overview/dev">
+        <img src="https://www.codefactor.io/repository/github/apoleon33/m-a-p/badge/main">
+    </a>
+    <a href="https://github.com/apoleon33/M-A-P/stargazers/">
+        <img src="https://badgen.net/github/stars/apoleon33/M-A-P">
+    </a>
+    <a href="http://perso.crans.org/besson/LICENSE.html">
+        <img src="https://img.shields.io/badge/License-GPLv3-blue.svg">
+    </a>
+    <a href="https://discord.gg/hS4VgSTumn">
+        <img src="https://badgen.net/discord/members/hS4VgSTumn">
+    </a>
+</p>
 
 ## Installation
 

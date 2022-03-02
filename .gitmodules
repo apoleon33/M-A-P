@@ -1,3 +1,6 @@
 [submodule "bot"]
 	path = discord-bot
 	url = https://github.com/M-A-P-Organisation/discord-bot
+[submodule "database"]
+	path = plant-database
+	url = https://github.com/M-A-P-Organisation/plant-database

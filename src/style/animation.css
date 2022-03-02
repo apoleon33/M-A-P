@@ -1,0 +1,44 @@
+#animation{
+    animation: fadeIn 1.5s ease-out;
+}
+
+#spashText{
+    animation: fade 1.5s ease-out;
+}
+
+@keyframes fadeIn {
+    0% {
+        display: none;
+        opacity: 0;
+        width: 50px;
+    }
+
+    1% {
+        display: block;
+        opacity: 0;
+    }
+
+    100% {
+        display: block;
+        opacity: 1;
+        transform: rotate(360deg);
+        width: 150px;
+    }
+}
+
+@keyframes fade {
+    0% {
+        display: none;
+        opacity: 0;
+    }
+
+    1% {
+        display: block;
+        opacity: 0;
+    }
+
+    100% {
+        display: block;
+        opacity: 1;
+    }
+}

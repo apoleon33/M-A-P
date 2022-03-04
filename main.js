@@ -1,6 +1,9 @@
 const electron = require("electron");
 const { ipcMain } = require("electron");
 const fs = require("fs");
+const { SerialPort } = require('serialport')
+const Plant = require('./plantClass').default
+
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 let mainWindow;
@@ -35,6 +38,9 @@ app.on("activate", function () {
     createWindow();
   }
 });
+
+
+
 
 ipcMain.on("need-plant", (event) => {
   const plant = fs.readFileSync("data/choice.txt", "utf8");

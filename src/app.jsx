@@ -7,7 +7,11 @@ function cleanMainBox() {
 }
 
 function plantChoosing() {
-  return true;
+  return(
+	  <div>
+		  
+	  </div>
+  )
 }
 
 function Splashscreen() {
@@ -31,13 +35,6 @@ function Splashscreen() {
 
 function Renderhome() {
   cleanMainBox();
-
-  try {
-    var toErase = document.getElementById("actualize");
-    toErase.remove();
-  } catch (error) {
-    console.log("no");
-  }
 
   ipcRenderer.send("PlanteInformation", "");
   ipcRenderer.on("PlanteInformation", (event, arg) => {
@@ -150,7 +147,6 @@ function temperature() {
 }
 
 function home() {
-  cleanMainBox();
   ReactDOM.render(<Renderhome />, mainBox);
 }
 

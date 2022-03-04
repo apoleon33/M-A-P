@@ -8,9 +8,12 @@
     <link rel="stylesheet" href="style/navbar.css" />
     <link rel="stylesheet" href="style/animation.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+	<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>  
+	<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+	<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 </head>
 
-<body>
+<body id="body">
   <nav class="navbar" id="menu">
 		<ul class="navbar-nav">
 			<li class="nav-item">
@@ -35,8 +38,7 @@
     <center>
         <div id="main_box" class="dataplace"></div>
     </center>
-    <!--<script src="plant.js"></script>-->
-    <script src="app.js"></script>
+    <script type="text/babel" src="app.jsx"></script>
 </body>
 
 </html>

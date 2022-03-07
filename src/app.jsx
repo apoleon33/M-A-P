@@ -1,7 +1,7 @@
 const { ipcRenderer } = require("electron");
 
-const body = document.getElementById("body");
-const mainBox = document.getElementById("main_box");
+const body = document.getElementById("body"); // maybe useless?
+const mainBox = document.getElementById("main_box")
 
 function cleanMainBox() {
   ReactDOM.unmountComponentAtNode(mainBox);
@@ -11,12 +11,13 @@ function chosenPlant(e,plante){
 	e.preventDefault();
 	console.log(plante) // so it do not activate when the list is created
 	ipcRenderer.send("plantChosen", plante); // send the plant chosen to the backend
+	home()
 }
 
 function Plantschoosing(props){
 
 	return props.list.map((plant) =>
-	 <li onClick={e => chosenPlant(e, plant)}>{ plant }</li>
+	 <li key={plant} onClick={e => chosenPlant(e, plant)}>{ plant }</li>
 	)
 }
 
@@ -41,23 +42,17 @@ function Splashscreen() {
 }
 
 function Renderhome() {
-  cleanMainBox();
 
-  let plantIcon
-  var textContent
-  ipcRenderer.send("PlanteInformation", "");
-  ipcRenderer.on("PlanteInformation", (event, arg) => {
-	textContent = arg[0];
-	plantIcon = arg[1];
-  });
-
-  return (
-	<div id="wrapper">
-	  <h1>M-A-P</h1>
-	  <h2 id="hh">chosen plant: {textContent} </h2>
-	  <img id="plantImage" src={plantIcon} alt="a photo of the plant" />
-	</div>
-  );
+	let content = ipcRenderer.sendSync("PlanteInformation", 'ping')
+	const textContent = content[0];
+	const plantIcon = content[1];
+	return (
+		<div id="wrapper">
+			<h1>M-A-P</h1>
+			<h2 id="hh">chosen plant: {textContent} </h2>
+			<img id="plantImage" src={plantIcon} alt="a photo of the plant" />
+		</div>
+	);
 }
 
 function Renderhumidity() {
@@ -121,9 +116,11 @@ function temperature() {
   ReactDOM.render(<Rendertemperature />, mainBox);
 
   ipcRenderer.send("temp_one", "");
-  ipcRenderer.on("temp_one", (event, arge) => {
+  ipcRenderer.on("temp_one", (event, arge) => { // temperature in the last 30h
+
 	ipcRenderer.send("temp_ultimate", "");
-	ipcRenderer.on("temp_ultimate", (event, arg) => {
+	ipcRenderer.on("temp_ultimate", (event, arg) => { // max temperature and min temperature
+
 	  var xValues = [-30, -20, -10, 0];
 	  new Chart("myChart", {
 		type: "line",
@@ -156,22 +153,22 @@ function temperature() {
 }
 
 function home() {
-  ReactDOM.render(<Renderhome />, mainBox);
+	cleanMainBox();
+  	ReactDOM.render(<Renderhome />, mainBox);
 }
 
 function renderPlantChoosing(){
-	cleanMainBox()
-	mainBox.innerHTML = "<h2> choose your plant!</h2>"
 	ipcRenderer.send("getPlantAvailable", "");
 	ipcRenderer.on("getPlantAvailable", (event, arg) => {
+
 		let onlyPlantName = []
 		for (const plants of arg){
 			onlyPlantName.push(plants.pid)
 		}
-		ReactDOM.render(<Plantschoosing list={ onlyPlantName }/>, body)
+
+		ReactDOM.render(<Plantschoosing list={ onlyPlantName }/>, mainBox)
 	});
 }
 
-ReactDOM.render(<Splashscreen />, body);
+ReactDOM.render(<Splashscreen />, mainBox);
 renderPlantChoosing()
-//setTimeout(renderPlantChoosing, 2000);

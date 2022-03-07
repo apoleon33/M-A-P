@@ -3,7 +3,6 @@ const { ipcMain } = require("electron");
 const fs = require("fs");
 const path = require('path');
 const { SerialPort } = require('serialport')
-const Plant = require('./plantClass').default
 
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
@@ -13,6 +12,27 @@ const directoryPath = path.join(__dirname, '/plant-database/json');
 
 
 // the plant class
+class Plant {
+  constructor(name, ultimateTemperature, ultimateHumidity) {
+    this.name = name;
+    this.ultimateTemperature = ultimateTemperature;
+    this.ultimateHumidity = ultimateHumidity;
+    this.actualTemperature = 0
+    this.actualHumidity = 0
+    this.historicOfTemperature = []
+    this.HistoricOfHumidity = []
+  }
+
+  setTemperature(newTemperature){
+    this.historicOfTemperature.push(this.actualTemperature)
+    this.actualTemperature = newTemperature
+  }
+
+  setHumidity(newHumidity){
+    this.HistoricOfHumidity.push(this.actualHumidity)
+    this.actualHumidity = newHumidity
+  }
+}
 
 
 function createWindow(arg) {
@@ -130,7 +150,6 @@ ipcMain.on("getPlantAvailable", (event) => {
 })
 
 ipcMain.on("plantChosen", (event,arg) => {
+  
   let plant = new Plant(arg)
-  console.log("arg received!")
-  console.log(plant.name)
 })

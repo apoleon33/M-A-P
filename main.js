@@ -13,16 +13,21 @@ const directoryPath = path.join(__dirname, '/plant-database/json');
 
 // the plant class
 class Plant {
-  constructor(name, maxTemperature, ultimateHumidity, minTemperature, minHumidity) {
-    this.name = name;
-    this.maxTemperature = maxTemperature;
-    this.minTemperature = minTemperature
-    this.ultimateHumidity = ultimateHumidity;
-    this.minHumidity = minHumidity
+  constructor() {
+    this.name = "";
+    this.maxTemperature = 0;
+    this.minTemperature = 0
+    this.ultimateHumidity = 0;
+    this.minHumidity = 0
     this.actualTemperature = 0
     this.actualHumidity = 0
-    this.historicOfTemperature = []
-    this.HistoricOfHumidity = []
+    this.historicOfTemperature = [0,0,0,0] // four 0 so if the user check tu temperture while nothin has been sent by the arduino it return a grphic with value to 0
+    this.HistoricOfHumidity = [0,0,0,0]
+    this.image = ""
+  }
+
+  getLast30Hour(){
+    return this.historicOfTemperature.slice(1).slice(-3)
   }
 
   setTemperature(newTemperature){
@@ -36,6 +41,8 @@ class Plant {
   }
 }
 
+
+const plant = new Plant()
 
 function createWindow(arg) {
   mainWindow = new BrowserWindow({
@@ -72,10 +79,6 @@ app.on("activate", function () {
 
 // THINGS TO CHANGE LATER
 //////////////////////////
-ipcMain.on("need-plant", (event) => {
-  const plant = fs.readFileSync("data/choice.txt", "utf8");
-  event.reply("plant-needed", plant);
-});
 
 ipcMain.on("need-hum", (event) => {
   const hum = fs.readFileSync("data/hum.txt", "utf8");
@@ -89,40 +92,24 @@ ipcMain.on("need-temp", (event) => {
 });
 
 ipcMain.on("temp_one", (event) => {
-  var temp0 = fs.readFileSync("data/temp_0.txt", "utf8");
-  var temp10 = fs.readFileSync("data/temp_10.txt", "utf8");
-  var temp20 = fs.readFileSync("data/temp_20.txt", "utf8");
-  var temp30 = fs.readFileSync("data/temp_30.txt", "utf8");
-  var dat = [temp30, temp20, temp10, temp0];
-  event.reply("temp_one", dat);
-});
-
-ipcMain.on("temp_ultimate", (event) => {
-  var d = new Date();
-  var n = d.getMonth() + 1;
-  const plant = fs.readFileSync("data/choice.txt", "utf8");
-  let fichier = fs.readFileSync(
-    `data/plant-database/json/${plant}.json`,
-    "utf8"
-  );
-  let personne = JSON.parse(fichier);
-  var name = personne["parameter"]["max_temp"];
-  let ultimateTemperature = [name,personne["parameter"]["min_temp"] ]
-  event.reply("temp_ultimate", ultimateTemperature);
-});
-
-ipcMain.on("PlanteInformation", (event) => {
-  const plant = fs.readFileSync("data/choice.txt", "utf8");
-  let fichier = fs.readFileSync(
-    `data/plant-database/json/${plant}.json`,
-    "utf8"
-  );
-  let personne = JSON.parse(fichier);
-  planteInformation = [personne["pid"], personne["image"]];
-  event.reply("PlanteInformation", planteInformation);
+  event.reply("temp_one",plant.getLast30Hour())
 });
 //////////////////////////
 
+// WHATS DONE
+ipcMain.on("temp_ultimate", (event) => {
+  event.reply(
+    "temp_ultimate", 
+    [
+      plant.minTemperature, 
+      plant.maxTemperature
+    ]
+  );
+});
+
+ipcMain.on("PlanteInformation", (event) => {
+  event.returnValue = [plant.name,plant.image]
+});
 
 ipcMain.on("getPlantAvailable", (event) => {
   let allPlantAvailable = []
@@ -157,12 +144,11 @@ ipcMain.on("plantChosen", (event,arg) => {
     "utf8"
   );
   let personne = JSON.parse(fichier);
-  let plant = new Plant(
-    arg,
-    personne["parameter"]["max_temp"],
-    personne["parameter"]["max_env_humid"],
-    personne["parameter"]["min_temp"],
-    personne["parameter"]["min_env_humid"]
-  )
-  console.log(plant.maxTemperature)
+
+  plant.name = arg
+  plant.maxTemperature = personne["parameter"]["max_temp"]
+  plant.minTemperature = personne["parameter"]["max_env_humid"]
+  plant.maxHumidity = personne["parameter"]["min_temp"]
+  plant.minHumidity = personne["parameter"]["min_env_humid"]
+  plant.image = personne["image"]
 })

@@ -1,27 +1,38 @@
 const { ipcRenderer } = require("electron");
 
-const body = document.getElementById("body"); // maybe useless?
+const body = document.body; // maybe useless?
 const mainBox = document.getElementById("main_box")
 
-function cleanMainBox() {
-  ReactDOM.unmountComponentAtNode(mainBox);
+function cleanMainBox() { ReactDOM.unmountComponentAtNode(mainBox); }
+
+
+function renderPlantChoosing(){
+	ipcRenderer.send("getPlantAvailable", "");
+	ipcRenderer.on("getPlantAvailable", (event, arg) => {
+
+		let onlyPlantName = []
+		for (const plants of arg){
+			onlyPlantName.push(plants.pid)
+		}
+
+		ReactDOM.render(<Plantschoosing list={ onlyPlantName }/>, mainBox)
+	});
 }
 
-function chosenPlant(e,plante){
+function Plantschoosing(props){ // render all the plants availables 
+	return props.list.map((plant) =>
+	 <li key={plant} onClick={e => chosenPlant(e, plant)}>{ plant }</li>
+	)
+}
+
+function chosenPlant(e,plante){ // the function once the chosen plant is clicked
 	e.preventDefault();
 	console.log(plante) // so it do not activate when the list is created
 	ipcRenderer.send("plantChosen", plante); // send the plant chosen to the backend
 	home()
 }
 
-function Plantschoosing(props){
-
-	return props.list.map((plant) =>
-	 <li key={plant} onClick={e => chosenPlant(e, plant)}>{ plant }</li>
-	)
-}
-
-function Splashscreen() {
+function Splashscreen() { // the cool flower turning
   return (
 	<div>
 	  <svg
@@ -41,6 +52,12 @@ function Splashscreen() {
   );
 }
 
+
+function home() { // the function of the onclick
+	cleanMainBox();
+  	ReactDOM.render(<Renderhome />, mainBox);
+}
+
 function Renderhome() {
 
 	let content = ipcRenderer.sendSync("PlanteInformation", 'ping')
@@ -55,6 +72,7 @@ function Renderhome() {
 	);
 }
 
+
 function Renderhumidity() {
   cleanMainBox();
 
@@ -66,6 +84,41 @@ function Renderhumidity() {
   );
 }
 
+function humidity() {
+	ReactDOM.render(<Renderhumidity />, mainBox);
+  
+	var xValues = ["humidity", ""];
+	ipcRenderer.send("need-hum", "");
+	ipcRenderer.on("humidity", (event, arg) => {
+	  var vide = 100 - arg;
+	  var yValues = [arg, vide];
+	  var barColors = ["#0E361D", "transparent"];
+	  new Chart("myChart", {
+		type: "doughnut",
+		data: {
+		  labels: xValues,
+		  datasets: [
+			{
+			  backgroundColor: barColors,
+			  borderColor: "#5AA65F",
+			  data: yValues,
+			},
+		  ],
+		},
+		options: {
+		  title: {
+			display: false,
+		  },
+		  rotation: 215,
+		},
+		legend: {
+		  display: false,
+		},
+	  });
+	});
+  }
+
+
 function Rendertemperature() {
   // almost the same as Renderhumidity i know ._.
   cleanMainBox();
@@ -76,40 +129,6 @@ function Rendertemperature() {
 	  <canvas id="myChart"></canvas>
 	</div>
   );
-}
-
-function humidity() {
-  ReactDOM.render(<Renderhumidity />, mainBox);
-
-  var xValues = ["humidity", ""];
-  ipcRenderer.send("need-hum", "");
-  ipcRenderer.on("humidity", (event, arg) => {
-	var vide = 100 - arg;
-	var yValues = [arg, vide];
-	var barColors = ["#0E361D", "transparent"];
-	new Chart("myChart", {
-	  type: "doughnut",
-	  data: {
-		labels: xValues,
-		datasets: [
-		  {
-			backgroundColor: barColors,
-			borderColor: "#5AA65F",
-			data: yValues,
-		  },
-		],
-	  },
-	  options: {
-		title: {
-		  display: false,
-		},
-		rotation: 215,
-	  },
-	  legend: {
-		display: false,
-	  },
-	});
-  });
 }
 
 function temperature() {
@@ -150,24 +169,6 @@ function temperature() {
 	  });
 	});
   });
-}
-
-function home() {
-	cleanMainBox();
-  	ReactDOM.render(<Renderhome />, mainBox);
-}
-
-function renderPlantChoosing(){
-	ipcRenderer.send("getPlantAvailable", "");
-	ipcRenderer.on("getPlantAvailable", (event, arg) => {
-
-		let onlyPlantName = []
-		for (const plants of arg){
-			onlyPlantName.push(plants.pid)
-		}
-
-		ReactDOM.render(<Plantschoosing list={ onlyPlantName }/>, mainBox)
-	});
 }
 
 ReactDOM.render(<Splashscreen />, mainBox);

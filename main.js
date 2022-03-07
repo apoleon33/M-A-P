@@ -1,12 +1,19 @@
 const electron = require("electron");
 const { ipcMain } = require("electron");
 const fs = require("fs");
+const path = require('path');
 const { SerialPort } = require('serialport')
 const Plant = require('./plantClass').default
 
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 let mainWindow;
+
+const directoryPath = path.join(__dirname, '/plant-database/json');
+
+
+// the plant class
+
 
 function createWindow(arg) {
   mainWindow = new BrowserWindow({
@@ -41,7 +48,8 @@ app.on("activate", function () {
 
 
 
-
+// THINGS TO CHANGE LATER
+//////////////////////////
 ipcMain.on("need-plant", (event) => {
   const plant = fs.readFileSync("data/choice.txt", "utf8");
   event.reply("plant-needed", plant);
@@ -91,3 +99,38 @@ ipcMain.on("PlanteInformation", (event) => {
   planteInformation = [personne["pid"], personne["image"]];
   event.reply("PlanteInformation", planteInformation);
 });
+//////////////////////////
+
+
+ipcMain.on("getPlantAvailable", (event) => {
+  let allPlantAvailable = []
+
+  fs.readdir(directoryPath, function (err, files) {
+    if (err) {
+        return console.log('Unable to scan directory: ' + err);
+    }
+
+    files.forEach(function (file) { // iterate on all of the file in the directory 
+      let fichier = fs.readFileSync(
+        `plant-database/json/${file}`,
+        "utf8"
+      );
+      
+      if (fichier != "" && fichier != "null"){ // some files are empty or simply have "null" on it idk why
+        let fileDecoded = JSON.parse(fichier)
+        allPlantAvailable.push({
+          "pid": fileDecoded["pid"],
+          "image":fileDecoded["image"]
+        })
+      }
+    });
+
+    event.reply("getPlantAvailable", allPlantAvailable);
+  });
+})
+
+ipcMain.on("plantChosen", (event,arg) => {
+  let plant = new Plant(arg)
+  console.log("arg received!")
+  console.log(plant.name)
+})

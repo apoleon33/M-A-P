@@ -13,10 +13,12 @@ const directoryPath = path.join(__dirname, '/plant-database/json');
 
 // the plant class
 class Plant {
-  constructor(name, ultimateTemperature, ultimateHumidity) {
+  constructor(name, maxTemperature, ultimateHumidity, minTemperature, minHumidity) {
     this.name = name;
-    this.ultimateTemperature = ultimateTemperature;
+    this.maxTemperature = maxTemperature;
+    this.minTemperature = minTemperature
     this.ultimateHumidity = ultimateHumidity;
+    this.minHumidity = minHumidity
     this.actualTemperature = 0
     this.actualHumidity = 0
     this.historicOfTemperature = []
@@ -150,6 +152,17 @@ ipcMain.on("getPlantAvailable", (event) => {
 })
 
 ipcMain.on("plantChosen", (event,arg) => {
-  
-  let plant = new Plant(arg)
+  let fichier = fs.readFileSync(
+    `plant-database/json/${arg}.json`,
+    "utf8"
+  );
+  let personne = JSON.parse(fichier);
+  let plant = new Plant(
+    arg,
+    personne["parameter"]["max_temp"],
+    personne["parameter"]["max_env_humid"],
+    personne["parameter"]["min_temp"],
+    personne["parameter"]["min_env_humid"]
+  )
+  console.log(plant.maxTemperature)
 })

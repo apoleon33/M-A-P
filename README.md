@@ -2,7 +2,7 @@
 <h2 align="center">An invention to manage a plant automatically</h2>
 <p align="center">
     <a href="https://www.codefactor.io/repository/github/apoleon33/m-a-p/overview/dev">
-        <img src="https://www.codefactor.io/repository/github/apoleon33/m-a-p/badge/main">
+        <img src="https://www.codefactor.io/repository/github/apoleon33/m-a-p/badge/rewrite">
     </a>
     <a href="https://github.com/apoleon33/M-A-P/stargazers/">
         <img src="https://badgen.net/github/stars/apoleon33/M-A-P">

@@ -5,7 +5,7 @@
     "main": "main.js",
     "scripts": {
         "start": "concurrently \"electron .\" \"node discord-bot/bot.js\"",
-        "compile-bot": "tsc -t es5 discord-bot/bot.ts"
+        "compile": "tsc -t es5 discord-bot/bot.ts && sass src/style/app.scss src/style/app.css"
     },
     "author": "apoleon33",
     "license": "None",
@@ -15,11 +15,11 @@
         "electron-rebuild": "^3.2.5"
     },
     "dependencies": {
-        "coffeescript": "^2.6.1",
         "concurrently": "^6.5.1",
         "detritus-client": "^0.16.3",
         "dotenv": "^10.0.0",
         "electron": "^13.6.9",
+        "sass": "^1.49.9",
         "serialport": "^10.3.0",
         "typescript": "^4.5.5"
     }

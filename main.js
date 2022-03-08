@@ -44,6 +44,7 @@ class Plant {
 
 const plant = new Plant()
 
+// all the electron stuff
 function createWindow(arg) {
   mainWindow = new BrowserWindow({
     width: 480,
@@ -77,9 +78,8 @@ app.on("activate", function () {
 
 
 
-// THINGS TO CHANGE LATER
-//////////////////////////
 
+// connection with de renderer via ipcMain
 ipcMain.on("need-hum", (event) => {
   event.returnValue = plant.actualHumidity;
 });
@@ -93,9 +93,7 @@ ipcMain.on("need-temp", (event) => {
 ipcMain.on("temp_one", (event) => {
   event.returnValue = plant.getLast30Hour()
 });
-//////////////////////////
 
-// WHATS DONE
 ipcMain.on("temp_ultimate", (event) => {
   event.returnValue =  [
       plant.minTemperature, 
@@ -121,7 +119,7 @@ ipcMain.on("getPlantAvailable", (event) => {
         "utf8"
       );
       
-      if (fichier != "" && fichier != "null"){ // some files are empty or simply have "null" on it idk why
+      if (fichier != "" && fichier != "null"){ // some files are empty or simply have "null" on it idk why (might erased them one day)
         let fileDecoded = JSON.parse(fichier)
         allPlantAvailable.push({
           "pid": fileDecoded["pid"],

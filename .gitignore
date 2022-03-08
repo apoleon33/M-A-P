@@ -16,3 +16,6 @@ bot.js
 .env
 node_modules
 plantClass.js
+
+app.css
+*.css.map

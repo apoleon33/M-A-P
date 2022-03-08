@@ -21,13 +21,13 @@ class Plant {
     this.minHumidity = 0
     this.actualTemperature = 0
     this.actualHumidity = 0
-    this.historicOfTemperature = [0,0,0,0] // four 0 so if the user check tu temperture while nothin has been sent by the arduino it return a grphic with value to 0
+    this.historicOfTemperature = [0,0,0,0,0,0] // four 0 so if the user check tu temperture while nothin has been sent by the arduino it return a grphic with value to 0
     this.HistoricOfHumidity = [0,0,0,0]
     this.image = ""
   }
 
   getLast30Hour(){
-    return this.historicOfTemperature.slice(1).slice(-3)
+    return this.historicOfTemperature.slice(-4)
   }
 
   setTemperature(newTemperature){
@@ -81,8 +81,7 @@ app.on("activate", function () {
 //////////////////////////
 
 ipcMain.on("need-hum", (event) => {
-  const hum = fs.readFileSync("data/hum.txt", "utf8");
-  event.reply("humidity", hum);
+  event.returnValue = plant.actualHumidity;
 });
 
 ipcMain.on("need-temp", (event) => {
@@ -92,19 +91,16 @@ ipcMain.on("need-temp", (event) => {
 });
 
 ipcMain.on("temp_one", (event) => {
-  event.reply("temp_one",plant.getLast30Hour())
+  event.returnValue = plant.getLast30Hour()
 });
 //////////////////////////
 
 // WHATS DONE
 ipcMain.on("temp_ultimate", (event) => {
-  event.reply(
-    "temp_ultimate", 
-    [
+  event.returnValue =  [
       plant.minTemperature, 
       plant.maxTemperature
     ]
-  );
 });
 
 ipcMain.on("PlanteInformation", (event) => {

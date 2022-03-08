@@ -60,7 +60,7 @@ function home() { // the function of the onclick
 
 function Renderhome() {
 
-	let content = ipcRenderer.sendSync("PlanteInformation", 'ping')
+	let content = ipcRenderer.sendSync("PlanteInformation", '')
 	const textContent = content[0];
 	const plantIcon = content[1];
 	return (
@@ -74,7 +74,6 @@ function Renderhome() {
 
 
 function Renderhumidity() {
-  cleanMainBox();
 
   return (
 	<div id="wrapper">
@@ -85,15 +84,18 @@ function Renderhumidity() {
 }
 
 function humidity() {
+	cleanMainBox();
 	ReactDOM.render(<Renderhumidity />, mainBox);
-  
+
+	var ctx = document.getElementById('myChart').getContext('2d');
 	var xValues = ["humidity", ""];
-	ipcRenderer.send("need-hum", "");
-	ipcRenderer.on("humidity", (event, arg) => {
-	  var vide = 100 - arg;
-	  var yValues = [arg, vide];
-	  var barColors = ["#0E361D", "transparent"];
-	  new Chart("myChart", {
+	let actualHumidity =  ipcRenderer.sendSync("need-hum", ""); // send to the backend 
+	var vide = 100 - actualHumidity;
+	var yValues = [actualHumidity, vide];
+
+	var barColors = ["#0E361D", "transparent"];
+
+	new Chart(ctx, {
 		type: "doughnut",
 		data: {
 		  labels: xValues,
@@ -114,14 +116,12 @@ function humidity() {
 		legend: {
 		  display: false,
 		},
-	  });
 	});
   }
 
 
 function Rendertemperature() {
   // almost the same as Renderhumidity i know ._.
-  cleanMainBox();
 
   return (
 	<div id="wrapper">
@@ -132,16 +132,16 @@ function Rendertemperature() {
 }
 
 function temperature() {
-  ReactDOM.render(<Rendertemperature />, mainBox);
+	cleanMainBox();
 
-  ipcRenderer.send("temp_one", "");
-  ipcRenderer.on("temp_one", (event, arge) => { // temperature in the last 30h
+	ReactDOM.render(<Rendertemperature />, mainBox);
 
-	ipcRenderer.send("temp_ultimate", "");
-	ipcRenderer.on("temp_ultimate", (event, arg) => { // max temperature and min temperature
+	let arge = ipcRenderer.sendSync("temp_one", ""); // temperature in the last 30h
+	let arg = ipcRenderer.sendSync("temp_ultimate", ""); // max and min temperature
+	console.log(arg)
 
-	  var xValues = [-30, -20, -10, 0];
-	  new Chart("myChart", {
+	var xValues = [-30, -20, -10, 0];
+	new Chart("myChart", {
 		type: "line",
 		data: {
 		  labels: xValues,
@@ -166,9 +166,7 @@ function temperature() {
 		options: {
 		  legend: { display: false },
 		},
-	  });
 	});
-  });
 }
 
 ReactDOM.render(<Splashscreen />, mainBox);

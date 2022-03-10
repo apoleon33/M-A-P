@@ -18,38 +18,34 @@
 ## Installation
 
 ### Prerequisites :
-You need to have those 3 installed:
-1. node.js/npm
-2. python/pip
-3. bash
+You need to have nodejs/npm installed.
 
 ### Automatic install
 
 ```sh
-curl -s https://raw.githubusercontent.com/apoleon33/M-A-P/main/install.sh | sh
+git clone --recursive https://github.com/apoleon33/M-A-P.git
+# once its done and you have cd-ed on the right directory:
+./install.sh
  ```
 
 ### Manual install
 
 ```sh
-git clone --recursive https://github.com/apoleon33/M-A-P.git && cd M-A-P
- ```
-
-Then you will have to install the needed python packages :
-(once you cd in M-A-P)
-```sh
-pip install -r requirements.txt
- ```
-Once its done you will have to install the required npm packages:
- (once you are in M-A-P/src/front)
- ```sh
-npm install
- ```
-
-If you want to use the bot discord you will have to compile the typescript file, then add you bot's token in `src/front/.env` 
-```sh
-# in src/front
-npm run compile-bot
+git clone --recursive https://github.com/apoleon33/M-A-P.git
+# once its done and you have cd-ed on the right directory:
+npm install # install needed component like electron or serialport
+npm run build # preprocess the sass
+npm start # launch the M-A-P. Have fun!
 ```
 
+
  The arduino also require the [DHT sensor library ](https://github.com/adafruit/DHT-sensor-library) by adafruit to work
+
+ # Made using...
+ The M-A-P was made using:
+
+| Arduino  | Backend          | Frontend |
+| :--------------- |:---------------:| -----:|
+|     <a href="https://www.arduino.cc/"><img src="https://cdn.worldvectorlogo.com/logos/arduino-1.svg" width="32"></a>  |   <a href="https://nodejs.org/en/"><img src="https://cdn.worldvectorlogo.com/logos/nodejs-icon.svg" width="32"></a>       |  <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress"><img src="https://cdn.worldvectorlogo.com/logos/html-1.svg" width="32"></a> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"><img src="https://cdn.worldvectorlogo.com/logos/logo-javascript.svg" width="32"></a> |
+| <a href="https://github.com/adafruit/DHT-sensor-library"><img src="https://yt3.ggpht.com/hme3lW9xG5CzDVFK7292X0uDm1Jhk6e3C4bEBzX_RKz1hNVJyIRfTebu4oPRWRxAfBqh-CvQVY8=s176-c-k-c0x00ffffff-no-rj" width="32"></a>   |     <a href="https://serialport.io/"><img src="https://serialport.io/img/nodebots-logo.svg" width="32"></a>         | <a href="https://sass-lang.com/"><img src="https://cdn.worldvectorlogo.com/logos/sass-1.svg" width="32"></a>   <a href="https://reactjs.org/"><img src="https://cdn.worldvectorlogo.com/logos/react-2.svg" width="32"></a>  |
+|   | <a href="https://github.com/discordjs/RPC"><img src="https://cdn.worldvectorlogo.com/logos/discord-6.svg" width="32"></a>          |    <a href="https://www.electronjs.org/"><img src="https://cdn.worldvectorlogo.com/logos/electron-1.svg" width="32"></a> |

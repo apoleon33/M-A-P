@@ -148,7 +148,7 @@ ipcMain.on("plantChosen", (event,arg) => {
   plant.image = personne["image"]
 })
 
-// discord rich presence
+// discord rich presence (https://github.com/discordjs/RPC/blob/master/example/main.js)
 const clientId = '779764098774204447'
 const rpc = new DiscordRPC.Client({ transport: 'ipc' });
 const startTimestamp = new Date();

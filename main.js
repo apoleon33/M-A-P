@@ -3,6 +3,7 @@ const { ipcMain } = require("electron");
 const fs = require("fs");
 const path = require('path');
 const { SerialPort } = require('serialport')
+const DiscordRPC = require("discord-rpc");
 
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
@@ -21,7 +22,7 @@ class Plant {
     this.minHumidity = 0
     this.actualTemperature = 0
     this.actualHumidity = 0
-    this.historicOfTemperature = [0,0,0,0,0,0] // four 0 so if the user check tu temperture while nothin has been sent by the arduino it return a grphic with value to 0
+    this.historicOfTemperature = [0,0,0,0,0,0] // somes 0 so if the user check tu temperture while nothin has been sent by the arduino it return a grphic with value to 0
     this.HistoricOfHumidity = [0,0,0,0]
     this.image = ""
   }
@@ -146,3 +147,37 @@ ipcMain.on("plantChosen", (event,arg) => {
   plant.minHumidity = personne["parameter"]["min_env_humid"]
   plant.image = personne["image"]
 })
+
+// discord rich presence
+const clientId = '779764098774204447'
+const rpc = new DiscordRPC.Client({ transport: 'ipc' });
+const startTimestamp = new Date();
+
+async function setActivity() {
+  if (!rpc || !mainWindow) {
+    return;
+  }
+
+  const boops = await mainWindow.webContents.executeJavaScript('window.boops');
+
+  rpc.setActivity({
+    details: `temperature: ${plant.actualTemperature} °C`,
+    startTimestamp,
+    largeImageKey: 'plant',
+    largeImageText: 'M-A-P',
+    smallImageKey: 'simulation',
+    smallImageText: 'using the simulator',
+    instance: false,
+  });
+}
+
+rpc.on('ready', () => {
+  setActivity();
+
+  // activity can only be set every 15 seconds
+  setInterval(() => {
+    setActivity();
+  }, 15e3);
+});
+
+rpc.login({ clientId }).catch(console.error);

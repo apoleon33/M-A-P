@@ -2,6 +2,16 @@
 @import "variables";
 @import "navbar";
 
+::-webkit-scrollbar {
+    background-color: $secondaryColor;
+    width: 30px;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: $mainColor;
+    border-radius: 30px; 
+}
+
 /* DOM */
 body {
     background-color: $mainColor;
@@ -22,6 +32,10 @@ body {
         .itemPlant{
             list-style-type: none;
             border-bottom: solid $secondaryColor;
+
+            &:hover{
+                cursor: pointer;
+            }
         }
 
         #plantImage{

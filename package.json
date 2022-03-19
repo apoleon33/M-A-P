@@ -15,6 +15,7 @@
         "electron-rebuild": "^3.2.5"
     },
     "dependencies": {
+        "chart.js": "^3.7.1",
         "concurrently": "^6.5.1",
         "detritus-client": "^0.16.3",
         "discord-rpc": "^4.0.1",

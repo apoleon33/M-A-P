@@ -158,17 +158,17 @@ function temperature() {
 		  datasets: [
 			{
 			  data: arge,
-			  borderColor: "red",
+			  borderColor: "#325C34",
 			  fill: true,
 			},
 			{
 			  data: [arg[0], arg[0], arg[0], arg[0]],
-			  borderColor: "black",
+			  borderColor: "#46814A",
 			  fill: false,
 			},
 			{
 			  data: [arg[1], arg[1], arg[1], arg[1]],
-			  borderColor: "white",
+			  borderColor: "#46814A",
 			  fill: false,
 			},
 		  ],

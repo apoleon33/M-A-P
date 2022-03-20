@@ -5,12 +5,16 @@ const path = require('path');
 const { SerialPort } = require('serialport')
 const DiscordRPC = require("discord-rpc");
 
-// reqauired by the discord bot
-const { Constants, Interaction, Structures, Utils } = require('detritus-client');
-const { CommandClient } = require('detritus-client');
-const { Embed, Markup } = Utils;
+// required by the discord bot
+const { Utils, CommandClient } = require('detritus-client');
+const { Embed } = Utils;
 var Chart = require('chart.js');
 require('dotenv').config()
+
+const port = new SerialPort({ // connection port for the arduino
+  path: '/dev/ttyACM0',
+  baudRate: 9600,
+})
 
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
@@ -18,6 +22,7 @@ let mainWindow;
 
 const directoryPath = path.join(__dirname, '/plant-database/json');
 
+const delayOfActualisation = 36000000 // in ms <=> 10h
 
 // the plant class
 class Plant {
@@ -32,6 +37,8 @@ class Plant {
     this.historicOfTemperature = [0,0,0,0,0,0] // somes 0 so if the user check tu temperture while nothin has been sent by the arduino it return a graphic with value to 0
     this.HistoricOfHumidity = [0,0,0,0]
     this.image = ""
+    this.ultimateMoist = 0
+    this.moist = 0
   }
 
   getLast30Hour(){
@@ -46,6 +53,17 @@ class Plant {
   setHumidity(newHumidity){
     this.HistoricOfHumidity.push(this.actualHumidity)
     this.actualHumidity = newHumidity
+  }
+
+  takeDecision(){
+    // The algorithm to take care of the plant
+    // not elaborated at all 
+    if ( this.actualTemperature < this.minTemperature ){ // if its cold
+      port.write('A')
+    }
+    if (this.moist < this.ultimateMoist){ // if there is not enough water
+      port.write('B')
+    }
   }
 }
 
@@ -84,18 +102,27 @@ app.on("activate", function () {
   }
 });
 
+// the serial connection
+port.on('open', serialCommunication);
+function serialCommunication (){
+  // the function that will deal with the serial communication
 
+  function sendMessage (){
+    port.write('D')
+    port.on('data', function (data) {
+      plant.setTemperature(data)
+      plant.takeDecision();
+    })
+  }
+  
+  // wait 10h before checking again
+  setInterval(sendMessage, delayOfActualisation);
 
+}
 
 // connection with de renderer via ipcMain
 ipcMain.on("need-hum", (event) => {
   event.returnValue = plant.actualHumidity;
-});
-
-ipcMain.on("need-temp", (event) => {
-  const hum = fs.readFileSync("data/temp.txt", "utf8");
-  var hu = 45;
-  event.reply("temperature", hu);
 });
 
 ipcMain.on("temp_one", (event) => {
@@ -153,9 +180,10 @@ ipcMain.on("plantChosen", (event,arg) => {
   plant.maxHumidity = personne["parameter"]["max_env_humid"]
   plant.minHumidity = personne["parameter"]["min_env_humid"]
   plant.image = personne["image"]
+  plant.ultimatemoist = personne["parameter"]["min_soil_moist"]
 })
 
-// discord rich presence (https://github.com/discordjs/RPC/blob/master/example/main.js)
+// discord rich presence (https://bit.ly/36AGK8p)
 const clientId = '779764098774204447'
 const rpc = new DiscordRPC.Client({ transport: 'ipc' });
 const startTimestamp = new Date();

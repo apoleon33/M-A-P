@@ -1,7 +1,7 @@
 {
     "name": "m-a-p",
     "version": "1.2.2",
-    "description": "a machine to manage automatically a plant",
+    "description": "A machine to manage automatically a plant",
     "main": "main.js",
     "scripts": {
         "start": "electron .",

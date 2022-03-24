@@ -5,7 +5,8 @@
     "main": "main.js",
     "scripts": {
         "start": "electron .",
-        "build": "sass src/style/app.scss src/style/app.css"
+        "build": "sass src/style/app.scss src/style/app.css",
+        "start-simulator": "electron . -s"
     },
     "author": "apoleon33",
     "license": "None",

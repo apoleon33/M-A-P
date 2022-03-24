@@ -21,8 +21,8 @@ const BrowserWindow = electron.BrowserWindow;
 let mainWindow;
 
 const directoryPath = path.join(__dirname, '/plant-database/json');
-
 const delayOfActualisation = 36000000 // in ms <=> 10h
+const args = process.argv.slice(2) // to know if the user launch the simulator
 
 // the plant class
 class Plant {
@@ -118,6 +118,23 @@ function serialCommunication (){
   // wait 10h before checking again
   setInterval(sendMessage, delayOfActualisation);
 
+}
+
+// the simulator if needed
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
+
+if (args == "-s"){
+
+  console.log("starting simulator with a delay of 60s \n")
+  function setRandomValues(){
+    plant.setTemperature(getRandomInt(40))
+    plant.setHumidity(getRandomInt(100))
+  }
+
+  setInterval(setRandomValues, 60000) // actualise every minutes
 }
 
 // connection with de renderer via ipcMain

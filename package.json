@@ -6,7 +6,7 @@
     "scripts": {
         "start": "electron .",
         "build": "sass src/style/app.scss src/style/app.css",
-        "start-simulator": "electron . -s"
+        "change-palette": "python3 themeManager.py"
     },
     "author": "apoleon33",
     "license": "None",

@@ -39,9 +39,17 @@ npm start # launch the M-A-P. Have fun!
 ```
 
 
- The arduino also require the [DHT sensor library ](https://github.com/adafruit/DHT-sensor-library) by adafruit to work
+The arduino also require the [DHT sensor library ](https://github.com/adafruit/DHT-sensor-library) by adafruit to work
 
- # Made using...
+## change the theme of the M-A-P
+
+All the themes are contained in themeManager.py
+```sh
+pip install -r requirements.txt
+npm run change-palette -- --palette=NameOfThePalette
+```
+
+## Made using...
  The M-A-P was made using:
 
 | Arduino  | Backend          | Frontend |

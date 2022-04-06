@@ -38,8 +38,11 @@ class Palette ():
             file.write(fullStr)
 
 
-defaultPalette = Palette("#325C34", "#5AA65F", 'black',"grey")  # the original palette
-alternativePalette = Palette("rgb(53,84,105)", "rgb(172,217,212)", "black", "grey")
+default = Palette("#325C34", "#5AA65F", 'black',"grey")  # the original palette
+alternative = Palette("rgb(53,84,105)", "rgb(172,217,212)", "rgb(77,143,141)", "grey")
+curiosity = Palette(" rgb(9,163,211)", " rgb(59, 80, 110)  ", " rgb(101, 193, 190)", "rgb(236, 193, 190)")
+natural = Palette("rgb(233, 239, 244)", "rgb(206,212,190)", "rgb(81,80,93)", "rgb(239,233,223)")
+dreamy = Palette("rgb(230,123,128)", "  rgb(251,211,197)", " rgb(214,90,156)", "rgb(245,240,230)")
 
 if __name__ == '__main__':
     fire.Fire(palette)

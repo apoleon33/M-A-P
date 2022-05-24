@@ -102,6 +102,7 @@ function humidity() {
 	let actualHumidity = ipcRenderer.sendSync("need-hum", ""); // send to the backend 
 	var vide = 100 - actualHumidity;
 	var yValues = [actualHumidity, vide];
+	let colorLine = window.getComputedStyle(document.getElementById("wrapper"), null).getPropertyValue('background-color')
 
 	var barColors = ["#0E361D", "transparent"];
 
@@ -112,7 +113,7 @@ function humidity() {
 			datasets: [
 				{
 					backgroundColor: barColors,
-					borderColor: "#5AA65F",
+					borderColor: colorLine,
 					data: yValues,
 				},
 			],
@@ -135,7 +136,7 @@ function Rendertemperature() {
 
 	return (
 		<div id="wrapper">
-			<h3>Temperature: </h3>
+			<h3 id="title">Temperature: </h3>
 			<canvas id="myChart"></canvas>
 		</div>
 	);
@@ -148,6 +149,9 @@ function temperature() {
 
 	let arge = ipcRenderer.sendSync("temp_one", ""); // temperature in the last 30h
 	let arg = ipcRenderer.sendSync("temp_ultimate", ""); // max and min temperature
+
+	let temperatureColor = window.getComputedStyle(document.body, null).getPropertyValue('background-color')
+	let minMaxTemperatureColor = window.getComputedStyle(document.getElementById("title"), null).getPropertyValue('color')
 	console.log(arg)
 
 	var xValues = [-30, -20, -10, 0];
@@ -158,17 +162,17 @@ function temperature() {
 			datasets: [
 				{
 					data: arge,
-					borderColor: "#325C34",
+					borderColor: temperatureColor,
 					fill: true,
 				},
 				{
 					data: [arg[0], arg[0], arg[0], arg[0]],
-					borderColor: "#46814A",
+					borderColor: minMaxTemperatureColor,
 					fill: false,
 				},
 				{
 					data: [arg[1], arg[1], arg[1], arg[1]],
-					borderColor: "#46814A",
+					borderColor: minMaxTemperatureColor,
 					fill: false,
 				},
 			],

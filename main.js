@@ -156,7 +156,6 @@ ipcMain.on("PlanteInformation", (event) => {
   event.returnValue = [plant.name, plant.image];
 });
 
-// GOING TO REWRITE DA SHIT
 ipcMain.on("getPlantAvailable", (event) => {
   let allPlantAvailable = [];
 
@@ -173,11 +172,7 @@ ipcMain.on("getPlantAvailable", (event) => {
     });
 });
 
-// TODO: REWRITE DA TOO
 ipcMain.on("plantChosen", (event, arg) => {
-  let fichier = fs.readFileSync(`plant-database/json/${arg}.json`, "utf8");
-  let personne = JSON.parse(fichier);
-
   plant.name = arg;
   fs.createReadStream("MiFloraDB/PlantDB_5335_U0.csv")
     .pipe(csv())

@@ -1,6 +1,3 @@
-[submodule "database"]
-	path = plant-database
-	url = https://github.com/M-A-P-Organisation/plant-database
 [submodule "new-db"]
 	path = MiFloraDB
 	url = https://github.com/khronimo/MiFloraDB

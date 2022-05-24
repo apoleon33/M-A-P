@@ -1,5 +1,6 @@
 const electron = require("electron");
 const { ipcMain } = require("electron");
+const csv = require("csv-parser");
 
 const fs = require("fs");
 const path = require("path");
@@ -159,40 +160,41 @@ ipcMain.on("PlanteInformation", (event) => {
 ipcMain.on("getPlantAvailable", (event) => {
   let allPlantAvailable = [];
 
-  fs.readdir(directoryPath, function (err, files) {
-    if (err) {
-      return console.log("Unable to scan directory: " + err);
-    }
-
-    files.forEach(function (file) {
-      // iterate on all of the file in the directory
-      let fichier = fs.readFileSync(`plant-database/json/${file}`, "utf8");
-
-      if (fichier != "" && fichier != "null") {
-        // some files are empty or simply have "null" on it idk why (might erased them one day)
-        let fileDecoded = JSON.parse(fichier);
-        allPlantAvailable.push({
-          pid: fileDecoded["pid"],
-          image: fileDecoded["image"],
-        });
-      }
+  fs.createReadStream("MiFloraDB/PlantDB_5335_U0.csv")
+    .pipe(csv())
+    .on("data", (row) => {
+      allPlantAvailable.push({
+        pid: row.alias,
+        image: row.image,
+      });
+    })
+    .on("end", () => {
+      event.reply("getPlantAvailable", allPlantAvailable);
     });
-
-    event.reply("getPlantAvailable", allPlantAvailable);
-  });
 });
 
+// TODO: REWRITE DA TOO
 ipcMain.on("plantChosen", (event, arg) => {
   let fichier = fs.readFileSync(`plant-database/json/${arg}.json`, "utf8");
   let personne = JSON.parse(fichier);
 
   plant.name = arg;
-  plant.maxTemperature = personne["parameter"]["max_temp"];
-  plant.minTemperature = personne["parameter"]["min_temp"];
-  plant.maxHumidity = personne["parameter"]["max_env_humid"];
-  plant.minHumidity = personne["parameter"]["min_env_humid"];
-  plant.image = personne["image"];
-  plant.ultimatemoist = personne["parameter"]["min_soil_moist"];
+  fs.createReadStream("MiFloraDB/PlantDB_5335_U0.csv")
+    .pipe(csv())
+    .on("data", (row) => {
+      if (row.alias == arg) {
+        let planteInformationFromRenderer = row;
+        plant.maxTemperature = planteInformationFromRenderer.max_temp;
+        plant.minTemperature = planteInformationFromRenderer.min_temp;
+        plant.maxHumidity = planteInformationFromRenderer.max_env_humid;
+        plant.minHumidity = planteInformationFromRenderer.min_env_humid;
+        plant.image = planteInformationFromRenderer.image;
+        plant.ultimatemoist = planteInformationFromRenderer.min_soil_moist;
+      }
+    })
+    .on("end", () => {
+      console.log(`${plant.name} succesfully chosed!`);
+    });
 });
 
 // discord rich presence (https://bit.ly/36AGK8p)

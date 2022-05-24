@@ -103,8 +103,9 @@ function humidity() {
 	var vide = 100 - actualHumidity;
 	var yValues = [actualHumidity, vide];
 	let colorLine = window.getComputedStyle(document.getElementById("wrapper"), null).getPropertyValue('background-color')
+	let colorGraph = window.getComputedStyle(document.body, null).getPropertyValue('background-color')
 
-	var barColors = ["#0E361D", "transparent"];
+	var barColors = [colorGraph, "transparent"];
 
 	new Chart(ctx, {
 		type: "doughnut",

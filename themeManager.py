@@ -17,13 +17,20 @@ def palette(choice):
 
 
 class Palette ():
-    def __init__(self, mainColor: str, secondaryColor: str, fontMaincolor: str, fontSecondaryColor) -> None:
+    def __init__(self, mainColor: str, secondaryColor: str, fontMaincolor: str, fontSecondaryColor: str) -> None:
+        '''
+        mainColor -> background color and humidity graph/ real temperature curve
+        secondaryColor -> menu/main window color
+        fontMainColor -> font color and maximum/minimum temperature curve
+        fontSecondaryColor -> not used at the moment
+        '''
         self.mainColor = mainColor
         self.secondaryColor = secondaryColor
         self.fontMainColor = fontMaincolor
         self.fontSecondaryColor = fontSecondaryColor
 
-    def applyPalette(self):
+    def applyPalette(self) -> None:
+        '''  function that open variables.scss, then change the values for the color. '''
         file = open(path, "r")
         redFile = file.readlines()
         file.close()

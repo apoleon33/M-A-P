@@ -10,7 +10,6 @@ const DiscordRPC = require("discord-rpc");
 // required by the discord bot
 const { Utils, CommandClient } = require("detritus-client");
 const { Embed } = Utils;
-var Chart = require("chart.js");
 require("dotenv").config();
 
 const port = new SerialPort({
@@ -23,7 +22,6 @@ const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 let mainWindow;
 
-const directoryPath = path.join(__dirname, "/plant-database/json");
 const delayOfActualisation = 36000000; // in ms <=> 10h
 const args = process.argv.slice(2); // to know if the user launch the simulator
 

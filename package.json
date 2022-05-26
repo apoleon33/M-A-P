@@ -5,7 +5,7 @@
     "main": "main.js",
     "scripts": {
         "start": "electron .",
-        "build": "sass src/style/app.scss src/style/app.css",
+        "sass": "sass src/style/app.scss src/style/app.css",
         "change-palette": "python3 themeManager.py"
     },
     "author": "apoleon33",
@@ -16,8 +16,6 @@
         "electron-rebuild": "^3.2.5"
     },
     "dependencies": {
-        "axios": "^0.27.2",
-        "chart.js": "^3.7.1",
         "csv-parser": "^3.0.0",
         "detritus-client": "^0.16.3",
         "discord-rpc": "^4.0.1",

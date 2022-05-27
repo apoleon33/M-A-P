@@ -15,9 +15,26 @@
     </a>
 </p>
 
+## Summary
+
+- [Summary](#summary)
+- [Useful links](#useful-links)
+- [Installation](#installation)
+  - [Prerequisites](#prerequisites-)
+  - [Automatic install](#automatic-install)
+  - [Manual install](#manual-install)
+- [change the theme of the M-A-P](#change-the-theme-of-the-m-a-p)
+- [Made using...](#made-using)
+
+## Useful links
+
+- [3D files needed to be printed](https://github.com/M-A-P-Organisation/3D-files)
+- [the discord bot (soon deprecated)](https://github.com/M-A-P-Organisation/discord-bot)
+- [the plant database](https://github.com/M-A-P-Organisation/MiFloraDB)
+
 ## Installation
 
-### Prerequisites :
+### Prerequisites
 
 You need to have nodejs/npm installed.
 

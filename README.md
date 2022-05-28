@@ -58,6 +58,26 @@ yarn start # launch the M-A-P. Have fun!
 
 The arduino also require the [DHT sensor library ](https://github.com/adafruit/DHT-sensor-library) by adafruit to work
 
+## Build the M-A-P
+
+- for the actual platform:
+
+```sh
+yarn dist
+```
+
+- for a specific platform:
+
+`yarn dist -- ` and:
+
+```sh
+--mac, -m, -o, --macos # Build for macOS
+--linux, -l #Build for Linux
+--win, -w, --windows # Build for Windows
+```
+
+See [electron-builder](https://www.electron.build/cli) for a complete list of the targets availables.
+
 ## change the theme of the M-A-P
 
 All the themes are contained in themeManager.py

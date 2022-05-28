@@ -19,3 +19,5 @@ plantClass.js
 
 app.css
 *.css.map
+
+dist/

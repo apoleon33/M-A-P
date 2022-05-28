@@ -20,9 +20,10 @@
 - [Summary](#summary)
 - [Useful links](#useful-links)
 - [Installation](#installation)
-  - [Prerequisites](#prerequisites-)
+  - [Prerequisites](#prerequisites)
   - [Automatic install](#automatic-install)
   - [Manual install](#manual-install)
+- [Build the M-A-P](#build-the-m-a-p)
 - [change the theme of the M-A-P](#change-the-theme-of-the-m-a-p)
 - [Made using...](#made-using)
 
@@ -51,7 +52,7 @@ git clone --recursive https://github.com/apoleon33/M-A-P.git
 ```sh
 git clone --recursive https://github.com/apoleon33/M-A-P.git
 # once its done and you have cd-ed on the right directory:
-yarn install# install needed component like electron or serialport
+yarn install # install needed component like electron or serialport
 yarn run sass # preprocess the sass
 yarn start # launch the M-A-P. Have fun!
 ```

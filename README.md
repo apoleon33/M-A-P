@@ -51,9 +51,9 @@ git clone --recursive https://github.com/apoleon33/M-A-P.git
 ```sh
 git clone --recursive https://github.com/apoleon33/M-A-P.git
 # once its done and you have cd-ed on the right directory:
-npm install # install needed component like electron or serialport
-npm run build # preprocess the sass
-npm start # launch the M-A-P. Have fun!
+yarn install# install needed component like electron or serialport
+yarn run sass # preprocess the sass
+yarn start # launch the M-A-P. Have fun!
 ```
 
 The arduino also require the [DHT sensor library ](https://github.com/adafruit/DHT-sensor-library) by adafruit to work

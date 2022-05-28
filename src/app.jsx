@@ -10,30 +10,26 @@ function renderPlantChoosing() { // retrieve name of the plants from the databas
 	ipcRenderer.send("getPlantAvailable", "");
 	ipcRenderer.on("getPlantAvailable", (event, arg) => {
 
-		let onlyPlantName = []
-		for (const plants of arg) {
-			onlyPlantName.push(plants.pid)
-		}
-
-		ReactDOM.render(<Plantschoosing list={onlyPlantName} />, mainBox)
+		ReactDOM.render(<Plantschoosing list={arg} />, mainBox)
 	});
 }
 
 function Plantschoosing(props) { // render all the plants availables 
 	return props.list.map((plant) =>
 		<li
-			key={plant}
+			key={plant.pid}
 			onClick={e => chosenPlant(e, plant)}
 			className="itemPlant"
 		>
-			<h5>{plant}</h5>
+			<img src={plant.image} className="icon"></img>
+			<h5>{plant.pid}</h5>
 		</li>
 	)
 }
 
 function chosenPlant(e, plante) { // the function once the chosen plant is clicked
 	e.preventDefault(); // so it do not activate when the list is created
-	ipcRenderer.send("plantChosen", plante); // send the plant chosen to the backend
+	ipcRenderer.send("plantChosen", plante.pid); // send the plant chosen to the backend
 	home()
 }
 

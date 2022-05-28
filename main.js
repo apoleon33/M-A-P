@@ -157,7 +157,7 @@ ipcMain.on("PlanteInformation", (event) => {
 ipcMain.on("getPlantAvailable", (event) => {
   let allPlantAvailable = [];
 
-  fs.createReadStream("MiFloraDB/PlantDB_5335_U0.csv")
+  fs.createReadStream("plant-database/PlantDB_5335_U0.csv")
     .pipe(csv())
     .on("data", (row) => {
       allPlantAvailable.push({
@@ -172,7 +172,7 @@ ipcMain.on("getPlantAvailable", (event) => {
 
 ipcMain.on("plantChosen", (event, arg) => {
   plant.name = arg;
-  fs.createReadStream("MiFloraDB/PlantDB_5335_U0.csv")
+  fs.createReadStream("plant-database/PlantDB_5335_U0.csv")
     .pipe(csv())
     .on("data", (row) => {
       if (row.alias == arg) {

@@ -41,7 +41,7 @@ def Seri() -> None:
     chosenPlante.setTemperature(int(temperature))
     chosenPlante.setHumidity(int(humidity))
 
-    db.insert_sql(temperature, humidity)
+    # db.insert_sql(temperature, humidity)
     replace(temp_20h, temp_30h)
     replace(temp_10h, temp_20h)
     replace(temp_now, temp_10h)

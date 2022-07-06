@@ -15,7 +15,7 @@ class Plante():
             file[self.name]["temperature"]["été"]
         ]
 
-        self.ideal_humidity = [
+        self.ideal_water = [
             file[self.name]["eau"]["hiver"],
             file[self.name]["eau"]["été"]
         ]

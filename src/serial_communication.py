@@ -37,7 +37,7 @@ def Seri() -> None:
     taux1 = str(data3[0:len(data3)-2].decode("utf-8"))
     taux2 = str(data4[0:len(data4)-2].decode("utf-8"))
 
-    chosenPlante.setTaux(taux1, taux2)
+    chosenPlante.setTaux(int(taux1), int(taux2))
     chosenPlante.setTemperature(int(temperature))
     chosenPlante.setHumidity(int(humidity))
 

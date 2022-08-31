@@ -12,6 +12,14 @@ const { Utils, CommandClient } = require("detritus-client");
 const { Embed } = Utils;
 require("dotenv").config();
 
+// compile the sass
+const sass = require("sass");
+const result = sass.compile("src/style/app.scss");
+fs.writeFile("src/style/app.css", result.css, function (err) {
+  if (err) return console.log(err);
+  console.log("succesfully compiled app.scss");
+});
+
 const port = new SerialPort({
   // connection port for the arduino
   path: "/dev/ttyACM0",

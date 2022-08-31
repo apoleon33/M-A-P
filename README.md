@@ -86,7 +86,7 @@ All the themes are contained in themeManager.py
 ```sh
 pip install -r requirements.txt
 npm run change-palette -- --palette=NameOfThePalette
-npm run sass # re-preprocess the sass
+# then restart the M-A-P!
 ```
 
 ## Made using...

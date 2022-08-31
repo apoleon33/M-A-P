@@ -57,5 +57,7 @@ dreamy = Palette("rgb(230,123,128)", "  rgb(251,211,197)",
                  " rgb(214,90,156)", "rgb(245,240,230)")
 eternalAtake = Palette(" #020202 ", " #E8E201 ", " #9815D3", "#189AD6")
 
+rei = Palette("#111521", "#9195C7", "#fffff6", "#fffff6bb")
+
 if __name__ == '__main__':
     fire.Fire(palette)

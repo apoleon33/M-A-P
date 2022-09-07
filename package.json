@@ -10,7 +10,7 @@
         "dist": "electron-builder"
     },
     "author": "apoleon33",
-    "license": "GNU GENERAL PUBLIC LICENSE",
+    "license": "GPL-3.0-only",
     "buildDependenciesFromSource": true,
     "npmRebuild": false,
     "devDependencies": {

@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed&display=swap');
+@import "variables";
+@import "navbar";
+
+::-webkit-scrollbar {
+    background-color: $secondaryColor;
+    width: 30px;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: $mainColor;
+    border-radius: 30px; 
+}
+
+/* DOM */
+body {
+    background-color: $mainColor;
+    padding: 0.5em;
+    font-family: 'Barlow Condensed', sans-serif;
+    color: $fontMainColor;
+
+    .dataplace {
+        width: 350px;
+        height: 250px;
+        position: absolute;
+        top: 20px;
+        left: 100px;
+        border-radius: 20px;
+        background: $secondaryColor ;
+        padding: 0.5em;
+        
+        .itemPlant{
+            list-style-type: none;
+            border-bottom: solid $secondaryColor;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+
+
+            .icon{
+                order: -1;
+                top: auto;
+                left: 0;
+                position: absolute;
+                width: 50px;
+                height: 50px;
+                border-radius: 100px;
+                justify-content: flex-start;
+            }
+
+            &:hover{
+                cursor: pointer;
+            }
+        }
+
+        #plantImage{
+            width: 120px;
+            height: 120px;
+            border-radius: 100px;
+        }
+
+        #animation{
+            animation: fadeIn 3s ease-out infinite;
+        }
+        
+        .spashText{
+            animation: fade 3s ease-out;
+        }
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        display: none;
+        opacity: 0;
+        width: 50px;
+    }
+
+    1% {
+        display: block;
+        opacity: 0;
+    }
+
+    50% {
+        display: block;
+        opacity: 1;
+        transform: rotate(360deg);
+        width: 150px;
+    }
+
+    99%{
+        display: block;
+        opacity: 0;
+    }
+
+    100%{
+        display: none;
+        opacity: 0;
+        width: 50px;  
+    }
+}
+
+@keyframes fade {
+    0% {
+        display: none;
+        opacity: 0;
+    }
+
+    1% {
+        display: block;
+        opacity: 0;
+    }
+
+    100% {
+        display: block;
+        opacity: 1;
+    }
+}

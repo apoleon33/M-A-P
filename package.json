@@ -1,0 +1,41 @@
+{
+    "name": "m-a-p",
+    "version": "2.0.0",
+    "description": "A machine to manage automatically a plant",
+    "main": "main.js",
+    "scripts": {
+        "start": "electron .",
+        "change-palette": "python3 themeManager.py",
+        "pack": "electron-builder --dir",
+        "dist": "electron-builder"
+    },
+    "author": {
+        "name": "apoleon33"
+    },
+    "license": "GPL-3.0-only",
+    "buildDependenciesFromSource": true,
+    "npmRebuild": false,
+    "devDependencies": {
+        "electron": "^13.6.9",
+        "electron-builder": "^23.0.3"
+    },
+    "dependencies": {
+        "csv-parser": "^3.0.0",
+        "detritus-client": "^0.16.3",
+        "discord-rpc": "^4.0.1",
+        "dotenv": "^10.0.0",
+        "sass": "^1.49.9",
+        "serialport": "^10.3.0"
+    },
+    "build": {
+        "appId": "com.electron.M-A-P",
+        "productName": "Machine à plante",
+        "mac": {
+            "category": "public.app-category.utilities"
+        },
+        "linux": {
+            "target": "7z"
+        },
+        "extraFiles": "plant-database"
+    }
+}

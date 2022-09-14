@@ -24,7 +24,7 @@
         "csv-parser": "^3.0.0",
         "detritus-client": "^0.16.3",
         "discord-rpc": "^4.0.1",
-        "dotenv": "^10.0.0",
+        "dotenv": "^16.0.2",
         "electron-is-dev": "^2.0.0",
         "sass": "^1.49.9",
         "serialport": "^10.3.0"

@@ -1,5 +1,6 @@
 const electron = require("electron");
 const { ipcMain } = require("electron");
+const isDev = require("electron-is-dev");
 const csv = require("csv-parser");
 
 const fs = require("fs");
@@ -13,18 +14,14 @@ const { Embed } = Utils;
 require("dotenv").config();
 
 // compile the sass
-/* const sass = require("sass");
-const result = sass.compile("src/style/app.scss");
-fs.writeFile("src/style/app.css", result.css, function (err) {
-  if (err) return console.log(err);
-  console.log("succesfully compiled app.scss");
-}); */
-
-const port = new SerialPort({
-  // connection port for the arduino
-  path: "/dev/ttyACM0",
-  baudRate: 9600,
-});
+if (isDev) {
+  const sass = require("sass");
+  const result = sass.compile("src/style/app.scss");
+  fs.writeFile("src/style/app.css", result.css, function (err) {
+    if (err) return console.log(err);
+    console.log("succesfully compiled app.scss");
+  });
+}
 
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
@@ -98,7 +95,9 @@ function createWindow(arg) {
   });
 }
 
-app.on("ready", createWindow);
+app.on("ready", () => {
+  createWindow();
+});
 
 app.on("window-all-closed", function () {
   if (process.platform !== "darwin") {
@@ -113,7 +112,7 @@ app.on("activate", function () {
 });
 
 // the serial connection
-port.on("open", serialCommunication);
+
 function serialCommunication() {
   // the function that will deal with the serial communication
 
@@ -143,6 +142,13 @@ if (args == "-s") {
   }
 
   setInterval(setRandomValues, 60000); // actualise every minutes
+} else {
+  const port = new SerialPort({
+    // connection port for the arduino
+    path: "/dev/ttyACM0",
+    baudRate: 9600,
+  });
+  port.on("open", serialCommunication);
 }
 
 // connection with de renderer via ipcMain

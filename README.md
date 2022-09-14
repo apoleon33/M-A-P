@@ -4,8 +4,8 @@
     <a href="https://github.com/apoleon33/M-A-P/releases">
         <img src="https://badgen.net/github/release/apoleon33/M-A-P">
     </a>
-    <a href="https://github.com/apoleon33/M-A-P/stargazers/">
-        <img src="https://badgen.net/github/stars/apoleon33/M-A-P">
+    <a href="https://www.codefactor.io/repository/github/apoleon33/m-a-p">
+        <img src="https://www.codefactor.io/repository/github/apoleon33/m-a-p/badge">
     </a>
     <a href="http://perso.crans.org/besson/LICENSE.html">
         <img src="https://img.shields.io/badge/License-GPLv3-blue.svg">

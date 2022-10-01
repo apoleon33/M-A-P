@@ -17,7 +17,7 @@
     "buildDependenciesFromSource": true,
     "npmRebuild": false,
     "devDependencies": {
-        "electron": "^20.2.0",
+        "electron": "^21.0.1",
         "electron-builder": "^23.0.3"
     },
     "dependencies": {
